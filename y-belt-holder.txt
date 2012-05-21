@@ -1,0 +1,17 @@
+translate(v = [45/2,13.8/2,0]){
+	
+	%translate(v = [0,0,35]) cube(size = [20,6,70], center = true);
+	
+	translate(v = [-13.5,0,17.5]) #cube(size = [7,14,35], center = true);
+	
+	
+	difference(){
+	translate(v = [-5.5,0,17.5]) cube(size = [7,14,35], center = true);
+	translate(v = [-5.5,0,17.5]) cube(size = [9,12,10], center = true);
+	
+	
+	for ( i = [0 : 11] )
+	{
+	    translate(v = [-8.5,0,1+i*3]) cube(size = [2,12,2], center = true);
+	}
+}

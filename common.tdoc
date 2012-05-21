@@ -1,0 +1,151 @@
+/**
+ * Simple M8 nut or 5/16 in imperial variant.
+ * also can be used for other screwing things :-D
+ * @common
+ * @name M8 nut
+ * @category Nuts&bolts
+ * @id m8nut
+ */
+ 
+/**
+ * @name M8 washer
+ * @common
+ * @category Nuts&bolts
+ * @id m8washer
+ */
+
+/**
+ * @name M8 washer mudguard
+ * @common
+ * @category Nuts&bolts
+ * @id m8washer-big
+ */
+
+/**
+ * @name M8 spring
+ * @common
+ * @category Nuts&bolts
+ * @id m8spring
+ */
+
+/**
+ * @name M8 30mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m8x30
+ */
+ 
+ 
+/**
+ * @name M3 nut
+ * @common
+ * @category Nuts&bolts
+ * @id m3nut
+ */
+ 
+/**
+ * @name M4 nut
+ * @common
+ * @category Nuts&bolts
+ * @id m4nut
+ */
+ 
+/**
+ * @name M3 washer
+ * @common
+ * @category Nuts&bolts
+ * @id m3washer
+ */
+
+/**
+ * @name M3 10mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m3x10
+ */
+ 
+/**
+ * @name M3 10mm screw with hex head
+ * @common
+ * @category Nuts&bolts
+ * @id m3x10xhex
+ */
+
+/**
+ * @name M3 grub screw
+ * @common
+ * @category Nuts&bolts
+ * @id m3xgrubscrew
+ */
+ 
+/**
+ * @name M3 10mm screw with flat head
+ * @common
+ * @category Nuts&bolts
+ * @id m3x10xflat
+ */
+ 
+/**
+ * @name M3 20mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m3x20
+ */
+ 
+/**
+ * @name M3 40mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m3x40
+ */
+
+/**
+ * @name M3 20mm screw with hex head
+ * @common
+ * @category Nuts&bolts
+ * @id m3x20xhex
+ */
+ 
+/**
+ * @name M3 25mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m3x25
+ */
+ 
+/**
+ * @name M3 25mm screw with HEX head
+ * @common
+ * @category Nuts&bolts
+ * @id m3x25xhex
+ */
+ 
+/**
+ * @name M3 15mm screw with HEX head
+ * @common
+ * @category Nuts&bolts
+ * @id m3x15xhex
+ */
+
+/**
+ * @name M4 25mm screw
+ * @common
+ * @category Nuts&bolts
+ * @id m4x25
+ */
+ 
+/**
+ * 608 Bearing. When you have troubles finding it, try your local skateshop, because its used in skateboards.
+ * @name 608 skate bearing
+ * @common
+ * @image common/608.jpg
+ * @category Nuts&bolts
+ * @id bearing-608
+ */
+ 
+/**
+ * @name NEMA17 stepper motor
+ * @common
+ * @id NEMA17
+ */
+ 

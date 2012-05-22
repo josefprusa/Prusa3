@@ -99,8 +99,6 @@ union(){translate([0,9.5,0])vertical_bushing(true,13);
 
 // Linear bushing options
 
-lme8uu = true;
-
 lm8uu_diameter=(lme8uu==true) ? 16 : 15;
 lm8uu_length=24;
 lm8uu_radius = lm8uu_diameter / 2;

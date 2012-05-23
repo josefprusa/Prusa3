@@ -1,4 +1,4 @@
-use <bushing.scad>
+use <bushing.scad>;
 rod_distance = 45;
 
 module x_end_motor(){

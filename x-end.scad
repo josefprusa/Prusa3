@@ -62,7 +62,10 @@ translate(v=[21-5,-21-11,30.25]){
 	
 	// material saving cutout
 	translate(v=[-10,-40,-30]) rotate(a=[45,0,0])  cube(size = [60,42,42], center = true);
-	translate(v=[0,0,0]) rotate(a=[0,-90,0]) rotate(a=[0,0,90]) cylinder(h = 80, r=18, $fn=6);
+	translate(v=[0,0,0]) rotate(a=[0,-90,0]) rotate(a=[0,0,90]){
+		cylinder(h = 80, r=18, $fn=6);
+		translate([10,11,0]) mirror([1,1,0]) cube(90);
+	}
 }
 
 }
@@ -114,8 +117,8 @@ translate(v=[0,17+7,30.25]) rotate(a=[0,-90,0]) cylinder(h = 80, r=2.2, $fn=30);
 }
 
 }
-mirror([0,0,0])x_end_idler();
-//mirror([0,1,0]) x_end_motor();
+//mirror([0,0,0])x_end_idler();
+mirror([0,1,0]) x_end_motor();
 
 module pushfit_rod(diameter,length){
 	cylinder(h = length, r=diameter/2, $fn=30);

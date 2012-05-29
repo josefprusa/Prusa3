@@ -1,104 +1,58 @@
-module zmotorholder(){
-difference(){
-	union(){
-		// Motor holding part
-		translate(v = [21,21+5,0])
-		{
-			//#cube(size = [42,42,2], center=true);
-			difference(){
-				union(){
-				translate(v = [2.5,0,0]) translate(v = [-21+4.5,-5,5]) cube(size = [9+5,36+5.5,10], center=true);
-				translate(v = [2.55,0,0])translate(v = [-9.5,-21-5+7,5]) cube(size = [55,14,10], center=true);
-				translate(v = [5,0,0])translate(v = [0,-21-5+8,5]) cube(size = [42,5,10], center=true);
-				
-				//%cylinder(h = 10, r=11);
-				
-				translate(v = [5,0,0])translate(v = [-15.5,-15.5,0]) cylinder(h = 10, r=5.5);
-				translate(v = [5,0,0])translate(v = [-15.5,+15.5,0]) cylinder(h = 10, r=5.5);
-				translate(v = [0,0,0])translate(v = [-15.5,+15.5,0]) cylinder(h = 10, r=5.5);
-				translate(v = [5,0,0])translate(v = [15.5,-15.5,0]) cylinder(h = 10, r=5.5);
-				
-				translate(v = [5,0,0])translate(v = [15.5,-15.5-5,0]) cylinder(h = 10, r=5.5);
-				}
-				
-				
-				// inside rounded corner
-				translate(v = [-21,-21,0]) cylinder(h = 12, r=1.2, $fn=8);
-				
-				//alignemnt tab
-				translate(v = [-21+10-20,-21+10,5]) cube(size = [20,20,12], center=true);
-				
-				// Z smooth rod cutout
-				translate(v = [5,0,0])translate(v = [0,-21+4.2,-1]) cylinder(h = 12, r=4.2);
-				
-				// motor screw holes
-				translate(v = [5,0,0])translate(v = [-15.5,-15.5,-1]) cylinder(h = 9, r=1.7);
-				translate(v = [5,0,0])	translate(v = [-15.5,+15.5,-1]) cylinder(h = 9, r=1.7);
-				translate(v = [5,0,0])translate(v = [15.5,-15.5,-1]) cylinder(h = 9, r=1.7);
-				// holes for heads
-				translate(v = [5,0,0])translate(v = [-15.5,-15.5,7]) cylinder(h = 7, r=3.5);
-				translate(v = [5,0,0])translate(v = [-15.5,+15.5,7]) cylinder(h = 7, r=3.5);
-				translate(v = [5,0,0])translate(v = [15.5,-15.5,7]) cylinder(h = 7, r=3.5);
-				
-				
-				// self tap screw holes
-				translate(v = [-22,0,5]) rotate([0,90,0]) cylinder(h = 25, r=2, $fn=18);
-				translate(v = [-13.5,0,5]) rotate([0,90,0]) cylinder(h = 2, r1=1.7, r2=3.5, $fn=18);
-				translate(v = [-13.5+1.95,0,5]) rotate([0,90,0]) cylinder(h = 10, r=3.5, $fn=18);
-				
-				translate(v = [-21-6,-20,5]) rotate([90,0,0]) cylinder(h = 12, r=2, $fn=18);
-				translate(v = [-21-6,-24.5,5]) rotate([90,0,0]) cylinder(h = 2, r1=1.7, r2=3.5, $fn=18);
-			}
-		}
-		
-	}
-}
+use <functions.scad>
+include <configuration.scad>
+
+
+module zmotorholder(thickness=10){
+    difference(){
+        union(){
+            // Motor holding part
+            difference(){
+                union(){
+                    zrodholder(thickness=thickness, xlen=45, ylen=45);
+                    translate([board_to_xz_distance, board_to_xz_distance, 0]) {
+                        nema(places=[0,1,1,1]);
+                    }
+                }
+
+                // motor screw holes
+                translate([board_to_xz_distance, board_to_xz_distance, thickness]) {
+                    mirror([0,0,1]) 
+                    nema(places=[0,1,1,1], holes=true);
+                }
+            }
+        }
+    }
 }
 
 
-module zrodholder(){
-difference(){
-	union(){
-		// Motor holding part
-		translate(v = [21,21+5,0])
-		{
-			//#cube(size = [42,42,2], center=true);
-			difference(){
-				union(){
-				translate(v = [2.5,0,0]) translate(v = [-21+4.5,-5,5]) cube(size = [9+5,25,10], center=true);
-				translate(v = [5+2.5-2.5,0,0])translate(v = [-9.5-8,-21-5+7,5]) #cube(size = [40+5+5,14,10], center=true);
-				//translate(v = [0,-21-5+8,5]) cube(size = [42,5,10], center=true);
-				
-				//%cylinder(h = 10, r=11);
-				
-				}
-				
-				//alignemnt tab
-				translate(v = [-21+10-20,-21+10,5]) cube(size = [20,20,12], center=true);
-				
-				// Z smooth rod cutout
-				translate(v = [5,0,0])translate(v = [0,-21+4.2,-1]) cylinder(h = 12, r=4.2);
-				
-				
-				
-				
-				// self tap screw holes
-				// self tap screw holes
-				translate(v = [-22,0,5]) rotate([0,90,0]) cylinder(h = 25, r=2, $fn=18);
-				translate(v = [-13.5,0,5]) rotate([0,90,0]) cylinder(h = 2, r1=1.7, r2=3.5, $fn=18);
-				translate(v = [-13.5+1.95,0,5]) rotate([0,90,0]) cylinder(h = 10, r=3.5, $fn=18);
-				
-				translate(v = [-21-8,-20,5]) rotate([90,0,0]) cylinder(h = 12, r=2, $fn=18);
-				translate(v = [-21-8,-24.5,5]) rotate([90,0,0]) cylinder(h = 2, r1=1.7, r2=3.5, $fn=18);
-			}
-		}
-		
-	}
-}
+module zrodholder(thickness=10, ylen=34, xlen=34){
+    difference(){
+        union(){
+            // Rod holding part
+            difference(){
+                union(){
+                    //piece along the flat side of a board
+                    cube_fillet([14, ylen, thickness]);
+                    //hole for Z axis is thru this
+                    cube_fillet([xlen, 14, thickness]);
+                    //piece along cut side of the board
+                    translate(v = [-board_thickness,0,0]) cube_fillet([board_thickness*2, 5, thickness], radius=2);
+                }
+                //smooth rod hole
+                #translate([board_to_xz_distance,5+(smooth_bar_diameter*1.05/2),-1]) cylinder(h=board_thickness+2, r=(smooth_bar_diameter*1.05/2));
+                //inside rouned corner
+                translate(v = [0,5,-1]) cylinder(r=1.2, h=thickness+2, $fn=8);
+                //side screw
+                translate([-board_thickness/2, 0, thickness/2]) rotate([-90, 0, 0]) screw();
+                //front screw
+                translate([14, 26, thickness/2]) rotate([0, -90, 0]) screw(head_drop=5);
+            }
+        }
+    }
 }
 
-//mirror([0,1,0])zmotorholder();
-//translate(v = [0,2,0]) zmotorholder();
+translate(v = [0, -2, 0]) mirror([0,1,0])zmotorholder();
+translate(v = [0,2,0]) zmotorholder();
 
-zrodholder();
-translate(v = [0,-2,0]) mirror([0,1,0]) zrodholder();
+translate([21,-57,0]) zrodholder();
+translate(v = [20,57,0]) mirror([0,1,0]) zrodholder();

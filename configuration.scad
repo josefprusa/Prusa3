@@ -25,7 +25,13 @@ linear = false;
 // set false for LM-8UU, true for LM-E-8UU (ignore if linear is set to false)
 lme8uu = false;
 
+//Machine dimensions
 
+board_thickness = 16;
+board_to_xz_distance = 26;
+
+belt_tooth_distance = 2.5;
+belt_tooth_stride = 0.5;
 
 // CHANGE ONLY THE STUFF YOU KNOW
 // IT WILL REPLACE DEFAULT SETTING

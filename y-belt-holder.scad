@@ -24,7 +24,7 @@ translate(v = [10+16, 0, 0]){
             {
                 translate(v = [-8.5, 0, 1+i*belt_tooth_distance]) cube(size = [2, 10, belt_tooth_distance*belt_tooth_stride], center = true);
             }
-            translate(v = [0, 0, 35/2]) cube(size = [20, 6, 35], center = true);
+            translate(v = [0, 0, 35/2]) cube(size = [20, 10, 35], center = true);
         }
     }
 }

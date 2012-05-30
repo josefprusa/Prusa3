@@ -57,16 +57,6 @@ module idlermount(support=false){
 
 }
 
-module idler(){
-    difference(){
-        union(){
-            translate(v = [0,10,2.5])cube(size = [17,20,16], center=true);
-        }
-        translate(v = [0,0,-1]) cylinder(h = 20, r=4.5, $fn=15);
-    }
-}
+motorholder();
+translate([25,0,0])  idlermount(true);
 
-//motorholder();
-//translate([25,0,0])  idlermount(true);
-
-idler();

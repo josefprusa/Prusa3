@@ -35,7 +35,7 @@ module leftfront(thru = true){
             translate(v = [14,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
 
             if(thru==false){
-                translate(v = [11,17,45+2.05]) rotate([0,0,0]) #cube(size = [8.2,30,4.1], center=true);
+                translate(v = [11,17,45+2.05]) rotate([0,0,0]) #cube(size = [8.2,30,3.1], center=true);
                 translate(v = [11,2,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.1);
             }else{
                 translate(v = [11,17-5,45+2.05]) rotate([0,0,0]) #cube(size = [8.2,30,4.1], center=true);
@@ -97,4 +97,3 @@ if(print==2){
     //right bottom rod
     translate(v = [160-3,0,20]) rotate([0,90,90]) cylinder(h = 350, r=4);
 }
-

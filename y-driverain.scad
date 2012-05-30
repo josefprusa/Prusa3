@@ -66,5 +66,7 @@ module idler(){
     }
 }
 
-motorholder();
-translate([25,0,0])  idlermount(true);
+//motorholder();
+//translate([25,0,0])  idlermount(true);
+
+idler();

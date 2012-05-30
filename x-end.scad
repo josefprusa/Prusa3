@@ -10,7 +10,7 @@ module x_end_motor(){
 
 
     difference(){
-        translate(v=[-4.5-10+2-1,-21-11+1,29.5]) cube_fillet(size = [17,44,45], center = true, vertical=[0,0,3,3], top=[0,3,6,3]);
+        translate(v=[-4.5-10+2-1,-21-11+1,29.5]) cube_fillet(size = [17,44,45], center = true, vertical=[0,0,3,3], top=[0,3,6,3], bottom=[0,0,6,0]);
 
         // motor screw holes
         translate(v=[21-5,-21-11,30.25]){

@@ -22,12 +22,16 @@ module nutrod(){
    20 mm betwenn the front threaded rods
    25 mm between the side threaded and smooth rod
  */
-module leftfront(thru = true){
+module leftfront(thru = false){
     // translate so the rod is on x = 0
     translate(v = [-11,0,0])
 
         difference(){
-            cube_fillet([22,22,50.5], vertical=[4,4,4,4], top=[4,4,4,4], fn=8);
+            if (thru == false) {
+                cube_fillet([22,22,49], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
+            } else {
+                cube_fillet([22,22,50.5], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
+            }
 
             translate(v = [0,11,10]) rotate([0,0,0]) nutrod();
             translate(v = [0,11,30]) rotate([0,0,0]) nutrod();
@@ -35,8 +39,8 @@ module leftfront(thru = true){
             translate(v = [14,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
 
             if(thru==false){
-                translate(v = [11,17,45+2.05]) rotate([0,0,0]) #cube(size = [8.2,30,3.1], center=true);
-                translate(v = [11,2,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.1);
+                translate(v = [11,17,45+4]) rotate([0,0,0]) #cube(size = [8.2,30,4], center=true);
+                translate(v = [11,2,45]) rotate([0,90,90]) cylinder(h = 270, r=4.1);
             }else{
                 translate(v = [11,17-5,45+2.05]) rotate([0,0,0]) #cube(size = [8.2,30,4.1], center=true);
                 translate(v = [11,2-5,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.1);

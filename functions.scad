@@ -87,7 +87,7 @@ module cube_fillet_inside(size, radius=-1, vertical=[3,3,3,3], top=[0,0,0,0], bo
 
 module nema(places=[0,1,1,1], size=15.5, h=10, holes=false, shadow=0, $fn=0){
     for (i=[0:3]) {
-        if (places[i]) {
+        if (places[i] == 1) {
             rotate([0, 0, 90*i]) translate([size, size, 0]) {
                 if (holes) {
                     rotate([0, 0, -90*i])  screw(r=1.7, slant=false, head_drop=3, $fn=$fn, h=h+2);

@@ -1,0 +1,10 @@
+This is Prusa iteration 3
+Published under GPL v3
+
+To start:
+Copy configuration.scad.dist to configuration.scad and make bushing/bearing choice there
+
+
+RP every .scad in this directory once
+
+build a printer.

@@ -52,7 +52,7 @@ module outer()
 
     difference()
     {
-        #cylinder(r=idler_size/2+wall_ascent,h=thickness);
+        cylinder(r=idler_size/2+wall_ascent,h=thickness);
         translate([0,0,-1])
             cylinder(r=idler_size/2-wall_descent,h=thickness+2);
     }

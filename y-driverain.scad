@@ -45,10 +45,10 @@ module idlermount(support=false){
             translate(v = [8,33,0]) cylinder(h = 19, r=8);
             translate(v = [0,7,0]) cube([16,27,19]);
         }
-        translate(v = [8,8,-1]) cylinder(h = 120, r=4);
+        translate(v = [8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
         translate(v = [8,33,-1])cylinder(h = 25, r=4.5);
 
-        translate(v = [8,8,4])cylinder(h = 11, r=17);
+        translate(v = [8,8,4])cylinder(h = 11, r=(idler_size/2)+8);
     }
     if (support) {
         translate([0,-2,15]) cube([16,16,0.4]);

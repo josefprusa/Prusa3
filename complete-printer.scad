@@ -11,30 +11,30 @@ use <y-driverain.scad>
 use <y-axis-corner.scad>
 
 //motor and idler holding parts
-translate([100,10,0]) rotate([0,90,0]) rotate([0,0,90]) motorholder();
-translate([114, 367, 22])  rotate([0,-90,0]) idlermount();
+translate([70,10,0]) rotate([0,90,0]) rotate([0,0,90]) motorholder();
+translate([84, 367, 22])  rotate([0,-90,0]) idlermount();
 // corners
 leftfront();
-translate(v = [160,0,0]) mirror([1,0,0]) leftfront();
+translate(v = [125,0,0]) mirror([1,0,0]) leftfront();
 translate(v = [0,410,0]) mirror([0,1,0]){
     leftfront();
-    translate(v = [160,0,0]) mirror([1,0,0]) leftfront();
+    translate(v = [125,0,0]) mirror([1,0,0]) leftfront();
     // back bottom threaded rod
     color("Aqua")
-    translate(v = [0,10,10]) rotate([0,90,0]) cylinder(h = 160, r=4);
+    translate(v = [-10,10,10]) rotate([0,90,0]) cylinder(h = 125, r=4);
 
     // back top threaded rod
     color("Aqua")
-    translate(v = [0,10,30]) rotate([0,90,0]) cylinder(h = 160, r=4);
+    translate(v = [0,10,30]) rotate([0,90,0]) cylinder(h = 125, r=4);
 }
 
 // front bottom threaded rod
 color("Aqua")
-translate(v = [0,10,10]) rotate([0,90,0]) cylinder(h = 160, r=4);
+translate(v = [0,10,10]) rotate([0,90,0]) cylinder(h = 125, r=4);
 
 // front top threaded rod
 color("Aqua")
-translate(v = [0,10,30]) rotate([0,90,0]) cylinder(h = 160, r=4);
+translate(v = [0,10,30]) rotate([0,90,0]) cylinder(h = 125, r=4);
 
 // left top rod
 color("MediumBlue")
@@ -45,7 +45,12 @@ translate(v = [3,0,20]) rotate([0,90,90]) cylinder(h = 420, r=4);
 
 // right top rod
 color("MediumBlue")
-translate(v = [160,2.2,45]) rotate([0,90,90]) cylinder(h = 405, r=4);
+translate(v = [125,2.2,45]) rotate([0,90,90]) cylinder(h = 405, r=4);
 //right bottom rod
 color("Aqua")
-translate(v = [160-3,0,20]) rotate([0,90,90]) cylinder(h = 420, r=4);
+translate(v = [125-3,0,20]) rotate([0,90,90]) cylinder(h = 420, r=4);
+
+
+//heat bed
+color("Lime")
+translate([125/2,330,58]) cube([225,225,6], center=true);

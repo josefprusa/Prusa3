@@ -13,7 +13,7 @@
 // Uncomment for metric settings
 // METRIC METRIC METRIC METRIC METRIC METRIC METRIC METRIC 
 
-include <metric.scad>;
+include <inc/metric.scad>;
 
 // CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM
 
@@ -63,6 +63,6 @@ belt_tooth_stride = 0.5;
 ///counted stuff
 m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
 
-// functions 
-include <functions.scad>
+// functions
+include <inc/functions.scad>
 

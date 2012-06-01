@@ -1,4 +1,4 @@
-use <functions.scad>
+use <inc/functions.scad>
 include <configuration.scad>
 
 

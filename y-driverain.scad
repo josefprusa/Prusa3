@@ -18,7 +18,7 @@ module motorholder(thickness=10){
                 difference(){
                     union(){
                         translate(v = [-21+4.5,0,5]) cube(size = [9,31,thickness], center=true);
-                        nema17([0,1,1,0], thickness=thickness, shadow=true);
+                        nema17([0,1,1,0], thickness=thickness, shadow=-45);
                         // Parts joining part
                         translate(v = [-29,-21,0]) cube(size = [14,30,thickness]);
                     }

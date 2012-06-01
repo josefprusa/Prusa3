@@ -15,22 +15,64 @@
 
 include <inc/metric.scad>;
 
-// CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM
+// Custom settings here, tailor to your supplies and print settings
 
-thin_wall = 3;
+// Select your belt type ******************************************************
 
-// Linear bearing version
-linear = false;
-// set false for LM-8UU, true for LM-E-8UU (ignore if linear is set to false)
-lme8uu = false;
-
-//Machine dimensions
-
-board_thickness = 16;
-board_to_xz_distance = 26;
-
+//T2.5
 belt_tooth_distance = 2.5;
 belt_tooth_stride = 0.5;
+
+//T5 (strongly discouraged)
+//belt_tooth_distance = 5;
+//belt_tooth_stride = 0.75;
+
+//HTD3
+//belt_tooth_distance = 3;
+//belt_tooth_stride = 0.75;
+
+// Choose bearing/bushing configuration ***************************************
+
+//Choose from:
+
+// 0 = default Z as lm[e]8uu, X and Y bushings
+// 1 = all bushings
+// 2 = all bearings
+
+bearing_choice = 0;
+
+// Bushing version
+// 0 = default square igus
+// 1 = round igus (works better if printed precisely)
+// 2 = bronze self-aligning bushings
+bushing_type = 0;
+
+//Bearing version
+// 0 = default lm8uu
+// 1 = lme8uu
+
+// Select idler bearing size **************************************************
+
+// 22 = 608 [standard skate bearings]
+// 13 = 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
+
+idler_size = 22;
+
+//use 4.5 for 608, 2.5 for 624
+idler_size_inner_r = 4.5;
+
+// Thickness of the XZ plate board
+board_thickness = 16;
+
+//Layer height * width over thickness. Used for idler sleeve
+single_wall_width = 0.3*2.2;
+
+// END of custom settings
+
+
+
+// You are not supposed to change this
+board_to_xz_distance = 26;
 
 // CHANGE ONLY THE STUFF YOU KNOW
 // IT WILL REPLACE DEFAULT SETTING
@@ -64,4 +106,3 @@ m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
 
 // functions
 include <inc/functions.scad>
-

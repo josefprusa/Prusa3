@@ -10,14 +10,14 @@ module zmotorholder(thickness=10){
                 union(){
                     zrodholder(thickness=thickness, xlen=45, ylen=45);
                     translate([board_to_xz_distance, board_to_xz_distance, 0]) {
-                        nema(places=[0,1,1,1]);
+                        nema17(places=[0,1,1,1]);
                     }
                 }
 
                 // motor screw holes
                 translate([board_to_xz_distance, board_to_xz_distance, thickness]) {
                     mirror([0,0,1]) 
-                    nema(places=[0,1,1,1], holes=true);
+                    nema17(places=[0,1,1,1], holes=true);
                 }
             }
         }

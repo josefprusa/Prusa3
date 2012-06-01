@@ -17,7 +17,7 @@ module x_end_motor(){
             // belt hole
             translate(v=[-30,1,0]) cube(size = [10,46,22], center = true);
             //motor mounting holes
-            translate(v=[-41, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema(places=[1,1,1,1], holes=true, shadow=16, $fn=6, h=20);
+            translate(v=[-41, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,1,1,1], holes=true, shadow=16, $fn=6, h=20);
             translate(v=[0,0,0]) rotate(a=[0,-90,0]) rotate(a=[0,0,90]) cylinder(h = 80, r=18, $fn=6);
         }
     }

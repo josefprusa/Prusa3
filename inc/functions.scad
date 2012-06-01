@@ -85,7 +85,7 @@ module cube_fillet_inside(size, radius=-1, vertical=[3,3,3,3], top=[0,0,0,0], bo
 }
 
 
-module nema(places=[0,1,1,1], size=15.5, h=10, holes=false, shadow=0, $fn=0){
+module nema17(places=[1,1,1,1], size=15.5, h=10, holes=false, shadow=0, $fn=0){
     for (i=[0:3]) {
         if (places[i] == 1) {
             rotate([0, 0, 90*i]) translate([size, size, 0]) {
@@ -97,7 +97,7 @@ module nema(places=[0,1,1,1], size=15.5, h=10, holes=false, shadow=0, $fn=0){
             }
         }
     }
-    if (shadow > 0) {
+    if (shadow) {
         %translate ([0, 0, shadow+21+3]) cube(size = [42,42,42], center = true);
     }
 }

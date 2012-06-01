@@ -18,12 +18,12 @@ module motorholder(thickness=10){
                 difference(){
                     union(){
                         translate(v = [-21+4.5,0,5]) cube(size = [9,31,thickness], center=true);
-                        nema([0,1,1,0], thickness=thickness);
+                        nema17([0,1,1,0], thickness=thickness, shadow=true);
                         // Parts joining part
                         translate(v = [-29,-21,0]) cube(size = [14,30,thickness]);
                     }
                     // Motor mounting holes
-                    translate([0,0,thickness]) mirror([0,0,1]) nema([0,1,1,0], thickness=thickness, holes=true);
+                    translate([0,0,thickness]) mirror([0,0,1]) nema17([0,1,1,0], thickness=thickness, holes=true);
                 }
             }
 
@@ -48,7 +48,10 @@ module idlermount(support=false){
         translate(v = [8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
         translate(v = [8,33,-1])cylinder(h = 25, r=4.5);
 
-        translate(v = [8,8,4])cylinder(h = 11, r=(idler_size/2)+8);
+        translate(v = [8,8,4]) {
+            %translate([0,0,1]) cylinder(h = 9, r=(idler_size/2)+2*single_wall_width);
+            cylinder(h = 11, r=(idler_size/2)+8);
+        }
     }
     if (support) {
         translate([0,-2,15]) cube([16,16,0.4]);

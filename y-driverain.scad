@@ -12,15 +12,15 @@ module motorholder(thickness=10){
     difference(){
         union(){
             // Motor holding part
-            translate(v = [29,-21+50,0])
+            translate([29,-21+50,0])
             {
                 //#cube(size = [42,42,2], center=true);
                 difference(){
                     union(){
-                        translate(v = [-21+4.5,0,5]) cube(size = [9,31,thickness], center=true);
+                        translate([-21+4.5,0,5]) cube(size = [9,31,thickness], center=true);
                         nema17([0,1,1,0], thickness=thickness, shadow=-45);
                         // Parts joining part
-                        translate(v = [-29,-21,0]) cube(size = [14,30,thickness]);
+                        translate([-29,-21,0]) cube(size = [14,30,thickness]);
                     }
                     // Motor mounting holes
                     translate([0,0,thickness]) mirror([0,0,1]) nema17([0,1,1,0], thickness=thickness, holes=true);
@@ -28,12 +28,12 @@ module motorholder(thickness=10){
             }
 
             // Front holding part
-            translate(v = [0,10,0]) cylinder(h = thickness, r=8);
-            translate(v = [0,20,5])cube(size = [16,20,thickness], center=true);
-            translate(v = [0,30,0])cylinder(h = thickness, r=8);
+            translate([0,10,0]) cylinder(h = thickness, r=8);
+            translate([0,20,5]) cube(size = [16,20,thickness], center=true);
+            translate([0,30,0]) cylinder(h = thickness, r=8);
         }
-        translate(v = [0,10,-1]) cylinder(h = 12, r=4.5);
-        translate(v = [0,30,-1])cylinder(h = 12, r=4.5);
+        translate([0,10,-1]) cylinder(h = 12, r=4.5);
+        translate([0,30,-1]) cylinder(h = 12, r=4.5);
     }
 }
 
@@ -41,14 +41,14 @@ module motorholder(thickness=10){
 module idlermount(support=false){
     difference(){
         union(){
-            translate(v = [8,8,0]) cylinder(h = 19, r=8);
-            translate(v = [8,33,0]) cylinder(h = 19, r=8);
-            translate(v = [0,7,0]) cube([16,27,19]);
+            translate([8,8,0]) cylinder(h = 19, r=8);
+            translate([8,33,0]) cylinder(h = 19, r=8);
+            translate([0,7,0]) cube([16,27,19]);
         }
-        translate(v = [8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
-        translate(v = [8,33,-1])cylinder(h = 25, r=4.5);
+        translate([8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
+        translate([8,33,-1]) cylinder(h = 25, r=4.5);
 
-        translate(v = [8,8,4]) {
+        translate([8,8,4]) {
             %translate([0,0,1]) cylinder(h = 9, r=(idler_size/2)+2*single_wall_width);
             cylinder(h = 11, r=(idler_size/2)+8);
         }

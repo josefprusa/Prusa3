@@ -13,7 +13,7 @@ module nut(d,h,horizontal=true){
     cylinder(h = h, r = cornerdiameter, $fn = 6);
     if(horizontal){
         for(i = [1:6]){
-            rotate([0,0,60*i]) translate([-cornerdiameter-0.2,0,0]) rotate([0,0,-45]) cube(size = [2,2,h]);
+            rotate([0,0,60*i]) translate([-cornerdiameter-0.2,0,0]) rotate([0,0,-45]) cube([2,2,h]);
         }
     }
 }
@@ -98,7 +98,7 @@ module nema17(places=[1,1,1,1], size=15.5, h=10, holes=false, shadow=false, $fn=
         }
     }
     if (shadow != false) {
-        %translate ([0, 0, shadow+21+3]) cube(size = [42,42,42], center = true);
+        %translate ([0, 0, shadow+21+3]) cube([42,42,42], center = true);
     }
 }
 

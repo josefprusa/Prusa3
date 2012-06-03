@@ -13,13 +13,13 @@ module motorholder(thickness=10){
             // Motor holding part
             translate([29,-21+50,0])
             {
-                //#cube(size = [42,42,2], center=true);
+                //#cube([42,42,2], center=true);
                 difference(){
                     union(){
-                        translate([-21+4.5,0,5]) cube(size = [9,31,thickness], center=true);
+                        translate([-21+4.5,0,5]) cube([9,31,thickness], center=true);
                         nema17([0,1,1,0], thickness=thickness, shadow=-45);
                         // Parts joining part
-                        translate([-29,-21,0]) cube(size = [14,30,thickness]);
+                        translate([-29,-21,0]) cube([14,30,thickness]);
                     }
                     // Motor mounting holes
                     translate([0,0,thickness]) mirror([0,0,1]) nema17([0,1,1,0], thickness=thickness, holes=true);
@@ -28,7 +28,7 @@ module motorholder(thickness=10){
 
             // Front holding part
             translate([0,10,0]) cylinder(h = thickness, r=8);
-            translate([0,20,5]) cube(size = [16,20,thickness], center=true);
+            translate([0,20,5]) cube([16,20,thickness], center=true);
             translate([0,30,0]) cylinder(h = thickness, r=8);
         }
         translate([0,10,-1]) cylinder(h = 12, r=4.5);

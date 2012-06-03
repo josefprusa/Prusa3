@@ -29,10 +29,10 @@ module linear_bushing_square(h=11) {
     translate([0,0,h/2]) {
         difference(){
             union(){
-                translate([-10.5/2,0,0]) cube(size = [10.5,13.8,h], center = true);
-                cube(size = [13.8,13.8,h], center = true);
+                translate([-10.5/2,0,0]) cube([10.5,13.8,h], center = true);
+                cube([13.8,13.8,h], center = true);
             }
-            cube(size = [9,9,h+0.02], center = true);
+            cube([9,9,h+0.02], center = true);
         }
     }
 }
@@ -40,7 +40,7 @@ module linear_bushing_square(h=11) {
 module linear_bushing_round(h=11) {
     difference(){
         union(){
-            translate([-10.5/2,0,h/2]) cube(size = [10.5,15,h], center = true);
+            translate([-10.5/2,0,h/2]) cube([10.5,15,h], center = true);
             cylinder(r=7.5, h=h);
         }
         translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
@@ -50,7 +50,7 @@ module linear_bushing_round(h=11) {
 module linear_bushing_bronze(h=11) {
     difference(){
         union(){
-            translate([-10.5/2,0,h/2]) cube(size = [10.5,15,h], center = true);
+            translate([-10.5/2,0,h/2]) cube([10.5,15,h], center = true);
             cylinder(r=10.5, h=h);
         }
         translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
@@ -89,7 +89,7 @@ module linear_bushing(h=65){
 module bushing_negative(h=65){
     if (bearing_choice == 1) {
         if (bushing_type == 0) {
-            translate([0,0,h/2]) cube(size = [9,9,h+0.02], center = true);
+            translate([0,0,h/2]) cube([9,9,h+0.02], center = true);
         }
         if (bushing_type == 1) {
             translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
@@ -152,10 +152,10 @@ module y_bearing(float=false){
 
 module linear_bearing(h=65){
     linear_holder_base(h);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube(size = [10-5.5,20,2], center = true);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube(size = [10-5.5,20,2], center = true);
+    translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube([10-5.5,20,2], center = true);
+    translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube([10-5.5,20,2], center = true);
     if ( (h-4)/2 > lm8uu_length){
-        translate([-(10-5.5)/2-lm8uu_radius+2,0,h/2]) cube(size = [10-5.5,20, (h-4)-2*lm8uu_length], center = true);
+        translate([-(10-5.5)/2-lm8uu_radius+2,0,h/2]) cube([10-5.5,20, (h-4)-2*lm8uu_length], center = true);
     }
 }
 
@@ -164,16 +164,16 @@ module linear_holder_base(length){
     difference(){
         union(){
             //main block
-            translate([-10.5/2,0,length/2]) cube(size = [10.5,lm8uu_diameter+5,length], center = true);
+            translate([-10.5/2,0,length/2]) cube([10.5,lm8uu_diameter+5,length], center = true);
             translate([0,0,0]) cylinder(h = length, r=lm8uu_radius+2.5, $fn=60);
         }
         //main axis
         translate([0,0,-2]) cylinder(h = length+4, r=(lm8uu_diameter+0.8)/2, $fn=50);
         // not needed for zip tie
         //main cut
-        translate([10,0,length/2]) cube(size = [20,14,length+4], center = true);
+        translate([10,0,length/2]) cube([20,14,length+4], center = true);
         //smooth entry cut
-        translate([12,0,length/2]) rotate([0,0,45]) cube(size = [20,20,length+4], center = true);
+        translate([12,0,length/2]) rotate([0,0,45]) cube([20,20,length+4], center = true);
     }
 }
 

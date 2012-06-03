@@ -6,14 +6,14 @@ module x_end_motor(){
 
     x_end_idler([3,3,0,0], thru=false);
     /// motor dummy
-    //%translate([21-5,-21-11,25]) cube(size = [42,42,42], center = true);
+    //%translate([21-5,-21-11,25]) cube([42,42,42], center = true);
 
 
     difference(){
         union(){
-            translate([-13.5,-16,26]) cube_fillet(size = [17,14,52], center = true, vertical=[0,0,3,3], top=[0,3,6,3]);
+            translate([-13.5,-16,26]) cube_fillet([17,14,52], center = true, vertical=[0,0,3,3], top=[0,3,6,3]);
             translate([-13.5,-34,9]) intersection(){
-                cube_fillet(size = [17,37,18], center = true, vertical=[0,0,0,0], top=[0,3,5,3]);
+                cube_fillet([17,37,18], center = true, vertical=[0,0,0,0], top=[0,3,5,3]);
                 translate([-17/2,10,-26]) rotate([45,0,0]) cube_fillet([17,60,60], radius=2);
             }
             translate([-22, -32, 30.25]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,0,1,1], h=17);
@@ -22,14 +22,14 @@ module x_end_motor(){
         // motor screw holes
         translate([21-5,-21-11,30.25]){
             // belt hole
-            translate([-30,11,0]) cube(size = [10,26,20], center = true);
+            translate([-30,11,0]) cube([10,26,20], center = true);
             //motor mounting holes
             translate([-41, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,0,1,1], holes=true, shadow=17, $fn=6, h=20);
         }
     }
     //smooth rod caps
-    translate([-22, -10.5, 0]) cube(size = [17, 2, 15]);
-    translate([-22, -10.5, 45]) cube(size = [17, 2, 10]);
+    translate([-22, -10.5, 0]) cube([17, 2, 15]);
+    translate([-22, -10.5, 45]) cube([17, 2, 10]);
 }
 
 
@@ -37,8 +37,8 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
     difference(){
         union(){
             difference(){
-                translate([-4.5-10+2-1,17.5-10+2,30]) cube_fillet(size = [15+2,35+5,60], center = true, vertical=vfillet, top=[5,3,5,3]);
-                //#translate([0,0,26]) cube_fillet(size = [17,13.8,80], center = true);
+                translate([-4.5-10+2-1,17.5-10+2,30]) cube_fillet([15+2,35+5,60], center = true, vertical=vfillet, top=[5,3,5,3]);
+                //#translate([0,0,26]) cube_fillet([17,13.8,80], center = true);
                 //#cylinder(r=5.1, h=80);
                 bushing_negative(60);
             }
@@ -52,22 +52,22 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
             // Nut trap
             difference(){
                 if ((bearing_type == 1) || (bushing_type == 2)) {
-                translate([-2,17.5,4]) cube_fillet(size = [16,18,8], center = true, vertical=[3,0,0,0]);
+                translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,0]);
                 } else {
-                translate([-2,17.5,4]) cube_fillet(size = [16,18,8], center = true, vertical=[3,0,0,3]);
+                translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,3]);
                 }
 
                 //bottom hole
                 translate([0,17,-1]) cylinder(h = 4, r=2.45);
                 //nut slid in
-                translate([5,17,4]) cube(size = [21,9.5,4.1], center = true);
+                translate([5,17,4]) cube([21,9.5,4.1], center = true);
 
                 translate([0,17,6.5]) cylinder(h = 4, r=2.45);
             }
         }
 
         // belt hole
-        translate([-5.5-10+1.5,22-10,30]) cube(size = [10,46,32], center = true);
+        translate([-5.5-10+1.5,22-10,30]) cube([10,46,32], center = true);
 
         if(thru == true){
             translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8,50);
@@ -92,7 +92,7 @@ translate([40,0,0]) mirror([0,1,0]) x_end_motor();
 
 module pushfit_rod(diameter,length){
     cylinder(h = length, r=diameter/2, $fn=30);
-    translate([0,-diameter/4,length/2]) cube(size = [diameter,diameter/2,length], center = true);
+    translate([0,-diameter/4,length/2]) cube([diameter,diameter/2,length], center = true);
 
-    translate([0,-diameter/2-1.2,length/2]) cube(size = [diameter,1,length], center = true);
+    translate([0,-diameter/2-1.2,length/2]) cube([diameter,1,length], center = true);
 }

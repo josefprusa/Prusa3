@@ -11,7 +11,7 @@ use <y-driverain.scad>
 module nutrod(){
     rotate([0,90,0]){
         //translate([0,0,-0.1]) nut(m8_nut_diameter,6.7,false);
-        translate([-7.5/2,0,7/2-1.5]) cube(size = [7.5,15,7], center=true);
+        translate([-7.5/2,0,7/2-1.5]) cube([7.5,15,7], center=true);
         translate([0,0,-1.5]) cylinder(h = 7, r=7.5);
         cylinder(h = 270, r=4.4, $fn=30);
     }
@@ -39,10 +39,10 @@ module leftfront(thru = false){
             translate([14,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
 
             if(thru==false){
-                translate([11,17,45+4]) rotate([0,0,0]) cube(size = [8.2,30,4], center=true);
+                translate([11,17,45+4]) rotate([0,0,0]) cube([8.2,30,4], center=true);
                 translate([11,2,45]) rotate([0,90,90]) cylinder(h = 270, r=4.1);
             }else{
-                translate([11,17-5,45+2.05]) rotate([0,0,0]) cube(size = [8.2,30,4.1], center=true);
+                translate([11,17-5,45+2.05]) rotate([0,0,0]) cube([8.2,30,4.1], center=true);
                 translate([11,2-5,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.1);
             }
 
@@ -57,11 +57,11 @@ module leftfrontprint(){
 
 leftfrontprint();
 translate([25,0,0]) mirror([1,0,0]) leftfrontprint();
-translate([12,2,28]) rotate([0,0,0]) cube(size = [10,4,1], center=true);
+translate([12,2,28]) rotate([0,0,0]) cube([10,4,1], center=true);
 
 translate([0,25,0]) {
     leftfrontprint();
     translate([25,0,0]) mirror([1,0,0]) leftfrontprint();
-    translate([12,2,28]) rotate([0,0,0]) cube(size = [10,4,1], center=true);
+    translate([12,2,28]) rotate([0,0,0]) cube([10,4,1], center=true);
 }
 

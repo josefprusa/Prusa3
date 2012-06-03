@@ -10,23 +10,26 @@ module x_end_motor(){
 
 
     difference(){
-        translate([-4.5-10+2-1,-21-11+1,29.5]) cube_fillet(size = [17,44,45], center = true, vertical=[0,0,3,3], top=[0,3,6,3], bottom=[0,0,6,0]);
+        union(){
+            translate([-13.5,-16,26]) cube_fillet(size = [17,14,52], center = true, vertical=[0,0,3,3], top=[0,3,6,3]);
+            translate([-13.5,-34,9]) intersection(){
+                cube_fillet(size = [17,37,18], center = true, vertical=[0,0,0,0], top=[0,3,5,3]);
+                translate([-17/2,10,-26]) rotate([45,0,0]) cube_fillet([17,60,60], radius=2);
+            }
+            translate([-22, -32, 30.25]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,0,1,1], h=17);
+        }
 
         // motor screw holes
         translate([21-5,-21-11,30.25]){
             // belt hole
-            translate([-30,1,0]) cube(size = [10,46,22], center = true);
+            translate([-30,11,0]) cube(size = [10,26,20], center = true);
             //motor mounting holes
-            translate([-41, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,1,1,1], holes=true, shadow=16, $fn=6, h=20);
-            translate([0,0,0]) rotate([0,-90,0]) rotate([0,0,90]) cylinder(h = 80, r=18, $fn=6);
+            translate([-41, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,0,1,1], holes=true, shadow=17, $fn=6, h=20);
         }
     }
+    //smooth rod caps
     translate([-22, -10.5, 0]) cube(size = [17, 2, 15]);
     translate([-22, -10.5, 45]) cube(size = [17, 2, 10]);
-    //motor support
-    translate([-22, -53, 7]) cube(size = [17, 44, 1]);
-    translate([-22, -54, 0]) cube_fillet(size = [17, 3, 8], radius=1.5);
-    translate([-22, -30, 0]) cube_fillet(size = [17, 3, 8], radius=1.5);
 }
 
 

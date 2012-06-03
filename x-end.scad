@@ -1,5 +1,5 @@
+include <configuration.scad>
 use <bushing.scad>
-use <inc/functions.scad>
 rod_distance = 45;
 
 module x_end_motor(){
@@ -35,12 +35,24 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
         union(){
             difference(){
                 translate([-4.5-10+2-1,17.5-10+2,30]) cube_fillet(size = [15+2,35+5,60], center = true, vertical=vfillet, top=[5,3,5,3]);
-                translate([0,0,26]) cube(size = [19,19,80], center = true);
+                //#translate([0,0,26]) cube_fillet(size = [17,13.8,80], center = true);
+                //#cylinder(r=5.1, h=80);
+                bushing_negative(60);
             }
-            rotate([0,0,-90]) translate([0,-9.5,0]) z_linear_bearings();
+            //rotate([0,0,0]) translate([0,-9.5,0]) 
+            echo(bearing_choice);
+            if (bearing_choice == 1) {
+                linear_bushing();
+            } else {
+                linear_bearing();
+            }
             // Nut trap
             difference(){
+                if ((bearing_type == 1) || (bushing_type == 2)) {
                 translate([-2,17.5,4]) cube_fillet(size = [16,18,8], center = true, vertical=[3,0,0,0]);
+                } else {
+                translate([-2,17.5,4]) cube_fillet(size = [16,18,8], center = true, vertical=[3,0,0,3]);
+                }
 
                 //bottom hole
                 translate([0,17,-1]) cylinder(h = 4, r=2.45);

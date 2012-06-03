@@ -16,26 +16,30 @@ include <configuration.scad>
  * @id bushing
  */
 
+// Linear bearing options
+lm8uu_diameter=(bearing_type==0) ? 16 : 15;
+lm8uu_length=(bearing_type==0) ? 24 : 25;
+lm8uu_radius = lm8uu_diameter / 2;
+block_height = 2*lm8uu_length+17;
+
+// basic building blocks, housings for 1 bushing/bearing
+// at [0,0] there is center of the smooth rod, pointing in Z
 
 module linear_bushing_square(h=11) {
     translate([0,0,h/2]) {
         difference(){
             union(){
-                //main block
                 translate([-10.5/2,0,0]) cube(size = [10.5,13.8,h], center = true);
                 cube(size = [13.8,13.8,h], center = true);
             }
-            translate([0,0,0]) cube(size = [9,9,h+0.04], center = true);
+            cube(size = [9,9,h+0.02], center = true);
         }
     }
 }
 
-//linear_bushing_square();
-
 module linear_bushing_round(h=11) {
     difference(){
         union(){
-            //main block
             translate([-10.5/2,0,h/2]) cube(size = [10.5,15,h], center = true);
             cylinder(r=7.5, h=h);
         }
@@ -46,7 +50,6 @@ module linear_bushing_round(h=11) {
 module linear_bushing_bronze(h=11) {
     difference(){
         union(){
-            //main block
             translate([-10.5/2,0,h/2]) cube(size = [10.5,15,h], center = true);
             cylinder(r=10.5, h=h);
         }
@@ -54,48 +57,107 @@ module linear_bushing_bronze(h=11) {
     }
 }
 
-//linear_bushing_round();
-//linear_bushing_bronze();
-
-
-module linear_bushing_long(){
+// select right bushing and cut it at angle, so it can be printed upside down
+module linear_bushing_long(h=30){
     intersection(){
         if (bushing_type == 0) {
-            linear_bushing_round(30);
+            linear_bushing_square(h);
         }
         if (bushing_type == 1) {
-            linear_bushing_square(30);
+            linear_bushing_round(h);
         }
         if (bushing_type == 2) {
-            linear_bushing_bronze(30);
+            linear_bushing_bronze(h);
         }
         if (bushing_type == 2) {
             translate([0, 0, 0]) rotate([0,-55,0]) cube([30, 40, 80], center=true);
         } else {
             translate([0, 0, -4]) rotate([0,-45,0]) cube([30, 40, 80], center=true);
         }
-
     }
 }
 
-linear_bushing_long();
-
-module linear_bearing(){
-
-    translate([0,9.5,0]) rotate([0,0,90]){
-        linear_holder_base(65);
-        translate([-(10-5.5)/2-lm8uu_radius+2,0,0+1]) cube(size = [10-5.5,20,2], center = true);
-        translate([-(10-5.5)/2-lm8uu_radius+2,0,64]) cube(size = [10-5.5,20,2], center = true);
+module linear_bushing(h=65){
+    translate([-9.5,0,h/2]) cube([2,15,h], center=true);
+    linear_bushing_long(h);
+    if (h>30) {
+        translate([0,0,h]) mirror([0,0,1]) linear_bushing_long(30);
     }
 }
 
-// Linear bushing options
+//this is for Z axis
+module bushing_negative(h=65){
+    if (bearing_choice == 1) {
+        if (bushing_type == 0) {
+            translate([0,0,h/2]) cube(size = [9,9,h+0.02], center = true);
+        }
+        if (bushing_type == 1) {
+            translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
+        }
+        if (bushing_type == 2) {
+            translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
+        }
+    } else {
+        translate([0,0,-0.01])  cylinder(r=lm8uu_radius+0.4, h=h+0.02);
+    }
 
-lm8uu_diameter=(bearing_type==0) ? 16 : 15;
-lm8uu_length=(bearing_type==0) ? 24 : 25;
-lm8uu_radius = lm8uu_diameter / 2;
-block_height = 2*lm8uu_length+17;
+}
 
+module firm_foot(){
+    difference(){
+        union() {
+            translate([0,13,0]) cube_fillet([3,18,20], top=[11,0,0,0], center=true);
+        }
+        translate([1.5,14,0]) rotate([0,-90,0]) screw();
+    }
+}
+
+module spring_foot(){
+
+    difference(){
+        union() {
+            translate([0,34,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
+            translate([7,28,0]) cube_fillet([16,3,20], center=true);
+            translate([7,14,0]) cube_fillet([16,3,20], center=true);
+            translate([12,21,0]) intersection() {
+                difference(){
+                    cylinder(r=8.5,h=20, center=true);
+                    cylinder(r=5.5,h=21, center=true);
+                }
+                translate([5,0,0]) cube([10,30,20], center=true);
+            }
+            translate([0,10,0]) cube_fillet([3,10,20], vertical=[0,3,0,0], center=true);
+        }
+        translate([1.5,34,0]) rotate([0,-90,0]) screw();
+    }
+}
+
+module y_bearing(float=false){
+    if (bearing_choice == 2) {
+        linear_bearing(lm8uu_length+4);
+    } else {
+        linear_bushing_long(20);
+    }
+    translate([-9,0,10]) {
+        if (float) {
+            spring_foot();
+            mirror([0,1,0]) spring_foot();
+        } else {
+            firm_foot();
+            mirror([0,1,0]) firm_foot();
+        }
+    }
+}
+
+
+module linear_bearing(h=65){
+    linear_holder_base(h);
+    translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube(size = [10-5.5,20,2], center = true);
+    translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube(size = [10-5.5,20,2], center = true);
+    if ( (h-4)/2 > lm8uu_length){
+        translate([-(10-5.5)/2-lm8uu_radius+2,0,h/2]) cube(size = [10-5.5,20, (h-4)-2*lm8uu_length], center = true);
+    }
+}
 
 module linear_holder_base(length){
 
@@ -115,67 +177,8 @@ module linear_holder_base(length){
     }
 }
 
-%linear_holder_base(55);
 
-
-module y_linear_bearings(){
-    difference(){
-        union(){
-            translate([0,0,1.5]) cube(size = [26,14,3], center = true);
-            translate([-13,0,0]) rotate([0,0,30]) cylinder(h = 3, r=7, $fn=6);
-            translate([13,0,0]) rotate([0,0,30]) cylinder(h = 3, r=7, $fn=6);
-        }
-
-
-        translate([-14,0,0]) polyhole(m3_diameter, 10);
-        translate([14,0,0]) polyhole(m3_diameter, 10);
-        //hack
-        translate([0,14.25,4.5]) rotate([90,0,0]) translate([0,9.5,0]) rotate([0,0,90]){
-            translate([0,0,lm8uu_length/2+0.5]) ziptie();
-        }
-    }
-
-    cut_corners(true, true, true, true);
-
-
-
-}
-
-lm8uu_holder_length = lm8uu_length+4.5;
-lm8uu_holder_width= lm8uu_diameter+5;
-
-module lm8uu_bearing_holder(){
-    translate([0,14.25,4.5]) rotate([90,0,0]) translate([0,9.5,0]) rotate([0,0,90]){
-
-        difference(){
-            union(){
-                linear_holder_base(lm8uu_length+4.5);
-                translate([-10-2,0,lm8uu_holder_length/2]) cube(size = [4,20,lm8uu_holder_length], center = true);
-            }
-            translate([0,0,12.5]) ziptie();
-        }
-
-
-        translate([-(10-5.5)/2-5.5,0,0.75]) cube(size = [10-5.5,20,1.5], center = true);
-        translate([-(10-5.5)/2-5.5,0,lm8uu_length+3.75]) cube(size = [10-5.5,20,1.5], center = true);
-
-    }
-}
-
-module lm8uu_bearing_cut()
-{
-    translate([-lm8uu_holder_width/2,-lm8uu_holder_length/2,-5]) cube([lm8uu_holder_width,lm8uu_holder_length,20]);
-}
-
-
-
-module ziptie(){
-    difference(){
-        translate([0,0,0]) cylinder(h = 3.9, r=lm8uu_diameter);
-        translate([0,0,-0.01]) cylinder(h = 5, r=lm8uu_diameter-3, $fn=50);
-        translate([0,0,3]) cylinder(h = 1, r1=lm8uu_diameter-3, r2=lm8uu_diameter, $fn=50);
-    }}
-
-
-//z_linear_bearings();
-ziptie();
+%cylinder(r=4, h=90);
+y_bearing();
+translate([0,46,0]) y_bearing();
+translate ([-30,23,0]) mirror([1,0,0]) y_bearing(true);

@@ -1,5 +1,4 @@
 include <configuration.scad>
-use <inc/functions.scad>
 translate([10+16, 0, 0]){
 
     %translate([0, 0, 35/2]) cube(size = [20, 6, 35], center = true);

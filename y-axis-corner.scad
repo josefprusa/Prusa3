@@ -5,7 +5,6 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
-use <inc/functions.scad>
 include <configuration.scad>
 use <y-driverain.scad>
 

@@ -1,11 +1,9 @@
-// This one is AWESOME design by Greg Frost!!
-
-// PRUSA Mendel  
+// PRUSA iteration3
 // Bearing guide
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
+// Original design by Greg Frost
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
@@ -59,6 +57,11 @@ module outer()
 }
 
 inner();
-
 translate([idler_size+2*wall_ascent+2,0,0])
     outer();
+
+translate([0,idler_size+2*wall_ascent+2,0]){
+inner();
+translate([idler_size+2*wall_ascent+2,0,0])
+    outer();
+}

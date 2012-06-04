@@ -1,9 +1,7 @@
-// PRUSA Mendel  
+// PRUSA iteration3
 // Default metric sizes
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
+// Josef Průša <josefprusa@me.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 

@@ -1,5 +1,5 @@
-// PRUSA Mendel
-// Y frame corner
+// PRUSA iteration3
+// Complete printer visualisation
 // GNU GPL v3
 // Greg Frost
 // http://www.reprap.org/wiki/Prusa_Mendel

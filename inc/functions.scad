@@ -1,9 +1,8 @@
-// PRUSA Mendel  
+// PRUSA iteration3
 // Functions used in many files
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 

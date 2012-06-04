@@ -1,3 +1,11 @@
+// PRUSA iteration3
+// Y belt holder
+// GNU GPL v3
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
+// http://www.reprap.org/wiki/Prusa_Mendel
+// http://github.com/prusajr/PrusaMendel
+
 include <configuration.scad>
 translate([10+16, 0, 0]){
 

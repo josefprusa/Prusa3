@@ -1,7 +1,8 @@
-// PRUSA Mendel  
-// Y drivetrain (except bed parts)
+// PRUSA iteration3
+// Y drivetrain (idler and stepper holders)
 // GNU GPL v3
-// Josef Prusa
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 

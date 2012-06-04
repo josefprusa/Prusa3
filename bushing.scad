@@ -1,9 +1,8 @@
-// PRUSA Mendel
-// Bushings
+// PRUSA iteration3
+// Bushing/bearing housings
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
@@ -40,7 +39,7 @@ module linear_bushing_square(h=11) {
 module linear_bushing_round(h=11) {
     difference(){
         union(){
-            translate([-10.5/2,0,h/2]) cube([10.5,15,h], center = true);
+            translate([-10.5/2,0,h/2]) cube([10.5,13.8,h], center = true);
             cylinder(r=7.5, h=h);
         }
         translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
@@ -50,8 +49,8 @@ module linear_bushing_round(h=11) {
 module linear_bushing_bronze(h=11) {
     difference(){
         union(){
-            translate([-10.5/2,0,h/2]) cube([10.5,15,h], center = true);
-            cylinder(r=10.5, h=h);
+            translate([-10.5/2,0,h/2]) cube([10.5,13.8,h], center = true);
+            cylinder(r=10.7, h=h);
         }
         translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
     }
@@ -78,7 +77,7 @@ module linear_bushing_long(h=30){
 }
 
 module linear_bushing(h=65){
-    translate([-9.5,0,h/2]) cube([2,15,h], center=true);
+    translate([-9.5,0,h/2]) cube([2,13.8,h], center=true);
     linear_bushing_long(h);
     if (h>30) {
         translate([0,0,h]) mirror([0,0,1]) linear_bushing_long(30);
@@ -150,8 +149,8 @@ module y_bearing(float=false){
 }
 
 
-module linear_bearing(h=65){
-    linear_holder_base(h);
+module linear_bearing(h=65, fillet=false){
+    linear_holder_base(h, fillet);
     translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube([10-5.5,20,2], center = true);
     translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube([10-5.5,20,2], center = true);
     if ( (h-4)/2 > lm8uu_length){
@@ -159,7 +158,7 @@ module linear_bearing(h=65){
     }
 }
 
-module linear_holder_base(length){
+module linear_holder_base(length, fillet=false){
 
     difference(){
         union(){
@@ -174,6 +173,9 @@ module linear_holder_base(length){
         translate([10,0,length/2]) cube([20,14,length+4], center = true);
         //smooth entry cut
         translate([12,0,length/2]) rotate([0,0,45]) cube([20,20,length+4], center = true);
+        if (fillet) {
+            translate([0,0,carriage_l/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,carriage_l], vertical=[0,2,2,0]);
+        }
     }
 }
 

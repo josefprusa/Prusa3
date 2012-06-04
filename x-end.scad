@@ -1,3 +1,11 @@
+// PRUSA iteration3
+// X ends
+// GNU GPL v3
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
+// http://www.reprap.org/wiki/Prusa_Mendel
+// http://github.com/prusajr/PrusaMendel
+
 include <configuration.scad>
 use <bushing.scad>
 rod_distance = 45;
@@ -43,7 +51,6 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
                 bushing_negative(60);
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 
-            echo(bearing_choice);
             if (bearing_choice == 1) {
                 linear_bushing();
             } else {

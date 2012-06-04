@@ -32,7 +32,7 @@ module x_end_motor(){
             // belt hole
             translate([-30,11,0]) cube([10,26,20], center = true);
             //motor mounting holes
-            translate([-29, 0, 0]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,0,1,1], holes=true, shadow=5, $fn=6, h=8);
+            translate([-29, 0, 0]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1,1,0,1], holes=true, shadow=5, $fn=7, h=8);
         }
     }
     //smooth rod caps

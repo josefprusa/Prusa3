@@ -51,6 +51,8 @@ bushing_type = 0;
 // 0 = default lm8uu
 // 1 = lme8uu
 
+bearing_type = 0;
+
 // Select idler bearing size **************************************************
 
 // 22 = 608 [standard skate bearings]

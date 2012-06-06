@@ -3,6 +3,7 @@
 // GNU GPL v3
 // Josef Průša <josefprusa@me.com>
 // Václav 'ax' Hůla <axtheb@gmail.com>
+// Vlnofka <>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 

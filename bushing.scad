@@ -149,12 +149,12 @@ module y_bearing(float=false){
 }
 
 
-module linear_bearing(h=65, fillet=false){
-    linear_holder_base(h, fillet);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube([10-5.5,20,2], center = true);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube([10-5.5,20,2], center = true);
+module linear_bearing(h=0, fillet=false){
+    linear_holder_base((h > lm8uu_length+4)? h : lm8uu_length+4, fillet);
+    translate([-(3)/2-lm8uu_radius+2,0,1]) cube([3,18,2], center = true);
+    translate([-(3)/2-lm8uu_radius+2,0,((h > lm8uu_length+4)? h : lm8uu_length+4)-1]) cube([3,18,2], center = true);
     if ( (h-4)/2 > lm8uu_length){
-        translate([-(10-5.5)/2-lm8uu_radius+2,0,h/2]) cube([10-5.5,20, (h-4)-2*lm8uu_length], center = true);
+        translate([-(3)/2-lm8uu_radius+2,0,h/2]) cube([3,18, (h-4)-2*lm8uu_length], center = true);
     }
 }
 
@@ -174,7 +174,7 @@ module linear_holder_base(length, fillet=false){
         //smooth entry cut
         translate([12,0,length/2]) rotate([0,0,45]) cube([20,20,length+4], center = true);
         if (fillet) {
-            translate([0,0,carriage_l/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,carriage_l], vertical=[0,2,2,0]);
+            translate([0,0,length/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,length], vertical=[0,3,3,0]);
         }
     }
 }

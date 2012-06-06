@@ -52,13 +52,13 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 
             if (bearing_choice == 1) {
-                linear_bushing();
+                linear_bushing(60);
             } else {
-                linear_bearing();
+                linear_bearing(65);
             }
             // Nut trap
             difference(){
-                if ((bearing_type == 1) || (bushing_type == 2)) {
+                if ((bearing_choice != 1) || (bushing_type == 2)) {
                 translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,0]);
                 } else {
                 translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,3]);

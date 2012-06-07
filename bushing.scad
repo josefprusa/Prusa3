@@ -16,7 +16,7 @@ include <configuration.scad>
  */
 
 // Linear bearing options
-lm8uu_diameter=(bearing_type==0) ? 16 : 15;
+lm8uu_diameter=(bearing_type==0) ? 15 : 16;
 lm8uu_length=(bearing_type==0) ? 24 : 25;
 lm8uu_radius = lm8uu_diameter / 2;
 block_height = 2*lm8uu_length+17;

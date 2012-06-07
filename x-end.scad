@@ -74,7 +74,7 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
         }
 
         // belt hole
-        translate([-5.5-10+1.5,22-10,30]) cube([10,46,32], center = true);
+        translate([-5.5-10+1.5,22-10,30]) cube([11,46,32], center = true);
 
         if(thru == true){
             translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8,50);
@@ -85,7 +85,7 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
         }
 
         // idler hole
-        translate([0,17+7-2.5,30.25]) rotate([0,-90,0]) cylinder(h = 80, r=idler_size_inner_r, $fn=30);
+        translate([0,17+7-2.5,30.25]) rotate([0,-90,0]) cylinder(h = 80, r=idler_size_inner_r-.5, $fn=30);
 
     }
 

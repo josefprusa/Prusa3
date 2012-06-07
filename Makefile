@@ -10,4 +10,5 @@ STL_FILES = $(STL_FILES_1:%.scad=%.stl)
 all: $(STL_FILES)
 
 output/%.stl: %.scad $(INCLUDES) configuration.scad
+    mkdir -p output
 	openscad -o $@ $<

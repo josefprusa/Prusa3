@@ -85,7 +85,7 @@ module x_end_idler(vfillet=[3,3,3,3], thru=true){
         }
 
         // idler hole
-        translate([0,17+7,30.25]) rotate([0,-90,0]) cylinder(h = 80, r=2.2, $fn=30);
+        translate([0,17+7-2.5,30.25]) rotate([0,-90,0]) cylinder(h = 80, r=idler_size_inner_r, $fn=30);
 
     }
 

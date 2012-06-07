@@ -1,9 +1,8 @@
-// PRUSA Mendel  
+// PRUSA iteration3
 // Configuration file
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
@@ -35,14 +34,15 @@ belt_tooth_stride = 0.5;
 
 //Choose from:
 
-// 0 = default Z as lm[e]8uu, X and Y bushings
+// 0 = Z as lm[e]8uu, X and Y bushings
 // 1 = all bushings
-// 2 = all bearings
+// 2 = all bearings [default. Do not change unless you really know what you are doing]
+// DO NOT OFFER 0 or 1 VARIANTS FOR SALE. We really mean that. In the long run it hurts everyone.
 
-bearing_choice = 0;
+bearing_choice = 2;
 
 // Bushing version
-// 0 = default square igus
+// 0 = square igus housings. By igus we mean JFM-0810-10 or GFM-0810-10
 // 1 = round igus (works better if printed precisely)
 // 2 = bronze self-aligning bushings
 bushing_type = 0;
@@ -55,13 +55,10 @@ bearing_type = 0;
 
 // Select idler bearing size **************************************************
 
-// 22 = 608 [standard skate bearings]
-// 13 = 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
+// 0 = 608 [standard skate bearings]
+// 1 = 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
 
-idler_size = 22;
-
-//use 4.5 for 608, 2.5 for 624
-idler_size_inner_r = 4.5;
+idler_bearing = 0;
 
 // Thickness of the XZ plate board
 board_thickness = 16;
@@ -72,9 +69,15 @@ single_wall_width = 0.3*2.2;
 // END of custom settings
 
 
-
 // You are not supposed to change this
 board_to_xz_distance = 26;
+
+//calculated from settings
+
+idler_size = (idler_bearing == 0) ? 22 : 13;
+
+//use 4.5 for 608, 2.5 for 624
+idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
 
 // CHANGE ONLY THE STUFF YOU KNOW
 // IT WILL REPLACE DEFAULT SETTING

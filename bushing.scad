@@ -115,19 +115,12 @@ module spring_foot(){
 
     difference(){
         union() {
-            translate([0,34,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
-            translate([7,28,0]) cube_fillet([16,3,20], center=true);
-            translate([7,14,0]) cube_fillet([16,3,20], center=true);
-            translate([12,21,0]) intersection() {
-                difference(){
-                    cylinder(r=8.5,h=20, center=true);
-                    cylinder(r=5.5,h=21, center=true);
-                }
-                translate([5,0,0]) cube([10,30,20], center=true);
-            }
+            translate([0,29,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
+            translate([5,21,0]) rotate([0,0,-25]) cube_fillet([14,3,20], center=true);
+            translate([5,16,0]) rotate([0,0,25]) cube_fillet([14,3,20], center=true);
             translate([0,10,0]) cube_fillet([3,10,20], vertical=[0,3,0,0], center=true);
         }
-        translate([1.5,34,0]) rotate([0,-90,0]) screw();
+        translate([1.5,29,0]) rotate([0,-90,0]) screw();
     }
 }
 

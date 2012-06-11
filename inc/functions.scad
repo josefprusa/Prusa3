@@ -99,6 +99,10 @@ module nema17(places=[1,1,1,1], size=15.5, h=10, holes=false, shadow=false, $fn=
     }
     if (shadow != false) {
         %translate ([0, 0, shadow+21+3]) cube([42,42,42], center = true);
+	//flange
+        %translate ([0, 0, shadow+21+3-21-1]) cylinder(r=11,h=2, center = true, $fn=20);
+	//shaft
+        %translate ([0, 0, shadow+21+3-21-7]) cylinder(r=2.5,h=14, center = true);
     }
 }
 

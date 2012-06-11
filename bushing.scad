@@ -118,7 +118,7 @@ module spring_foot(){
             translate([0.5,23.5,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
             translate([5,17,0]) rotate([0,0,-15]) cube_fillet([12,3,20], center=true);
             translate([5,13,0]) rotate([0,0,25]) cube_fillet([13,3,20], center=true);
-            translate([0,10,0]) cube_fillet([3,4,20], vertical=[0,2,0,0], center=true);
+            translate([0,9,0]) cube_fillet([3,6,20], vertical=[0,2,0,0], center=true);
         }
         translate([2,24,0]) rotate([0,-90,0]) screw();
     }
@@ -176,4 +176,8 @@ module linear_holder_base(length, fillet=false){
 %cylinder(r=4, h=90);
 y_bearing();
 translate([0,46,0]) y_bearing();
-translate ([-30,23,0]) mirror([1,0,0]) y_bearing(true);
+if (bearing_choice == 2) {
+    translate([-22, 23, 0]) y_bearing();
+} else {
+    translate ([-26,23,0]) mirror([1,0,0]) y_bearing(true);
+}

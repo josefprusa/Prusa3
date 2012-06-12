@@ -17,7 +17,7 @@
 
 include <configuration.scad>
 
-thickness=1.7;
+thickness=0.9;
 height=7+thickness;
 wall_ascent=3;
 wall_descent=0.5;
@@ -26,7 +26,7 @@ module inner()
 {
     difference()
     {
-        cylinder(r=idler_size/2+single_wall_width,h=height);
+        #cylinder(r=idler_size/2+single_wall_width,h=height);
         translate([0,0,-1])
             cylinder(r=idler_size/2,h=height+2);
     }

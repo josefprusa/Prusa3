@@ -19,7 +19,7 @@ module x_end_motor(){
 
     difference(){
         union(){
-            translate([-13.5,-16,26]) cube_fillet([17,14,52], center = true, vertical=[0,0,3,3], top=[0,3,6,3]);
+            translate([-13.5,-15,26]) cube_fillet([17,12,52], center = true, vertical=[0,0,3,1.5], top=[0,3,6,3]);
             translate([-10,-34,9]) intersection(){
                 cube_fillet([10,37,18], center = true, vertical=[0,0,0,0], top=[0,3,5,3]);
                 translate([-10/2,10,-26]) rotate([45,0,0]) cube_fillet([10,60,60], radius=2);

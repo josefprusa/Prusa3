@@ -5,9 +5,9 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
-include <configuration.scad>
-use <y-driverain.scad>
-use <y-axis-corner.scad>
+include <../configuration.scad>
+use <../y-driverain.scad>
+use <../y-axis-corner.scad>
 
 //motor and idler holding parts
 translate([70,10,0]) rotate([0,90,0]) rotate([0,0,90]) motorholder();

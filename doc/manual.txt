@@ -120,6 +120,64 @@ Insert a belt into the carriage belt holder such that it meshes with the printed
 Thread the belt through the motor and idler ends, so that it runs over the bearing and the pulley. Insert the other end of the belt into the belt holder.
 Do not cut the belt to size yet, as we will still have to adjust the location of the idler end along the smooth rods.
 
+===Assemble the Y axis(P2)===
+Plastic parts needed:
+-y axis motor holder
+-4 y corners
+-y axis idler 
+-y belt clamp
+-3 y bearing holders
+Other parts needed:
+-1 23x23cm 12mm plate (9"x9" 1/2" thick for people in inchy countries) (may be thinner)
+-1 heated bed PCB, with wires attached
+-1 glass plate covered with Kapton or PET tape
+-1 NEMA17 stepper motor
+-1 T2.5 belt
+-2 M3x10 bolt
+-1 belt drive pulley
+-1 M3x8 grub screw
+-1 ??? bolt
+-1 ??? bearing
+-3 linear bearings
+-2 405mm smooth rods
+-34 M8 nuts (substitute 5/16" for M8 in inchland)
+-34 M8 washers
+-4 140mm M8 (5/16") threaded rod (longer is ok)
+-2 430mm M8 (5/16") threaded rod (longer is ok)
+-9 3.5x12mm wood screws (or shorter if your plate is thinner)
+Tools needed:
+-Screwdriver or allen key to fit your M3 bolt heads and the M3 grub screw
+-13mm wrench
+-Another 13mm wrench (optional but violently recommended)
+
+Place the linear bearings in the linear bearing holders.
+Place the belt drive pulley on the motor shaft and tighten it with the grub screw.
+Attach the motor to the y axis motor holder using two M3x10 bolts. (ystep1.png)
+Thread two of the 140mm threaded rods through the motor holder. It should sit about 1/3 along the length of the rods, so that the motor is approximately centered.
+Use 4 M8 washers and nuts to fix the motor holder in place on the rods. (ystep2.png)
+Place a ??? bearing in the idler and fix it with the ??? bolt.
+Attach the idler to one of the remaining 140mm rods. Fix it with a nut and washer on each side. (ystep3.png)
+Place a pair of washers surrounded by nuts around the middle of each of the 430mm threaded rods.
+Place a nut and a washer on one end of each of the 430mm threaded rods. (ystep4.png)
+Snap a smooth rod into one of the y corners.
+Thread one end of the 430mm threaded rod through the y corner piece so it goes parallel to the smooth rod with the nut and washer against the plastic part.
+Put a washer and a nut on the outside of the plastic piece, fixing it to the threaded rod. (ystep5.png)
+Put a nut followed by a washer onto the other end of the threaded rod.
+Add another plastic y corner to the smooth and threaded rod's other end.
+Put a washer and a nut on the outside of the plastic piece, fixing it to the threaded rod. 
+Adjust the inner nut so the smooth rod is snugly held in place.(ystep6.png)
+Repeat this procedure for the other 430mm threaded rod.(ystep7.png)
+Place a nut and a washer on one end of each of the 140mm threaded rods. (ystep8.png)
+Place the assembled smooth and threaded rods on the ends of the 140mm rods. Adjust the motor and idler position if necessary. (ystep9.png)
+Place a nut and washer on the outside end of each of the 140mm rods. Do not tighten yet. (ystep10.png)
+Place an object of 10cm width between the smooth rods. One of the frame panels might be useful for this.
+Using the 10cm reference, make sure the distance between smooth rods is the same on both ends. 
+Measure as close as you can to the motor, and as close as you can to the idler. 
+Adjust the inner nuts and tighten the outer nuts, while checking the distance repeatedly. 
+Use two wrenches to tighten the nuts without moving the plastic part along the rod.
+Once done, pop the smooth rods out of the plastic parts. (ystep11.png)
+
+
 ===Assemble the frame (P1)===
 The frame can be either one custom-cut plate or a box section composed of several precut pieces (you can have them cut to size at the hardware store).
 If you have a custom-cut plate, skip this step and move on to the Z axis below.
@@ -147,39 +205,6 @@ Place the 3mm spacer on the table, and put the last remaining 45x10 on top of it
 Stand the remaining plates on end, and place them on top of the new plate. Use 8 screws to secure the bottom plate to the rest of the frame.
 If you want to, place the 47.5x10 plate on top of the entire structure and attach it with 6 screws. This is a convenient place to mount accessories, such as a filament roll holder.
 
-===Assemble the Y axis(P2)===
-Plastic parts needed:
--y axis motor holder
--4 y corners
--y axis idler 
--y belt clamp
--3 y bearing holders
-Other parts needed:
--1 23x23cm 12mm plate (9"x9" 1/2" thick for people in inchy countries) (may be thinner)
--1 heated bed PCB, with wires attached
--1 glass plate covered with Kapton or PET tape
--1 NEMA17 stepper motor
--1 T2.5 belt
--2 M3x10 bolt
--1 belt drive pulley
--1 M3x8 grub screw
--1 ??? bolt
--1 ??? bearing
--3 linear bearings
--2 405mm smooth rods
--34 M8 nuts (substitute 5/16" for M8 in inchland)
--34 M8 washers
--4 130mm M8 threaded rod (longer is ok)
--2 420mm M8 threaded rod (longer is ok)
--9 3.5x12mm wood screws (or shorter if your plate is thinner)
-Tools needed
--Screwdriver or allen key to fit your M3 bolt heads and the M3 grub screw
--13mm wrench
--Another 13mm wrench (optional but violently recommended)
-
-Place the linear bearings in the linear bearing holders.
-Place the belt drive pulley on the motor shaft and tighten it with the grub screw.
-Attach the motor to the y axis motor holder using two M3x10 bolts.
 
 ===Assemble the Z axis(P1)===
 

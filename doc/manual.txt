@@ -146,9 +146,13 @@ Other parts needed:
 -2 430mm M8 (5/16") threaded rod (longer is ok)
 -9 3.5x12mm wood screws (or shorter if your plate is thinner)
 Tools needed:
+-Screwdriver to fit your wood screws
 -Screwdriver or allen key to fit your M3 bolt heads and the M3 grub screw
 -13mm wrench
 -Another 13mm wrench (optional but violently recommended)
+-Pencil or marker that is visible on the plate material
+-Drill with 3.2mm (1/8") or 3mm drill bit
+-Tape for holding things in place
 
 Place the linear bearings in the linear bearing holders.
 Place the belt drive pulley on the motor shaft and tighten it with the grub screw.
@@ -176,6 +180,21 @@ Measure as close as you can to the motor, and as close as you can to the idler.
 Adjust the inner nuts and tighten the outer nuts, while checking the distance repeatedly. 
 Use two wrenches to tighten the nuts without moving the plastic part along the rod.
 Once done, pop the smooth rods out of the plastic parts. (ystep11.png)
+Place the three linear bearings in their holders, and slide them onto the rods. Two on one rod, one on the other.
+Place your heated bed PCB on the plate and tape it down so it doesn't move around.
+Mark and drill the 4 corner holes of the PCB with a 3.2mm (1/8") or 3mm drill.
+Remove the heated bed PCB from the plate and place the plate on a flat surface.
+Pop the smooth rods, with linear bearings attached, back into the plastic parts. 
+The rod with two linear bearings on it should go on the side where the motor pulley is.
+Place the entire assembly, upside down, onto the plate. Align it so the smooth rods are parallel to the plate edges and the assembly is approximately centered.
+Position the two linear bearings that share a rod so that they are both in the middle third of the plate.
+Position the last linear bearing so it's between the other two.
+Mark each linear bearing holder mounting hole.
+Drill all the holes and screw the linear bearing holders in with the wood screws.
+Place one end of the belt into the belt clamp. Run the belt along its path over the pulley and idler and back to the belt clamp. 
+Place the belt clamp in the middle of the plate along the belt path.
+Mark and drill the belt clamp mounting holes and screw the belt clamp down.
+Pull the belt tight and place the end into the belt clamp. Your Y axis is done.
 
 
 ===Assemble the frame (P1)===

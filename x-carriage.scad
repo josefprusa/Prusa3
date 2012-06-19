@@ -15,29 +15,33 @@ carriage_l = 70;
 translate([0,0,0])  rotate([0,0,180]) {
     if (bearing_choice == 2) {
         linear_bearing(carriage_l, fillet = true);
-        %linear_bushing(carriage_l);
+        //%linear_bushing(carriage_l);
     } else {
         linear_bushing(carriage_l);
-        %linear_bearing(carriage_l);
+        //%linear_bearing(carriage_l);
     }
 }
 
 //lower bearing
 translate([45,0,0]) {
     if (bearing_choice == 2) {
-        linear_bearing(30);
-        %linear_bushing(25);
+        linear_bearing(fillet =true);
+        //%linear_bushing(25);
     } else {
-        linear_bushing(25);
-        %linear_bearing(30);
+        linear_bushing(27);
+        //%linear_bearing(30);
     }
 }
 
 // main plate
 difference(){
-    translate([7,-9,0]) cube_fillet([45-18+4,5,carriage_l], radius=2);
-    #translate([55,-17.5, 67]) rotate([0,70,0]) cube([80,60,60], center = true);
+    translate([5,-10,0]) cube_fillet([45-10,5,carriage_l], radius=2);
+    translate([55,-17.5, 67]) rotate([0,70,0]) cube([80,60,60], center = true);
 }
+
+//reduce springiness
+
+translate([6,5,20]) cube([32,5,8]);
 
 /*
 // mounting plate

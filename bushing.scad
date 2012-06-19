@@ -16,8 +16,8 @@ include <configuration.scad>
  */
 
 // Linear bearing options
-lm8uu_diameter=(bearing_type==0) ? 15 : 16;
-lm8uu_length=(bearing_type==0) ? 24 : 25;
+lm8uu_diameter=(bearing_type==1) ? 16 : 15;
+lm8uu_length=(bearing_type==1) ? 25 : 24;
 lm8uu_radius = lm8uu_diameter / 2;
 block_height = 2*lm8uu_length+17;
 
@@ -115,19 +115,12 @@ module spring_foot(){
 
     difference(){
         union() {
-            translate([0,34,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
-            translate([7,28,0]) cube_fillet([16,3,20], center=true);
-            translate([7,14,0]) cube_fillet([16,3,20], center=true);
-            translate([12,21,0]) intersection() {
-                difference(){
-                    cylinder(r=8.5,h=20, center=true);
-                    cylinder(r=5.5,h=21, center=true);
-                }
-                translate([5,0,0]) cube([10,30,20], center=true);
-            }
-            translate([0,10,0]) cube_fillet([3,10,20], vertical=[0,3,0,0], center=true);
+            translate([0.5,23.5,0]) cube_fillet([3,14,20], top=[11,0,0,0], center=true);
+            translate([5,17,0]) rotate([0,0,-15]) cube_fillet([12,3,20], center=true);
+            translate([5,13,0]) rotate([0,0,25]) cube_fillet([13,3,20], center=true);
+            translate([0,9,0]) cube_fillet([3,6,20], vertical=[0,2,0,0], center=true);
         }
-        translate([1.5,34,0]) rotate([0,-90,0]) screw();
+        translate([2,24,0]) rotate([0,-90,0]) screw();
     }
 }
 
@@ -149,12 +142,12 @@ module y_bearing(float=false){
 }
 
 
-module linear_bearing(h=65, fillet=false){
-    linear_holder_base(h, fillet);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,1]) cube([10-5.5,20,2], center = true);
-    translate([-(10-5.5)/2-lm8uu_radius+2,0,h-1]) cube([10-5.5,20,2], center = true);
+module linear_bearing(h=0, fillet=false){
+    linear_holder_base((h > lm8uu_length+4)? h : lm8uu_length+4, fillet);
+    translate([-(3)/2-lm8uu_radius+2,0,1]) cube([3,18,2], center = true);
+    translate([-(3)/2-lm8uu_radius+2,0,((h > lm8uu_length+4)? h : lm8uu_length+4)-1]) cube([3,18,2], center = true);
     if ( (h-4)/2 > lm8uu_length){
-        translate([-(10-5.5)/2-lm8uu_radius+2,0,h/2]) cube([10-5.5,20, (h-4)-2*lm8uu_length], center = true);
+        translate([-(3)/2-lm8uu_radius+2,0,h/2]) cube([3,18, (h-4)-2*lm8uu_length], center = true);
     }
 }
 
@@ -174,7 +167,7 @@ module linear_holder_base(length, fillet=false){
         //smooth entry cut
         translate([12,0,length/2]) rotate([0,0,45]) cube([20,20,length+4], center = true);
         if (fillet) {
-            translate([0,0,carriage_l/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,carriage_l], vertical=[0,2,2,0]);
+            translate([0,0,length/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,length], vertical=[0,3,3,0]);
         }
     }
 }
@@ -183,4 +176,8 @@ module linear_holder_base(length, fillet=false){
 %cylinder(r=4, h=90);
 y_bearing();
 translate([0,46,0]) y_bearing();
-translate ([-30,23,0]) mirror([1,0,0]) y_bearing(true);
+if (bearing_choice == 2) {
+    translate([-22, 23, 0]) y_bearing();
+} else {
+    translate ([-26,23,0]) mirror([1,0,0]) y_bearing(true);
+}

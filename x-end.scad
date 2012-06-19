@@ -20,7 +20,7 @@ module x_end_motor(){
 
         difference(){
             union(){
-                translate([-13.5,-15,26]) cube_fillet([17,12,52], center = true, vertical=[0,0,3,1.5], top=[0,3,6,3]);
+                translate([-13.75,-15,26]) cube_fillet([17.5,12,52], center = true, vertical=[0,0,3,1.5], top=[0,3,6,3]);
                 translate([-10,-34,9]) intersection(){
                     cube_fillet([10,37,18], center = true, vertical=[0,0,0,0], top=[0,3,5,3]);
                     translate([-10/2,10,-26]) rotate([45,0,0]) cube_fillet([10,60,60], radius=2);
@@ -37,8 +37,8 @@ module x_end_motor(){
             }
         }
         //smooth rod caps
-        translate([-22, -10.5, 0]) cube([17, 2, 15]);
-        translate([-22, -10.5, 45]) cube([17, 2, 10]);
+        translate([-22, -10, 0]) cube([17, 2, 15]);
+        translate([-22, -10, 45]) cube([17, 2, 10]);
     }
 }
 
@@ -47,7 +47,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
     difference(){
         union(){
             difference(){
-                translate([-4.5-10+2-1,-10+len/2,30]) cube_fillet([15+2,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
+                translate([-13.75,-10+len/2,30]) cube_fillet([17.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
                 bushing_negative(60);
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 

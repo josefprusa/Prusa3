@@ -15,7 +15,7 @@ module zmotorholder(thickness=13){
             // Motor holding part
             difference(){
                 union(){
-                    zrodholder(thickness=thickness, xlen=45, ylen=45);
+                    zrodholder(thickness=thickness, xlen=45, ylen=45+board_thickness);
                     translate([board_to_xz_distance, board_to_xz_distance, 0]) {
                         nema17(places=[0,1,1,1], h=thickness);
                     }
@@ -32,7 +32,7 @@ module zmotorholder(thickness=13){
 }
 
 
-module zrodholder(thickness=13, ylen=40, xlen=34){
+module zrodholder(thickness=13, ylen=45+board_thickness, xlen=34){
     difference(){
         union(){
             // Rod holding part
@@ -52,8 +52,8 @@ module zrodholder(thickness=13, ylen=40, xlen=34){
                 //side screw
                 translate([-board_thickness/2, 0, thickness/2]) rotate([-90, 0, 0]) screw();
                 //front screw
-                translate([14, 19, thickness/2]) rotate([0, -90, 0]) screw(head_drop=5);
-                translate([14, 33, thickness/2]) rotate([0, -90, 0]) screw(head_drop=5);
+                translate([14, 12+board_thickness, thickness/2]) rotate([0, -90, 0]) screw(head_drop=5);
+                translate([14, 38+board_thickness, thickness/2]) rotate([0, -90, 0]) screw(head_drop=5);
             }
         }
     }
@@ -62,5 +62,5 @@ module zrodholder(thickness=13, ylen=40, xlen=34){
 translate([0, -2, 0]) mirror([0,1,0]) zmotorholder();
 translate([0,2,0]) zmotorholder();
 
-translate([21,-59,0]) zrodholder();
-translate([20,59,0]) mirror([0,1,0]) zrodholder();
+translate([21,-75,0]) zrodholder();
+translate([20,75,0]) mirror([0,1,0]) zrodholder();

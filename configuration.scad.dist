@@ -72,6 +72,7 @@ single_wall_width = 0.3*2.2;
 
 // You are not supposed to change this
 board_to_xz_distance = 26;
+xaxis_rod_distance = 45;
 
 //calculated from settings
 

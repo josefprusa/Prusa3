@@ -8,7 +8,7 @@
 
 include <configuration.scad>
 use <bushing.scad>
-rod_distance = 45;
+xaxis_rod_distance = 45;
 
 module x_end_motor(){
     mirror([0,1,0]) {
@@ -78,10 +78,10 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
 
         if(thru == true){
             translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8,50);
-            translate([-14,-11,rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
+            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
         } else {
             translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8,50);
-            translate([-14,-7,rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
+            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
         }
 
 

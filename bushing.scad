@@ -85,7 +85,7 @@ module linear_bushing(h=65){
 }
 
 //this is for Z axis
-module bushing_negative(h=65){
+module bushing_negative(h=lm8uu_length+4){
     if (bearing_choice == 1) {
         if (bushing_type == 0) {
             translate([0,0,h/2]) cube([9,9,h+0.02], center = true);

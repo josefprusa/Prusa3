@@ -73,6 +73,9 @@ single_wall_width = 0.3*2.2;
 // You are not supposed to change this
 board_to_xz_distance = 26;
 xaxis_rod_distance = 45;
+carriage_l = 74;
+carriage_hole_to_side = 5;
+carriage_hole_height = 4;
 
 //calculated from settings
 

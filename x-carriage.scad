@@ -12,8 +12,8 @@ use <bushing.scad>
 use <extras/groovemount.scad>
 
 carriage_l = 74;
-hole_to_side = 5;
-hole_height = 4;
+carriage_hole_to_side = 5;
+carriage_hole_height = 4;
 
 
 module x_carriage(){
@@ -49,11 +49,11 @@ module x_carriage(){
                 translate([6,5,20]) cube([xaxis_rod_distance - 13,5,8]);
 
 
-            translate([20,0,hole_to_side]) {
-                rotate([90,0,0]) cylinder(r=(hole_to_side > 5 ? 5 : hole_to_side), h=12, center=true);
+            translate([20,0,carriage_hole_to_side]) {
+                rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
                 }
-            translate([20,0,carriage_l - hole_to_side]) {
-               rotate([90,0,0]) cylinder(r=(hole_to_side > 5 ? 5 : hole_to_side), h=12, center=true);
+            translate([20,0,carriage_l - carriage_hole_to_side]) {
+               rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
                 }
 
                 translate([45/2,0,0]){
@@ -82,15 +82,15 @@ module x_carriage(){
 
                 }
             }
-            #translate([20,-2,hole_to_side]) {
+            #translate([20,-2,carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
-                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=hole_height, $fn=6, center=true);
-                translate([0,3,-3]) cube([8,hole_height,8], center=true);
+                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
+                translate([0,3,-3]) cube([8,carriage_hole_height,8], center=true);
             }
-            #translate([20,-2,carriage_l-hole_to_side]) {
+            #translate([20,-2,carriage_l-carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
-                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=hole_height, $fn=6, center=true);
-                translate([0,3,3]) cube([8,hole_height,8], center=true);
+                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
+                translate([0,3,3]) cube([8,carriage_hole_height,8], center=true);
             }
 
         }

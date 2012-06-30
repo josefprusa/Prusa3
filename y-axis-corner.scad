@@ -7,7 +7,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
-use <y-driverain.scad>
+use <y-drivetrain.scad>
 
 module nutrod(){
     rotate([0,90,0]){

@@ -6,7 +6,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <../configuration.scad>
-use <../y-driverain.scad>
+use <../y-drivetrain.scad>
 use <../y-axis-corner.scad>
 
 module nutwasher(){

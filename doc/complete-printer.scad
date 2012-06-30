@@ -9,6 +9,8 @@ include <../configuration.scad>
 use <../y-drivetrain.scad>
 use <../y-axis-corner.scad>
 use <../z-axis.scad>
+use <../x-end.scad>
+use <../x-carriage.scad>
 
 module nutwasher(){
 	difference(){
@@ -70,12 +72,14 @@ module yside()
 	//left bottom rod
 	color("Aqua")
 	translate([0,0,20]) rotate([0,90,90]) cylinder(h = 430, r=4,center=true);
-	translate([0,-board_thickness-1,20])rotate([0,90,90])nutwasher();
-	translate([0,board_thickness+1,20])rotate([0,90,-90])nutwasher();
+	// middle nuts
+	translate([0,-9,20])rotate([0,90,90])nutwasher();
+	translate([0,board_thickness+9,20])rotate([0,90,-90])nutwasher();
 
+	// back nuts
 	translate([0,y_smooth_rod_length/2-29,20])rotate([0,90,90])nutwasher();
 	translate([0,y_smooth_rod_length/2+11,20])rotate([0,90,-90])nutwasher();
-
+	// front nuts
 	translate([0,-y_smooth_rod_length/2-11,20])rotate([0,90,90])nutwasher();
 	translate([0,-y_smooth_rod_length/2+29,20])rotate([0,90,-90])nutwasher();
 	}
@@ -92,7 +96,7 @@ board_sides=50;
 board_w=bed_x_size+10+2*board_sides;
 
 // XZ board
-translate([0,0,150])
+translate([0,board_thickness/2,150])
 %difference()
 {
 	cube([board_w,board_thickness,300],true);
@@ -121,3 +125,33 @@ rotate(-90)
 mirror([0,1,0])
 zrodholder();
 
+// Z rods
+module z_rods()
+{
+	color("MediumBlue")
+	translate([board_w/2-4,-26,42])cylinder(h=z_smooth_rod_length,r=4);
+}
+
+z_rods();
+mirror([1,0,0])z_rods();
+
+// X ends
+translate([-board_w/2+4,-26,200])
+rotate([0,0,90])
+rotate([0,180,0])
+x_end_motor();
+
+translate([board_w/2-4,-26,200])
+rotate(90)
+rotate([0,180,0])
+x_end_idler();
+
+// X rods
+for(i=[0:1])
+color("MediumBlue")
+translate([0,-12,149+i*45])rotate([0,90,0])cylinder(h=300,r=4,center=true);
+
+// X carriage
+translate([0,-12,149])
+rotate([0,90,0])
+x_carriage();

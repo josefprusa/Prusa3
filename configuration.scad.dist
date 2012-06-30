@@ -52,8 +52,6 @@ bushing_type = 0;
 // 1 = lme8uu
 bearing_type = 0;
 
-bearing_type = 0;
-
 // Select idler bearing size **************************************************
 
 // 0 = 608 [standard skate bearings]
@@ -107,9 +105,17 @@ idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
 // bushing_core_diameter = smooth_bar_diameter;
 // bushing_material_thickness = 0;
 
-
 ///counted stuff
 m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
 
 // functions
 include <inc/functions.scad>
+
+
+// These constants define the geometry of the complete-printer.scad
+
+x_smooth_rod_length=325;
+y_smooth_rod_length=405;
+z_smooth_rod_length=235;
+bed_x_size=225;
+bed_y_size=225;

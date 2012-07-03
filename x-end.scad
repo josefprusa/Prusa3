@@ -1,8 +1,8 @@
 // PRUSA iteration3
 // X ends
 // GNU GPL v3
-// Josef Průša <josefprusa@me.com>
-// Václav 'ax' Hůla <axtheb@gmail.com>
+// Josef Pra <josefprusa@me.com>
+// Vclav 'ax' Hla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
@@ -54,7 +54,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
             if (bearing_choice == 1) {
                 linear_bushing(60);
             } else {
-                linear_bearing(65);
+                linear_bearing(60);
             }
             // Nut trap
             difference(){

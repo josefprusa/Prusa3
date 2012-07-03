@@ -2,7 +2,7 @@
 // X ends
 // GNU GPL v3
 // Josef Pra <josefprusa@me.com>
-// Vclav 'ax' Hla <axtheb@gmail.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 

@@ -68,7 +68,7 @@ module x_carriage(){
                     }
 
                     difference(){
-                        translate([-3.5,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
+                        translate([-3.0,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
 #translate([-3.5,0,carriage_l/2]) cube([13,10,40], center = true);
 
                         intersection() {

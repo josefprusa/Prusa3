@@ -67,7 +67,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
                 //bottom hole
                 translate([0,17,-1]) cylinder(h = 4, r=2.45);
                 //nut slid in
-                translate([5,17,4]) cube([21,9.5,4.1], center = true);
+#                translate([5,17,4]) cube([9.2*2,9.2*sqrt(3/4),4.1], center = true);
 
                 translate([0,17,6.5]) cylinder(h = 4, r=2.45);
             }

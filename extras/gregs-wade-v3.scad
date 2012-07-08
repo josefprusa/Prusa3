@@ -38,12 +38,13 @@ wade(hotend_mount=default_extruder_mount,
 	mounting_holes=default_mounting_holes);
 
 ////CarriageVisualisation
-translate([-29.5,20,38]) rotate([-90,180,-90]) %import("x-carriage.stl");
+translate([-25.5,20,base_extra_depth+wade_block_depth+10]) rotate([-90,180,-90]) %import("../output/x-carriage.stl");
 %translate(large_wheel_translation) {
-	translate([0,0,-5])import("wade-big-h.stl");
+	translate([0,0,-5])import("../output/wade-big-h.stl");
 	rotate([0,0,25]) translate([gear_separation,0,-1]) {
-		rotate([180,0,0]) import("wade-small-h.stl");
-		rotate([0,0,-25]) translate([0,0,5])nema17(places=[1,1,1,1], holes=true, shadow=5, $fn=7, h=8);
+		rotate([180,0,0]) import("../output/wade-small-h.stl");
+		rotate([0,0,-25]) translate([0,0,2]) {//nema17(places=[1,1,1,1], holes=true, shadow=5, $fn=7, h=8);
+		}
 	}
 }
 
@@ -146,8 +147,9 @@ wade_block_depth=28;
 block_bevel_r=6;
 
 base_thickness=12;
-base_length=70+2;
-base_leadout=25+2+1;
+base_length=70+2-6;
+base_leadout=25+2+1-6;
+base_extra_depth=6;
 
 nema17_hole_spacing=31; 
 nema17_width=1.7*25.4;
@@ -159,7 +161,7 @@ screw_head_recess_depth=3;
 motor_mount_rotation=0;
 //motor_mount_translation=[50.5,34+5,0];
 motor_mount_translation=[46.78,50.78,0];
-motor_mount_thickness=12;
+motor_mount_thickness=9;
 
 large_wheel_translation=[50.5-(7.4444+32.0111+0.25),34,0];
 
@@ -181,7 +183,7 @@ filament_feed_hole_offset=8/2-hobbing_depth+filament_diameter/2;
 echo ("filament_feed_hole_offset", filament_feed_hole_offset);
 
 idler_nut_trap_depth=7.5;
-idler_nut_thickness=3;
+idler_nut_thickness=4;
 
 gear_separation=7.4444+32.0111+0.25;
 
@@ -209,7 +211,7 @@ idler_short_side=wade_block_depth-2;
 idler_hinge_r=m3_diameter/2+3.5;
 idler_hinge_width=6.5;
 idler_end_length=(idler_height-2)+5;
-idler_mounting_hole_diameter=m3_diameter+0.25;
+idler_mounting_hole_diameter=m4_diameter+0.25;
 idler_mounting_hole_elongation=1;
 idler_long_top=idler_mounting_hole_up+idler_mounting_hole_diameter/2+idler_mounting_hole_elongation+2.5;
 idler_long_bottom=idler_fulcrum_offset;
@@ -244,10 +246,10 @@ module wade(
 
 			// Round the ends of the base
 			translate([base_length-base_leadout,0,0])
-			cylinder(r=base_thickness/2,h=wade_block_depth,$fn=20);
+			cylinder(r=base_thickness/2,h=wade_block_depth+base_extra_depth,$fn=20);
 
 			translate([-base_leadout,0,0])
-			cylinder(r=base_thickness/2,h=wade_block_depth,$fn=20);
+			cylinder(r=base_thickness/2,h=wade_block_depth+base_extra_depth,$fn=20);
 
 			//Provide the bevel betweeen the base and the wade block.
 			render()
@@ -255,12 +257,12 @@ module wade(
 			{
 				translate([-block_bevel_r,0,0])
 				cube([block_bevel_r*2+wade_block_width,
-					base_thickness/2+block_bevel_r,wade_block_depth]);				
+					base_thickness/2+block_bevel_r,wade_block_depth+base_extra_depth]);				
 				translate([-block_bevel_r,block_bevel_r+base_thickness/2])
-				cylinder(r=block_bevel_r,h=wade_block_depth,$fn=60);
+				cylinder(r=block_bevel_r,h=wade_block_depth+base_extra_depth,$fn=60);
 				translate([wade_block_width+block_bevel_r,
 					block_bevel_r+base_thickness/2])
-				cylinder(r=block_bevel_r,h=wade_block_depth,$fn=60);
+				cylinder(r=block_bevel_r,h=wade_block_depth+base_extra_depth,$fn=60);
 			}
 
 			// The idler hinge.
@@ -307,7 +309,11 @@ module wade(
 
 			//The base.
 			translate([-base_leadout,-base_thickness/2,0])
-			cube([base_length,base_thickness,wade_block_depth]);
+			cube([base_length,base_thickness,wade_block_depth+base_extra_depth]);
+			//Base aligement helper
+			translate([-base_leadout,-base_thickness/2,wade_block_depth+base_extra_depth])
+			cube([base_length,1,layer_thickness]);
+			
 
 			motor_mount ();
 		}
@@ -364,9 +370,16 @@ echo("bhmh", mounting_holes)
 	}
 
 	//carriage mountig holes
-	translate([-24.5,0,0]) {
-		cylinder(r=m4_diameter/2, h=200, center=true,$fn=20);
-		translate([64,0,0]) cylinder(r=m4_diameter/2, h=200, center=true, $fn=20);
+	translate([-24.5+64+4,0,3]) {
+		translate([-50,0,0]) {
+			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m4_diameter/2, h=wade_block_depth+base_extra_depth, center=true,$fn=20);
+			cylinder(r=m4_nut_diameter/2, h=8, center=true,$fn=20);
+		}
+		
+		translate([0,0,0]) {
+			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m4_diameter/2, h=wade_block_depth+0.2+base_extra_depth, center=true,$fn=20);
+			cylinder(r=m4_nut_diameter/2, h=8, center=true,$fn=20);
+		}
 	}
 
 	// Idler fulcrum hole.
@@ -443,7 +456,9 @@ echo("bhmh", mounting_holes)
 					-large_wheel_translation[1],
 					wade_block_depth/2])
 				rotate([-90,0,0])
-				cylinder(r=m4_nut_diameter/2,h=base_thickness,$fn=6);	
+			//fixme: (correct height
+				//cylinder(r=m4_nut_diameter/2,h=base_thickness,$fn=6);	
+				cylinder(r=m4_nut_diameter/2,h=29.3,$fn=6);
 			}
 
 	}
@@ -458,13 +473,13 @@ echo("bhmh", mounting_holes)
 		{
 			rotate([0,0,180/8])
 			translate([0,0,-1])
-			cylinder(r=m3_diameter/2,h=wade_block_depth+6,$fn=8);	
+			cylinder(r=m4_diameter/2,h=wade_block_depth+6,$fn=8);	
 			rotate([0,0,180/6])
 			translate([0,0,wade_block_width-idler_nut_trap_depth])
-			cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
+			cylinder(r=m4_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
 
 			translate([0,10/2,wade_block_width-idler_nut_trap_depth+idler_nut_thickness/2])
-			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+			cube([m4_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
 		}
 	}
 }
@@ -495,28 +510,31 @@ module motor_mount_holes()
 	{
 		translate([0,0,screw_head_recess_depth+layer_thickness])
 		for (hole=[0:3])
+		translate([motor_hole(hole)[0],motor_hole(hole)[1],0])
+		rotate([0,0,25])
 		{
-			translate([motor_hole(hole)[0]-slot_left,motor_hole(hole)[1],0])
+			translate([-slot_left,0,0])
 			cylinder(h=motor_mount_thickness-screw_head_recess_depth,r=radius,$fn=16);
-			translate([motor_hole(hole)[0]+slot_right,motor_hole(hole)[1],0])
+			translate([slot_right,0,0])
 			cylinder(h=motor_mount_thickness-screw_head_recess_depth,r=radius,$fn=16);
 
-			translate([motor_hole(hole)[0]-slot_left,motor_hole(hole)[1]-radius,0])
+			translate([-slot_left,-radius,0])
 			cube([slot_left+slot_right,radius*2,motor_mount_thickness-screw_head_recess_depth]);
 		}
 
 		translate([0,0,-1])
 		for (hole=[0:3])
+		translate([motor_hole(hole)[0],motor_hole(hole)[1],0])
+		rotate([0,0,25])
 		{
-			translate([motor_hole(hole)[0]-slot_left,motor_hole(hole)[1],0])
+			translate([-slot_left,0,0])
 			cylinder(h=screw_head_recess_depth+1,
 				r=screw_head_recess_diameter/2,$fn=16);
-			translate([motor_hole(hole)[0]+slot_right,motor_hole(hole)[1],0])
+			translate([slot_right,0,0])
 			cylinder(h=screw_head_recess_depth+1,
 				r=screw_head_recess_diameter/2,$fn=16);
 
-			translate([motor_hole(hole)[0]-slot_left,
-				motor_hole(hole)[1]-screw_head_recess_diameter/2,0])
+			translate([-slot_left,-screw_head_recess_diameter/2,0])
 			cube([slot_left+slot_right,
 				screw_head_recess_diameter,
 				screw_head_recess_depth+1]);

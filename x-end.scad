@@ -78,18 +78,18 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
         translate([-5.5-10+1.5,22-9,30]) cube([10,55,32], center = true);
 
         if(thru == true){
-            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8,50);
-            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
+            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8.2,50);
+            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.2,50);
         } else {
-            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8,50);
-            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8,50);
+            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8.25,50);
+            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.25,50);
         }
 
 
     }
 
     //threaded rod
-    translate([0,17,0]) %cylinder(h = 70, r=2.5);
+    #translate([0,17,0]) %cylinder(h = 70, r=2.5+0.2);
 
 }
 

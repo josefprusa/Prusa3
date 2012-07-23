@@ -47,7 +47,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
     difference(){
         union(){
             difference(){
-                translate([-13.75,-10+len/2,30]) cube_fillet([17.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
+                #translate([-13.75-0.5,-10+len/2,30]) cube_fillet([18.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
                 bushing_negative(60);
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 

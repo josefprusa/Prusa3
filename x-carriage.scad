@@ -119,9 +119,9 @@ module x_carriage(){
 }
 
 module x_beltclamp(){
-    difference(){
-        cube_fillet([carriage_l-28,17,7]);
-        translate([carriage_l-28,m3_nut_diameter_bigger,0]/2){
+    translate([2,0,0]) difference(){
+        cube_fillet([carriage_l-32,17,7]);
+        translate([carriage_l-32,m3_nut_diameter_bigger,0]/2){
             cylinder(r=3.2/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
 

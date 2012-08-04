@@ -82,6 +82,8 @@ idler_size = (idler_bearing == 0) ? 22 : 13;
 //use 4.5 for 608, 2.5 for 624
 idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
 
+idler_width = (idler_bearing == 0) ? 9 : 5;
+
 // CHANGE ONLY THE STUFF YOU KNOW
 // IT WILL REPLACE DEFAULT SETTING
 

@@ -44,7 +44,7 @@ module idlermount(support=false){
         union(){
             //translate([8,8,0]) cylinder(h = 19, r=8);
             //translate([8,33,0]) cylinder(h = 19, r=8);
-            translate([0,7-5,0]) cube([16,27+12,10+idler_width]);
+            translate([0,0,0]) cube_fillet([16,41,10+idler_width], vertical = [0,0,0,0], top = [3,0,3,0], bottom = [3,0,3,0]);
         }
         translate([8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
         translate([8,33,-1]) cylinder(h = 25, r=4.5);

@@ -60,9 +60,6 @@ module x_carriage(){
 
                 translate([45/2,0,0]){
 
-                    // belt dummy
-                    %translate([0,0,carriage_l/2]) cube([20,6,carriage_l], center = true);
-
                     //belt flat side
 *                    difference() {
                     translate([-13.5,0,carriage_l/2]) cube_fillet([7,14,carriage_l], vertical = [3,3,0,0], center = true);
@@ -73,13 +70,6 @@ module x_carriage(){
                         translate([-3.0,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
                         #translate([-3.5,0,(carriage_l+28)/2]) cube([13,10,20], center = true);
                         translate([-8.5, 0, 0]) cube([2, 10, 28*2+1], center = true);
-                        translate([0,0,28]) intersection() {
-                            for (i = [0 : (carriage_l-28)/belt_tooth_distance])
-                            {
-                                translate([-8.5, 0, 1+i*belt_tooth_distance]) cube([2, 10, belt_tooth_distance*belt_tooth_stride], center = true);
-                            }
-                            translate([0, 0, carriage_l/2]) cube([20, 10, carriage_l], center = true);
-                        }
                     }
 
                 }
@@ -124,7 +114,12 @@ module x_beltclamp(){
         translate([carriage_l-32,m3_nut_diameter_bigger,0]/2){
             cylinder(r=3.2/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
-
+        }
+        translate([0,17/2+1.5,0]){
+            for(i=[2:(carriage_l-32)/belt_tooth_distance])
+                translate([(i-0.5)*belt_tooth_distance,0,0])
+                    translate([belt_tooth_distance*belt_tooth_stride,10,2]/-2)
+                    cube([belt_tooth_distance*belt_tooth_stride,30,2]);
         }
     }
 }

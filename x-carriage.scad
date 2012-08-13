@@ -14,6 +14,7 @@ use <extras/groovemount.scad>
 carriage_l = 74;
 carriage_hole_to_side = 5;
 carriage_hole_height = 4;
+clamp_l=round((carriage_l-32)/belt_tooth_distance)*belt_tooth_distance;
 
 
 module x_carriage(){
@@ -84,7 +85,8 @@ module x_carriage(){
                 translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
                 translate([0,3,3]) cube([8,carriage_hole_height,8], center=true);
             }
-#            translate([20,-10,(carriage_l+28)/2]) {
+            for(i=[-1,1])
+#            translate([20,-10,29+clamp_l/2+clamp_l/4*i]) {
                 translate([0,0,m3_nut_diameter/-2]) cube([2,m3_nut_diameter_bigger,m3_nut_diameter]);
                 translate([0,m3_nut_diameter_bigger/2,0]){
                     rotate([0, 90,0]) cylinder(r=3.2/2,h=10);
@@ -109,15 +111,15 @@ module x_carriage(){
 }
 
 module x_beltclamp(){
-    len=round((carriage_l-32)/belt_tooth_distance)*belt_tooth_distance;
     translate([2,0,0]) difference(){
-        cube_fillet([len,17,7]);
-        translate([len,m3_nut_diameter_bigger,0]/2){
+        cube_fillet([clamp_l,17,7]);
+        for(i=[0,1])
+        translate([clamp_l/2+clamp_l*i,m3_nut_diameter_bigger,0]/2){
             cylinder(r=3.2/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
         }
         translate([0,17/2+1.5,0]){
-            for(i=[0:len/belt_tooth_distance])
+            for(i=[0:clamp_l/belt_tooth_distance])
                 translate([(i-0.5)*belt_tooth_distance,0,0])
                     translate([belt_tooth_distance*belt_tooth_stride,10,2]/-2)
                     cube([belt_tooth_distance*belt_tooth_stride,30,2]);

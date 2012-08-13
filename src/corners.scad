@@ -25,7 +25,7 @@ module nutrod(){
  */
 
 module corner_base(){	
- translate([-11,-11,0])cube([22,22,49]);
+ translate([-11,-11,0])cube([22,22,47]);
 }
 
 module corner_holes(){
@@ -33,8 +33,10 @@ module corner_holes(){
   translate([0,11,10]) rotate([0,0,0]) nutrod();
   translate([0,11,30]) rotate([0,0,0]) nutrod();
   translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
-  translate([11,2,50]) rotate([0,90,90]) cylinder(h = 270, r=4.1);
-  translate([11,2,45]) rotate([0,90,90]) cylinder(h = 270, r=4.1);
+  translate([11,-2,49.5]) rotate([0,90,90]) cylinder(h = 270, r=5, $fn=30); // entry cutout
+  translate([11,2,45]) rotate([0,90,90]) cylinder(h = 270, r=4.2, $fn=30); // cutout for rod insert
+  translate([11-1,-2,38]) cube([2,25,8]); // flex allowing cutout
+  translate([-1,11-0.05,41]) cube([25,0.1,8]); // microcutout to make top sturdier
  }
 }
 
@@ -66,7 +68,7 @@ module corner(){
 corner();
 translate([25,0,0]) mirror([1,0,0]) corner();
 translate([0,25,0]) {
- corner();
- translate([25,0,0]) mirror([1,0,0]) corner();
+ //corner();
+ //translate([25,0,0]) mirror([1,0,0]) corner();
 }
 

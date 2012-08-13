@@ -8,12 +8,37 @@
 
 include <configuration.scad>
 use <bushing.scad>
-// mounting plate
-use <extras/groovemount.scad>
 
 carriage_l = 74;
-carriage_hole_to_side = 5;
-carriage_hole_height = 4;
+
+module x_carriage_base(){
+ translate([-33-8.5,0,0]) cube([33,15,15]); 
+ translate([-33-8.5,11,0]) cube([33,15,15]);
+ translate([-50,22,0]) cube([50,4,15]);	
+}
+
+
+position_tweak=-0.2;
+module x_carriage_beltcut(){
+ translate([-66,-0.5+10,3]) cube([67,1,15]);
+ translate([-66,-0.5+10,12]) rotate([45,0,0]) cube([67,15,15]);
+ for ( i = [0 : 23] ){
+  translate([0-i*3+position_tweak,-0.5+8,3]) cube([1.7,3,15]);
+ }
+ //top opening
+ translate([-2-25,-1,3]) cube([4,11,15]);	
+}
+
+module holes(){
+ translate([-5,0,7.5]) rotate([-90,0,0]) cylinder(h=30, r=1.7, $fn=10);
+ translate([-45,0,7.5]) rotate([-90,0,0]) cylinder(h=30, r=1.7, $fn=10);
+}
+
+difference(){
+ x_carriage_base();
+ x_carriage_beltcut();
+ holes();
+}
 
 
 module x_carriage(){
@@ -110,5 +135,5 @@ module x_carriage(){
     }
 }
 
-x_carriage();
+//x_carriage();
 //holding_plate();

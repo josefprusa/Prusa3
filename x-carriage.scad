@@ -109,14 +109,15 @@ module x_carriage(){
 }
 
 module x_beltclamp(){
+    len=round((carriage_l-32)/belt_tooth_distance)*belt_tooth_distance;
     translate([2,0,0]) difference(){
-        cube_fillet([carriage_l-32,17,7]);
-        translate([carriage_l-32,m3_nut_diameter_bigger,0]/2){
+        cube_fillet([len,17,7]);
+        translate([len,m3_nut_diameter_bigger,0]/2){
             cylinder(r=3.2/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
         }
         translate([0,17/2+1.5,0]){
-            for(i=[2:(carriage_l-32)/belt_tooth_distance])
+            for(i=[0:len/belt_tooth_distance])
                 translate([(i-0.5)*belt_tooth_distance,0,0])
                     translate([belt_tooth_distance*belt_tooth_stride,10,2]/-2)
                     cube([belt_tooth_distance*belt_tooth_stride,30,2]);

@@ -76,7 +76,7 @@ module x_carriage(){
                         translate([0,0,28]) intersection() {
                             for (i = [0 : (carriage_l-28)/belt_tooth_distance])
                             {
-                                translate([-8.5, 0, 1+i*belt_tooth_distance]) cube([2, 10, belt_tooth_distance*belt_tooth_stride], center = true);
+                                translate([-8.5, 0, 1+i*belt_tooth_distance]) cube([2, 10, belt_tooth_distance*belt_tooth_ratio], center = true);
                             }
                             translate([0, 0, carriage_l/2]) cube([20, 10, carriage_l], center = true);
                         }

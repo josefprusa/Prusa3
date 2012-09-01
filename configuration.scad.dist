@@ -30,6 +30,10 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_distance = 3;
 //belt_tooth_ratio = 0.75;
 
+//MXL
+//belt_tooth_distance = 2.032;
+//belt_tooth_ratio = 0.64;
+
 // Choose bearing/bushing configuration ***************************************
 
 //Choose from:

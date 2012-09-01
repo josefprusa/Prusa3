@@ -71,7 +71,7 @@ module x_carriage(){
 
                     difference(){
                         translate([-3.0,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
-                        #translate([-3.5,0,(carriage_l+28)/2]) cube([13,10,20], center = true);
+                        translate([-3.5,0,(carriage_l+38)/2]) cube([13,10,14], center = true);
                         translate([-8.5, 0, 0]) cube([2, 10, 28*2+1], center = true);
                         translate([0,0,28]) intersection() {
                             for (i = [0 : (carriage_l-28)/belt_tooth_distance])
@@ -142,6 +142,6 @@ module x_beltclamp(){
 }
 
 x_carriage();
-//translate([carriage_l/-2-10,12,0]) x_beltclamp();
+translate([carriage_l/-2-10,12,0]) x_beltclamp();
 %translate([-13,-10,carriage_l]) rotate([90,90,90]) x_beltclamp();
 //holding_plate();

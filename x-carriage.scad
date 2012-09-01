@@ -11,8 +11,8 @@ use <bushing.scad>
 // mounting plate
 use <extras/groovemount.scad>
 
-carriage_l = 74;
-carriage_hole_to_side = 5;
+carriage_l = 86;
+carriage_hole_to_side = 3;
 carriage_hole_height = 4;
 
 
@@ -84,17 +84,29 @@ module x_carriage(){
 
                 }
             }
-            #translate([20,-2,carriage_hole_to_side]) {
-                rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
-                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
-                translate([0,3,-3]) cube([8,carriage_hole_height,8], center=true);
+            // extruder mounts
+            
+            translate([20,-2,carriage_hole_to_side]) {
+                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=5.8/2, h=5, $fn=6, center=true);
             }
-            #translate([20,-2,carriage_l-carriage_hole_to_side]) {
-                rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
-                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
-                translate([0,3,3]) cube([8,carriage_hole_height,8], center=true);
+            translate([20,-2,carriage_hole_to_side+30]) {
+                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=5.8/2, h=5, $fn=6, center=true);
             }
-            translate([20,-10,(carriage_l+28)/2]) {
+            translate([20,-2,carriage_hole_to_side+30+20]) {
+                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=5.8/2, h=5, $fn=6, center=true);
+            }
+            translate([20,-2,carriage_hole_to_side+30+20+30]) {
+                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=5.8/2, h=5, $fn=6, center=true);
+            }
+
+            
+            // belt clamp mount
+            
+            translate([20,-10,(carriage_l+36)/2]) {
                 translate([0,0,m3_nut_diameter/-2]) cube([2.3,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
                 translate([0,m3_nut_diameter_bigger/2,0]){
                     rotate([0, 90,0]) cylinder(r=3.2/2,h=10);
@@ -121,7 +133,7 @@ module x_carriage(){
 module x_beltclamp(){
     translate([2,0,0]) difference(){
         cube_fillet([carriage_l-32,17,7]);
-        translate([carriage_l-32,m3_nut_diameter_bigger,0]/2){
+        translate([carriage_l-40,m3_nut_diameter_bigger,0]/2){
             cylinder(r=3.2/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
 
@@ -130,6 +142,6 @@ module x_beltclamp(){
 }
 
 x_carriage();
-translate([carriage_l/-2-10,12,0]) x_beltclamp();
+//translate([carriage_l/-2-10,12,0]) x_beltclamp();
 %translate([-13,-10,carriage_l]) rotate([90,90,90]) x_beltclamp();
 //holding_plate();

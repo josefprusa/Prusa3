@@ -84,18 +84,25 @@ module x_carriage(){
 
                 }
             }
-            #translate([20,-2,carriage_hole_to_side]) {
+            translate([20,-2,carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
                 translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
                 translate([0,3,-3]) cube([8,carriage_hole_height,8], center=true);
             }
-            #translate([20,-2,carriage_l-carriage_hole_to_side]) {
+            translate([20,-2,carriage_l-carriage_hole_to_side-30]) {
+                rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
+                translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
+                translate([0,3,-3]) cube([8,carriage_hole_height,8], center=true);
+            }
+            
+            translate([20,-2,carriage_l-carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=2.2, h=22, center=true);
                 translate([0,3,0]) rotate([90,90,0]) cylinder(r=9/2, h=carriage_hole_height, $fn=6, center=true);
                 translate([0,3,3]) cube([8,carriage_hole_height,8], center=true);
             }
-#            translate([20,-10,(carriage_l+28)/2]) {
-                translate([0,0,m3_nut_diameter/-2]) cube([2,m3_nut_diameter_bigger,m3_nut_diameter]);
+            // m3 nut
+            #translate([20,-10,(carriage_l+28)/2]) {
+                translate([0,0,m3_nut_diameter/-2]) cube([2.3,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
                 translate([0,m3_nut_diameter_bigger/2,0]){
                     rotate([0, 90,0]) cylinder(r=3.2/2,h=10);
                     rotate([0,-90,0]) cylinder(r=3.2/2,h=30);

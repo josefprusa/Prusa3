@@ -40,8 +40,8 @@ module x_carriage(){
 
                 // main plate
                 //difference(){
-                translate([14,-10,0]) cube_fillet([xaxis_rod_distance - 19,6,carriage_l], radius=2);
-                translate([5.5,-10,0]) cube_fillet([xaxis_rod_distance - 11,6,28], radius=2);
+                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 19,6.5,carriage_l], radius=2);
+                translate([5.5,-10.5,0]) cube_fillet([xaxis_rod_distance - 11,6.5,28], radius=2);
 
                 //translate([55,-17.5, 67]) rotate([0,70,0]) cube([80,60,60], center = true);
                 //}
@@ -64,14 +64,14 @@ module x_carriage(){
                     %translate([0,0,carriage_l/2]) cube([20,6,carriage_l], center = true);
 
                     //belt flat side
-*                    difference() {
+*                   difference() {
                     translate([-13.5,0,carriage_l/2]) cube_fillet([7,14,carriage_l], vertical = [3,3,0,0], center = true);
                     translate([-45/2,0,0]) bushing_negative();
                     }
 
                     difference(){
                         translate([-3.0,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
-                        translate([-3.5,0,(carriage_l+38)/2]) cube([13,10,14], center = true);
+                        translate([-3.5,0,(carriage_l+38)/2]) cube([13,10,8], center = true);
                         translate([-8.5, 0, 0]) cube([2, 10, 28*2+1], center = true);
                         translate([0,0,28]) intersection() {
                             for (i = [0 : (carriage_l-28)/belt_tooth_distance])
@@ -104,15 +104,11 @@ module x_carriage(){
             }
 
             
-            // belt clamp mount
+            // belt clamp mounts
+            translate([20,-10,carriage_l-14]) belt_clamp_nut();
+            translate([20,-10,carriage_l-44]) belt_clamp_nut();
+
             
-            translate([20,-10,(carriage_l+36)/2]) {
-                translate([0,0,m3_nut_diameter/-2]) cube([2.3,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
-                translate([0,m3_nut_diameter_bigger/2,0]){
-                    rotate([0, 90,0]) cylinder(r=3.2/2,h=10);
-                    rotate([0,-90,0]) cylinder(r=3.2/2,h=30);
-                }
-            }
         }
     }
 
@@ -130,11 +126,18 @@ module x_carriage(){
     }
 }
 
+module belt_clamp_nut() {
+    translate([0,0,m3_nut_diameter/-2]) cube([2.3,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
+    translate([0,m3_nut_diameter_bigger/2,0]){
+        rotate([0, 90,0]) cylinder(r=3.4/2,h=10);
+        rotate([0,-90,0]) cylinder(r=3.4/2,h=30);
+    }
+}
 module x_beltclamp(){
     translate([2,0,0]) difference(){
-        cube_fillet([carriage_l-32,17,7]);
-        translate([carriage_l-40,m3_nut_diameter_bigger,0]/2){
-            cylinder(r=3.2/2,h=30);
+        cube_fillet([carriage_l-32-30,17,7]);
+        translate([carriage_l-32-30,m3_nut_diameter_bigger,0]/2){
+            cylinder(r=3.4/2,h=30);
             translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
 
         }
@@ -143,5 +146,9 @@ module x_beltclamp(){
 
 x_carriage();
 translate([carriage_l/-2-10,12,0]) x_beltclamp();
+translate([carriage_l/-2+17,12,0]) x_beltclamp();
+
 %translate([-13,-10,carriage_l]) rotate([90,90,90]) x_beltclamp();
+%translate([-13,-10,carriage_l-30]) rotate([90,90,90]) x_beltclamp();
+
 //holding_plate();

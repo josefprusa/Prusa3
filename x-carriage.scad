@@ -105,8 +105,8 @@ module x_carriage(){
 
             
             // belt clamp mounts
-            translate([20,-10,carriage_l-14]) belt_clamp_nut();
-            translate([20,-10,carriage_l-44]) belt_clamp_nut();
+            translate([20,-10.5,carriage_l-14]) belt_clamp_nut();
+            translate([20,-10.5,carriage_l-44]) belt_clamp_nut();
 
             
         }

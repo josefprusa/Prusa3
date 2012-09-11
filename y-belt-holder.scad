@@ -29,7 +29,7 @@ translate([10+16, 0, 0]){
         #intersection() {
             for (i = [0 : 35/belt_tooth_distance])
             {
-                translate([-8.0, 0, 1+i*belt_tooth_distance]) cube([2, 10, belt_tooth_distance*belt_tooth_stride], center = true);
+                translate([-8.0, 0, 1+i*belt_tooth_distance]) cube([2, 10, belt_tooth_distance*belt_tooth_ratio], center = true);
             }
             translate([0, 0, 35/2]) cube([20, 10, 35], center = true);
         }

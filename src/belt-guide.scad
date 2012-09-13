@@ -10,7 +10,7 @@ clearence= 0.1;
 
 module belt_guide_base(){
  cylinder(r=6.5+wall+clearence, h=4.5, $fn=50);
- cylinder(r=6.5+wall+clearence+2*wall, h=0.4, $fn=50);
+ cylinder(r=6.5+wall+clearence+2*wall, h=0.8, $fn=50);
 }
 
 module belt_guide_holes(){

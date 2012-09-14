@@ -40,15 +40,15 @@ module x_carriage(){
 
                 // main plate
                 //difference(){
-                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 19,6.5,carriage_l], radius=2);
-                translate([5.5,-10.5,0]) cube_fillet([xaxis_rod_distance - 11,6.5,28], radius=2);
+                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 22,6.5,carriage_l], radius=2);
+                translate([6.5,-10.5,0]) cube_fillet([11,6.5,29], radius=2);
 
                 //translate([55,-17.5, 67]) rotate([0,70,0]) cube([80,60,60], center = true);
                 //}
 
                 //reduce springiness
 
-                translate([6,5,20]) cube([xaxis_rod_distance - 13,5,8]);
+                translate([6.5,5,20]) cube([xaxis_rod_distance - 13,5,8]);
 
 
             translate([20,0,carriage_hole_to_side]) {
@@ -143,6 +143,21 @@ module x_beltclamp(){
         }
     }
 }
+
+module lme8uu(){
+    difference(){
+        cylinder(r=8,h=25);
+        translate([0,0,-0.1]) cylinder(r=4, h=25.2);
+    
+    }
+
+}
+
+//#translate([0,0,2]) lme8uu();
+//#translate([-xaxis_rod_distance,0,2]) lme8uu();
+//translate([0,0,-10]) cylinder(r=4,h=100);
+//translate([-xaxis_rod_distance,0,-10]) cylinder(r=4,h=100);
+
 
 x_carriage();
 translate([carriage_l/-2-10,12,0]) x_beltclamp();

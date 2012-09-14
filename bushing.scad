@@ -160,7 +160,7 @@ module linear_holder_base(length, fillet=false){
             translate([0,0,0]) cylinder(h = length, r=lm8uu_radius+2.5, $fn=60);
         }
         //main axis
-        translate([0,0,-2]) cylinder(h = length+4, r=(lm8uu_diameter+0.2)/2, $fn=50);
+        translate([0,0,-2]) cylinder(h = length+4, r=(lm8uu_diameter+0.4)/2, $fn=50);
         // not needed for zip tie
         //main cut
         translate([10,0,length/2]) cube([20,14,length+4], center = true);

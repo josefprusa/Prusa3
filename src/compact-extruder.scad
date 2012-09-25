@@ -5,12 +5,18 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
+include <../configuration.scad>
 
 module extruder_base(){
  // Main body
  translate([-1,-2,0]) cube([22,56,24]);
  // Extruder plate mount
- translate([-16,49,0]) cube([55,5,24]);
+ if (hotend_mount == 1) { // groove-mount
+  translate([-16,49,0]) cube([55,5 + hotend_groovemount_depth - 1.5,24]);
+ } else {
+  translate([-16,49,0]) cube([55,5,24]);
+ }
+ 
  // Carriage mount cylinders
  translate([11,25,0]){
   translate([-12,24,0]) cylinder(r=5, h=24);
@@ -43,6 +49,10 @@ module extruder_holes(){
  }
  // Filament path
  translate([1.5+11+3.5,65,11]) rotate([90,0,0]) cylinder(r=2, h=70);
+ if (hotend_mount == 1) {
+  // Hole for hotend
+  translate([1.5+11+3.5,65,11]) rotate([90,0,0]) cylinder(r=hotend_groovemount_diameter/2, h=12.5);
+ }
  // Hole for drive gear check
  translate([1.5+11+3.5-30,25,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
  // Left extruder plate mounting hole

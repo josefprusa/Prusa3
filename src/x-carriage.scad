@@ -5,13 +5,14 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
+include <../configuration.scad>
 use <inc/bearing.scad>
 
 module x_carriage_base(){
  // Small bearing holder
  translate([-33/2,0,0]) rotate([0,0,90]) horizontal_bearing_base(1);
  // Long bearing holder
- translate([-33/2,45,0]) rotate([0,0,90]) horizontal_bearing_base(2);
+ translate([-33/2,x_rod_distance,0]) rotate([0,0,90]) horizontal_bearing_base(2);
  // Base plate
  translate([-33,-11.5,0]) cube([33,68,7]);
  // Belt holder base

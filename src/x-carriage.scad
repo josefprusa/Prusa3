@@ -5,7 +5,7 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
-use <bearing.scad>
+use <inc/bearing.scad>
 
 module x_carriage_base(){
  // Small bearing holder

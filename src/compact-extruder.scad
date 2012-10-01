@@ -62,10 +62,10 @@ module extruder_holes(){
   // Idler mounting holse
   translate([11,25,10]){
    // Nut traps
-   translate([-30,15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.1, h=30, $fn=6);
-   translate([-30,-15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.1, h=30, $fn=6);
-   translate([-30,15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.1, h=30, $fn=6);
-   translate([-30,-15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.1, h=30, $fn=6);
+   translate([-30,15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,-15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,-15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
    // Screws
    translate([-30,15,-5]) rotate([0,90,0]) cylinder(r=2.2, h=70);
    translate([-30,-15,-5]) rotate([0,90,0]) cylinder(r=2.2, h=70);

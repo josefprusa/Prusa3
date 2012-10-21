@@ -62,5 +62,5 @@ module idlermount(support=false){
 }
 
 motorholder();
-translate([25,0,10]) rotate([0,90,0]) idlermount();
+translate([25,0,16]) rotate([0,90,0]) idlermount();
 

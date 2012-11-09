@@ -67,7 +67,7 @@ idler_bearing = 0;
 board_thickness = 16;
 
 //Layer height * width over thickness. Used for idler sleeve
-single_wall_width = 0.3*2.2;
+single_wall_width = 0.3*2.2i*1.01;
 
 // END of custom settings
 

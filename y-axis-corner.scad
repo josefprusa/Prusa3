@@ -42,7 +42,7 @@ module leftfront(thru = false){
             translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
 
             if(thru==false){
-                translate([11,15+y_end_plug,45+4]) rotate([0,0,0]) cube([8.2,30,4], center=true);
+                #translate([11,15+y_end_plug,45+3]) rotate([0,0,0]) cube([8.2,30,4], center=true);
                 translate([11,y_end_plug,45]) rotate([0,90,90]) cylinder(h = 270, r=4.1);
             }else{
                 translate([11,17-5,45+2.05]) rotate([0,0,0]) cube([8.2,30,4.1], center=true);

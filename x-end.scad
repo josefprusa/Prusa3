@@ -68,7 +68,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
                 
                 translate([0,17,-1]) cylinder(h = 4, r=2.75);
                 //nut slid in
-                translate([3,17,4]) cube([9.2*2,9.2*sqrt(3/4)+0.4,4.1], center = true);
+                #translate([3,17,4]) cube([9.2*2,9.2*sqrt(3/4)+0.4,4.1], center = true);
 
                 translate([0,17,6.5]) cylinder(h = 4, r=2.75);
             }
@@ -76,13 +76,14 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
 
         // belt hole
         translate([-5.5-10+1.5,22-9,30]) cube([10,55,32], center = true);
-
+			
+        // change rod diameter to 8.4 if printing with ABS
         if(thru == true){
-            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8.4,50);
-            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.4,50);
+            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
+            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
         } else {
-            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8.4,50);
-            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.4,50);
+            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
+            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
         }
 
 

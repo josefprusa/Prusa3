@@ -88,19 +88,19 @@ module x_carriage(){
             
             translate([20,-2,carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.7, h=5, $fn=6, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.6, h=5, $fn=6, center=true);
             }
             translate([20,-2,carriage_hole_to_side+30]) {
                 rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.7, h=5, $fn=6, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.6, h=5, $fn=6, center=true);
             }
             translate([20,-2,carriage_hole_to_side+30+20]) {
                 rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.7, h=5, $fn=6, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.6, h=5, $fn=6, center=true);
             }
             translate([20,-2,carriage_hole_to_side+30+20+30]) {
                 rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.7, h=5, $fn=6, center=true);
+                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.6, h=5, $fn=6, center=true);
             }
 
             
@@ -127,10 +127,10 @@ module x_carriage(){
 }
 
 module belt_clamp_nut() {
-    translate([0,0,m3_nut_diameter/-2]) cube([2.3,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
+    #translate([0,0,m3_nut_diameter/-2]) cube([2.5,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
     translate([0,m3_nut_diameter_bigger/2,0]){
-        rotate([0, 90,0]) cylinder(r=3.4/2,h=10);
-        rotate([0,-90,0]) cylinder(r=3.4/2,h=30);
+        #rotate([0, 90,0]) cylinder(r=3.5/2,h=10,$fn=32);
+        rotate([0,-90,0]) cylinder(r=3.5/2,h=30,$fn=32);
     }
 }
 module x_beltclamp(){

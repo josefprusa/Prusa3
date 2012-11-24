@@ -8,7 +8,7 @@
 
 include <configuration.scad>
 use <bushing.scad>
-xaxis_rod_distance = 45;
+
 
 module x_end_motor(){
     mirror([0,1,0]) {
@@ -47,7 +47,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
     difference(){
         union(){
             difference(){
-                #translate([-13.75-0.5,-10+len/2,30]) cube_fillet([18.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
+                translate([-13.75-0.5,-10+len/2,30]) cube_fillet([18.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
                 bushing_negative(60);
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 
@@ -68,7 +68,7 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
                 
                 translate([0,17,-1]) cylinder(h = 4, r=2.75);
                 //nut slid in
-                translate([5,17,4]) cube([9.2*2,9.2*sqrt(3/4),4.1], center = true);
+                #translate([3,17,4]) cube([9.2*2,9.2*sqrt(3/4)+0.4,4.1], center = true);
 
                 translate([0,17,6.5]) cylinder(h = 4, r=2.75);
             }
@@ -76,13 +76,14 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
 
         // belt hole
         translate([-5.5-10+1.5,22-9,30]) cube([10,55,32], center = true);
-
+			
+        // change rod diameter to 8.4 if printing with ABS
         if(thru == true){
-            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8.2,50);
-            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.2,50);
+            translate([-14,-11,6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
+            translate([-14,-11,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
         } else {
-            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8.25,50);
-            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.25,50);
+            translate([-14,-7,6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
+            translate([-14,-7,xaxis_rod_distance+6]) rotate([-90,0,0]) pushfit_rod(8.1,50);
         }
 
 

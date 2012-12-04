@@ -15,11 +15,6 @@ include <inc/lm8uu-holder-slim_v1-1.scad>
  * @id bushing
  */
 
-// Linear bearing options
-// With bit of play, its held by screw anyway.
-lm8uu_diameter=(bearing_type==1) ? 16 : 15;
-lm8uu_length=(bearing_type==1) ? 25.5 : 24.5;
-lm8uu_radius = lm8uu_diameter / 2 + 0.3;
 
 // basic building blocks, housings for 1 bushing/bearing
 // at [0,0] there is center of the smooth rod, pointing in Z
@@ -39,8 +34,8 @@ module linear_bushing_square(h=11) {
 module linear_bushing_round(h=11) {
     difference(){
         union(){
-            translate([-10.5/2,0,h/2]) cube([10.5,13.8,h], center = true);
-            cylinder(r=7.5, h=h);
+            #translate([-10.5/2,0,h/2]) cube([10.5,16,h], center = true);
+            cylinder(r=8.5, h=h);
         }
         translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
     }
@@ -71,7 +66,7 @@ module linear_bushing_long(h=30){
         if (bushing_type == 2) {
             translate([0, 0, 0]) rotate([0,-55,0]) cube([30, 40, 80], center=true);
         } else {
-            translate([0, 0, -4]) rotate([0,-45,0]) cube([30, 40, 80], center=true);
+            translate([0, 0, -2]) rotate([0,-50,0]) cube([30, 40, 80], center=true);
         }
     }
 }

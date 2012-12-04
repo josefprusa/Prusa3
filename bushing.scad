@@ -7,7 +7,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
-
+include <inc/lm8uu-holder-slim_v1-1.scad>
 /**
  * @id bushing
  * @name Bushing
@@ -16,10 +16,10 @@ include <configuration.scad>
  */
 
 // Linear bearing options
+// With bit of play, its held by screw anyway.
 lm8uu_diameter=(bearing_type==1) ? 16 : 15;
-lm8uu_length=(bearing_type==1) ? 25 : 24;
-lm8uu_radius = lm8uu_diameter / 2;
-block_height = 2*lm8uu_length+17;
+lm8uu_length=(bearing_type==1) ? 25.5 : 24.5;
+lm8uu_radius = lm8uu_diameter / 2 + 0.3;
 
 // basic building blocks, housings for 1 bushing/bearing
 // at [0,0] there is center of the smooth rod, pointing in Z
@@ -141,11 +141,34 @@ module y_bearing(float=false){
     }
 }
 
+module bearing_clamp(){
+    rotate([90, 0, 0]) {
+        difference(){
+            union(){
+                translate([m4_nut_diameter / 2 + 6, 0, 0])
+                    cylinder(h = lm8uu_diameter + 5, r = m4_nut_diameter / 2 + 0.5, center = true);
+                translate([4,0,0])
+                    cube([m4_nut_diameter + 4, m4_nut_diameter + 1, lm8uu_diameter + 5], center = true);
+                translate([4.5, -3.5, 0]) rotate([0,0,35])
+                    cube([m4_nut_diameter + 5, m4_nut_diameter + 2, lm8uu_diameter + 5], center = true);
+            }
+            translate([m4_nut_diameter / 2 + 6, 0, 0])
+            cylinder(r=m3_diameter/2, h=40, center=true);
+            rotate([90, 0, 0]) {
+                translate([0,0, - 2]) cylinder(h = lm8uu_length * 2, r = (lm8uu_diameter + 0.2) / 2, $fn = 50, center = true);
+                translate([10,0,0]) cube([40,14,40], center = true);
+            }
+        }
+    }
+}
 
 module linear_bearing(h=0, fillet=false){
     linear_holder_base((h > lm8uu_length+4)? h : lm8uu_length+4, fillet);
+    //lower
     translate([-(3)/2-lm8uu_radius+2,0,1]) cube([3,18,2], center = true);
+    //upper
     translate([-(3)/2-lm8uu_radius+2,0,((h > lm8uu_length+4)? h : lm8uu_length+4)-1]) cube([3,18,2], center = true);
+    //middle if long enough
     if ( (h-4)/2 > lm8uu_length){
         translate([-(3)/2-lm8uu_radius+2,0,h/2]) cube([3,18, (h-4)-2*lm8uu_length], center = true);
     }
@@ -170,14 +193,22 @@ module linear_holder_base(length, fillet=false){
             translate([0,0,length/2 ]) cube_negative_fillet([21,lm8uu_diameter+5,length], vertical=[0,3,3,0]);
         }
     }
+    // upper clamp for long holders
+    if ((length-4)/2 > lm8uu_length ) {
+        translate ([0,0,length - (lm8uu_length/2+1)]) bearing_clamp();
+    }
+    translate ([0,0,lm8uu_length/2+1]) bearing_clamp();
 }
 
-
 %cylinder(r=4, h=90);
+%translate([0,0,2]) cylinder(r=lm8uu_radius, h=lm8uu_length);
+
 y_bearing();
 translate([0,46,0]) y_bearing();
-if (bearing_choice == 2) {
-    translate([-22, 23, 0]) y_bearing();
-} else {
-    translate ([-26,23,0]) mirror([1,0,0]) y_bearing(true);
+rotate([0,0,180]) {
+    if (bearing_choice == 2) {
+        translate([24, -23, 0]) y_bearing();
+    } else {
+        translate ([28, -23,0]) mirror([1,0,0]) y_bearing(true);
+    }
 }

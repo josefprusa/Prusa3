@@ -63,11 +63,18 @@ bearing_type = 0;
 
 idler_bearing = 0;
 
+// z-rod constraint *********************************************************** 
+// 0 = none
+// 1 = 608
+// 2 = 625 [inner diameter matches threaded rod]
+
+z_rod_constraint = 1;
+
 // Thickness of the XZ plate board
 board_thickness = 16;
 
 //Layer height * width over thickness. Used for idler sleeve
-single_wall_width = 0.3*2.2i*1.01;
+single_wall_width = 0.3*2.2*1.01;
 
 // END of custom settings
 
@@ -82,6 +89,8 @@ carriage_hole_height = 4;
 //calculated from settings
 
 idler_size = (idler_bearing == 0) ? 22 : 13;
+
+z_rod_constraint_outer = (z_rod_constraint == 0) ? 22 : 16;
 
 //use 4.5 for 608, 2.5 for 624
 idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;

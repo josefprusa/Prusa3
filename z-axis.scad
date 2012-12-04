@@ -62,11 +62,11 @@ module zrodholder(bearing_constraint=0, thickness=13, ylen=40, xlen=34){
                 //inside rouned corner
                 translate([0,5,-1]) cylinder(r=1.2, h=thickness+2, $fn=8);
                 //side screw
-                #translate([-board_thickness/2, 0, thickness/2-1.5]) rotate([-90, 0, 0]) screw(h=30, r_head=4);
+                translate([-board_thickness/2, 0, thickness/2-1.5]) rotate([-90, 0, 0]) screw(h=30, r_head=4);
                 //front screw
-                translate([14+5, board_to_xz_distance +2.4, thickness/2+2.1]) rotate([0, -90, 0]) {
-                    screw(head_drop=10, h=120, r_head=4);
-                    #translate([0,0,-20]) cylinder(r=3, h=20, center=true);
+                translate([14+7, board_to_xz_distance +2.4, thickness/2+2.1]) rotate([0, -90, 0]) {
+                    #screw(head_drop=12, h=122, r_head=4);
+                    translate([0,0,-20]) cylinder(r=3, h=20, center=true);
                 }
             }
         }

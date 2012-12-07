@@ -20,26 +20,18 @@ module motor_dummy(){
 
 module extruder_base(){
  // Main body
- translate([-1,-2,0]) cube([22,56,24]);
+ translate([-1-22,-2,0]) cube([22+22,56,24]);
  // Extruder plate mount
- translate([-16,49-5,0]) cube([59,10,24]);
- // Idler holder
- translate([33,36,0]) cube([10,14,24]);
- // Bottom thin plate
- translate([20,36,0]) cube([20,14,0.85]);
- // Top thin plate
- translate([20,36,24-3]) cube([20,14,3]);
+ translate([-16-28,49-5-8,0]) cube([59+28,18,24]);
  // Carriage mount cylinders
  translate([11,25,0]){
   //translate([-12,24,0]) cylinder(r=5, h=24);
   //translate([12,24,0]) cylinder(r=5, h=24);
  }
-
- // Smoother join
- translate([1,38,0]) rotate([0,0,45])  cube([10,10,24]);
 }
 
 module extruder_holes(){
+ // 1st extruder
  translate([11,25,0]){ // Translate to center of the main block
   // Main shaft opening
   translate([0,-2,-1]) cylinder(r=6.5, h=26);
@@ -54,47 +46,69 @@ module extruder_holes(){
   translate([-8.5+36,18-2,-1]) cylinder(r=2, h=35);
   translate([-8.5+36,18-2,21]) cylinder(r=3.1, h=35);
 
+  //Idler place
+  
+  translate([10,-11,1]) cube([13,30,22]);
+
   // Carriage mount right screw head hole
-  translate([-12,24,-3]) cylinder(r=3.5, h=23);
+  translate([-12-12,24,-3]) cylinder(r=3.5, h=23);
   // Carriage mount left screw head hole
-  translate([12,24,-3]) cylinder(r=3.5, h=23);
+  translate([12-12,24,-3]) cylinder(r=3.5, h=23);
   // Carriage mount right screw hole
-  translate([-12,24,20.5]) cylinder(r=2, h=23);
+  translate([-12-12,24,20.5]) cylinder(r=2, h=23);
   // Carriage mount left screw head hole
-  translate([12,24,20.5]) cylinder(r=2, h=23);
+  translate([12-12,24,20.5]) cylinder(r=2, h=23);
   // Idler bearing cutout
   translate([11,0-2,-4.5+10]) cylinder(r=11, h=20);
  }
+
  // Filament path
  translate([1.5+11+3.5,65,11]) rotate([90,0,0]) cylinder(r=2, h=70);
- // Hole for drive gear check
- translate([1.5+11+3.5-30,25,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
- translate([1.5+11+3.5-30,23,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
- translate([1.5+11+3.5-30,21,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
+
+ mirror([1,0,0])translate([1.5+11+3.51+1,65,11]) rotate([90,0,0]) cylinder(r=2, h=70);
+
+ // 2nd extruder
+ translate([-1,0,0]) mirror([1,0,0]) translate([11,25,0]){ // Translate to center of the main block
+  // Main shaft opening
+  translate([0,-2,-1]) cylinder(r=6.5, h=26);
+
+  // Lower motor mount hole
+  translate([-8.5,18-2,-1]) cylinder(r=2, h=35);
+  translate([-8.5,18-2,21]) cylinder(r=3.1, h=35);
+  // Upper motor mount hole
+  translate([-8.5,-18-2,-1]) cylinder(r=2, h=35);
+  translate([-8.5,-18-2,21]) cylinder(r=3.1, h=35);
+  // Idler motor mount hole
+  translate([-8.5+36,18-2,-1]) cylinder(r=2, h=35);
+  translate([-8.5+36,18-2,21]) cylinder(r=3.1, h=35);
+
+  translate([10,-11,1]) cube([13,30,22]);
+  
+  // Idler bearing cutout
+  translate([11,0-2,-4.5+10]) cylinder(r=11, h=20);
+ }
+ 
 
  // Left extruder plate mounting hole
- translate([1.5+11+3.5+15,65,11]) rotate([90,0,0]) cylinder(r=1.8, h=70);
- translate([1.5+11+3.5+15,47,11]) rotate([90,0,0]) cylinder(r=3.1, h=70, $fn=6);
+ translate([25,65,11]) rotate([90,0,0]) cylinder(r=1.8, h=70);
+ translate([25,47,11]) rotate([90,0,0]) cylinder(r=3.1, h=70, $fn=6);
  // Right extruder plate mounting hole
- translate([1.5+11+3.5-25,65,11]) rotate([90,0,0]) cylinder(r=1.8, h=70);
- translate([1.5+11+3.5-25,47,11]) rotate([90,0,0]) cylinder(r=3.1, h=70, $fn=6);
+
+ translate([-26,65,11]) rotate([90,0,0]) cylinder(r=1.8, h=70);
+ translate([-26,47,11]) rotate([90,0,0]) cylinder(r=3.1, h=70, $fn=6);
 
   // Idler mounting holse
   translate([11,25,10]){
    // Nut traps
-   translate([-3,-32.5,6-5.5/2]) cube([2.7,14,5.5]);
-   translate([-3,-32.5,-4-5.5/2]) cube([2.7,14,5.5]);
-   // Screws
-   translate([-30,-22,-4]) rotate([0,90,0]) cylinder(r=2, h=70);
-   translate([-30,-22,6]) rotate([0,90,0]) cylinder(r=2, h=70);
-	}
+   translate([-3,-32,6-5.5/2]) cube([2.7,14,5.5]);
+   translate([-3,-32,-4-5.5/2]) cube([2.7,14,5.5]);
 
- translate([46,46,-1]) rotate([0,0,45]) cube([20,20,26]);
- translate([46,13,-1]) rotate([0,0,45]) cube([20,20,26]);
- translate([-22,46,-1]) rotate([0,0,45]) cube([20,20,26]);
- translate([-22,24,-1]) rotate([0,0,45]) cube([20,20,26]);
- translate([-8,-20,-1]) rotate([0,0,45]) cube([20,20,26]);
- translate([30,-20,-1]) rotate([0,0,45]) cube([20,20,26]);
+   translate([-3-20,-32,6-5.5/2]) cube([2.7,14,5.5]);
+   translate([-3-20,-32,-4-5.5/2]) cube([2.7,14,5.5]);
+   // Screws
+   translate([-50,-22,-4]) rotate([0,90,0]) cylinder(r=2, h=80);
+   translate([-50,-22,6]) rotate([0,90,0]) cylinder(r=2, h=80);
+	}
 }
 
 module extruder_idler_base(){
@@ -124,7 +138,7 @@ module idler(){
 }
 
 //translate([10,0,1]) rotate([0,-90,0]) idler();
-//translate([-47,-2,0])  idler();
+translate([-68,-8,0])  idler();
 // Extruder final part
 module extruder(){
  translate([-23,2,0])difference(){

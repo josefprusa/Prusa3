@@ -9,13 +9,13 @@ wall= 1.2;
 clearence= 0.1; 
 
 module belt_guide_base(){
- cylinder(r=6.5+wall+clearence, h=4.5, $fn=50);
- cylinder(r=6.5+wall+clearence+2*wall, h=0.8, $fn=50);
+ cylinder(r=6.5+wall+clearence, h=5-0.5, $fn=50);
+ cylinder(r=6.5+wall+clearence+2*wall, h=0.95, $fn=50);
 }
 
 module belt_guide_holes(){
- translate([0,0,1.5]) cylinder(r=6.5+clearence, h=10, $fn=50);
- translate([0,0,-1]) cylinder(r=6.5+wall+clearence-2*wall, h=10, $fn=50);
+ translate([0,0,2]) cylinder(r=5.1+clearence, h=10, $fn=50);
+ translate([0,0,-1]) cylinder(r=5+wall+clearence-2*wall, h=10, $fn=50);
 }
 
 // Final part

@@ -18,41 +18,71 @@ include <inc/lm8uu-holder-slim_v1-1.scad>
 
 // basic building blocks, housings for 1 bushing/bearing
 // at [0,0] there is center of the smooth rod, pointing in Z
+// negatives are to be substracted at later point
+
+module linear_bushing_square_negative(h){
+    translate([0,0,h/2]) {
+        cube([9,9,h+0.02], center = true);
+    }
+}
 
 module linear_bushing_square(h=11) {
     translate([0,0,h/2]) {
-        difference(){
-            union(){
-                translate([-10.5/2,0,0]) cube([10.5,13.8,h], center = true);
-                cube([13.8,13.8,h], center = true);
-            }
-            cube([9,9,h+0.02], center = true);
+        union(){
+            translate([-10.5/2,0,0]) cube([10.5,13.8,h], center = true);
+            cube([13.8,13.8,h], center = true);
         }
     }
+}
+
+module linear_bushing_round_negative(h){
+    translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
 }
 
 module linear_bushing_round(h=11) {
-    difference(){
-        union(){
-            #translate([-10.5/2,0,h/2]) cube([10.5,16,h], center = true);
-            cylinder(r=8.5, h=h);
-        }
-        translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
-    }
+    translate([-10.5/2,0,h/2]) cube([10.5,14,h], center = true);
+    cylinder(r=8.5, h=h);
 }
 
+
+module linear_bushing_bronze_negative(h){
+    translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
+}
 module linear_bushing_bronze(h=11) {
-    difference(){
-        union(){
-            translate([-10.5/2,0,h/2]) cube([10.5,13.8,h], center = true);
-            cylinder(r=10.7, h=h);
+    translate([-10.5/2,0,h/2]) cube([10.5,13.8,h], center = true);
+    cylinder(r=10.7, h=h);
+}
+
+//select right negative bushing
+module linear_bushing_negative_single(h){
+        if (bushing_type == 0) {
+            linear_bushing_square_negative(h);
         }
-        translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
+        if (bushing_type == 1) {
+            linear_bushing_round_negative(h);
+        }
+        if (bushing_type == 2) {
+            linear_bushing_bronze_negative(h);
+        }
+}
+
+module linear_bushing_negative(h){
+    // for small h return simple negative
+    if (h <= 25) {
+        linear_bushing_negative_single(h);
+    } else {
+        // anyting longer will consist of bushing and smooth rod parts
+        linear_bushing_negative_single(25);
+        cylinder(r = (smooth_bar_diameter + 0.5)/2, h=h);
+        // even longer will have upper bushing part too
+        if (h > 50){
+            translate([0,0,h]) mirror([0,0,1]) linear_bushing_negative_single(25);
+        }
     }
 }
 
 // select right bushing and cut it at angle, so it can be printed upside down
-module linear_bushing_long(h=30){
+module linear_bushing_single(h=30){
     intersection(){
         if (bushing_type == 0) {
             linear_bushing_square(h);
@@ -72,29 +102,17 @@ module linear_bushing_long(h=30){
 }
 
 module linear_bushing(h=65){
-    translate([-9.5,0,h/2]) cube([2,13.8,h], center=true);
-    linear_bushing_long(h);
-    if (h>30) {
-        translate([0,0,h]) mirror([0,0,1]) linear_bushing_long(30);
+    difference() {
+        union() {
+            translate([-9.5,0,h/2]) cube([2,13.8,h], center=true);
+            linear_bushing_single(h);
+            if (h>30) {
+                translate([0,0,h]) mirror([0,0,1]) linear_bushing_single(30);
+            }
+        }
+        linear_bushing_negative(h);
     }
-}
-
-//this is for Z axis
-module bushing_negative(h=lm8uu_length+4){
-    if (bearing_choice == 1) {
-        if (bushing_type == 0) {
-            translate([0,0,h/2]) cube([9,9,h+0.02], center = true);
-        }
-        if (bushing_type == 1) {
-            translate([0,0,-0.01])  cylinder(r=5.1, h=h+0.02);
-        }
-        if (bushing_type == 2) {
-            translate([0,0,-0.01])  cylinder(r=8.1, h=h+0.02);
-        }
-    } else {
-        translate([0,0,-0.01])  cylinder(r=lm8uu_radius+0.4, h=h+0.02);
-    }
-
+    %linear_bushing_negative(h);
 }
 
 module firm_foot(){
@@ -123,7 +141,7 @@ module y_bearing(float=false){
     if (bearing_choice == 2) {
         linear_bearing(lm8uu_length+4);
     } else {
-        linear_bushing_long(20);
+        linear_bushing(20);
     }
     translate([-9,0,10]) {
         if (float) {
@@ -156,7 +174,22 @@ module bearing_clamp(){
         }
     }
 }
-
+module linear_bearing_negative_single(h=lm8uu_length){
+    //h is actually ignored here
+    translate([0,0,2])
+        cylinder(h = lm8uu_length, r=lm8uu_radius, $fn=50);
+}
+module linear_bearing_negative(h = lm8uu_length+4){
+    //lower bearing
+    linear_bearing_negative_single(h);
+    //smooth rod
+    translate([0,0,-0.1]) cylinder(r = (smooth_bar_diameter + 0.5)/2, h=(h > lm8uu_length+4 ? h : lm8uu_length+4)+0.2);
+    // longer will have upper bushing part too
+    if (h > 50){
+        translate([0,0,h]) mirror([0,0,1])
+            linear_bearing_negative_single(h);
+    }
+}
 module linear_bearing(h=0, fillet=false){
     linear_holder_base((h > lm8uu_length+4)? h : lm8uu_length+4, fillet);
     //lower
@@ -167,6 +200,7 @@ module linear_bearing(h=0, fillet=false){
     if ( (h-4)/2 > lm8uu_length){
         translate([-(3)/2-lm8uu_radius+2,0,h/2]) cube([3,18, (h-4)-2*lm8uu_length], center = true);
     }
+    %linear_bearing_negative(h);
 }
 
 module linear_holder_base(length, fillet=false){
@@ -178,8 +212,7 @@ module linear_holder_base(length, fillet=false){
             translate([0,0,0]) cylinder(h = length, r=lm8uu_radius+2.5, $fn=60);
         }
         //main axis
-        translate([0,0,-2]) cylinder(h = length+4, r=(lm8uu_diameter+0.2)/2, $fn=50);
-        // not needed for zip tie
+        translate([0,0,-2]) cylinder(h = length+4, r=lm8uu_radius, $fn=50);
         //main cut
         translate([10,0,length/2]) cube([20,14,length+4], center = true);
         //smooth entry cut
@@ -192,11 +225,11 @@ module linear_holder_base(length, fillet=false){
     if ((length-4)/2 > lm8uu_length ) {
         translate ([0,0,length - (lm8uu_length/2+1)]) bearing_clamp();
     }
+    //lower clamp
     translate ([0,0,lm8uu_length/2+1]) bearing_clamp();
 }
 
-%cylinder(r=4, h=90);
-%translate([0,0,2]) cylinder(r=lm8uu_radius, h=lm8uu_length);
+%cylinder(r=smooth_bar_diameter/2, h=90);
 
 y_bearing();
 translate([0,46,0]) y_bearing();

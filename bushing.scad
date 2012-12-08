@@ -7,7 +7,6 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
-include <inc/lm8uu-holder-slim_v1-1.scad>
 /**
  * @id bushing
  * @name Bushing
@@ -155,6 +154,7 @@ module y_bearing(float=false){
 }
 
 module bearing_clamp(){
+    // inspired by John Ridley and Jonas Kühling
     rotate([90, 0, 0]) {
         difference(){
             union(){

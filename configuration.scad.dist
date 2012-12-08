@@ -64,7 +64,7 @@ bearing_type = 0;
 idler_bearing = 0;
 
 // Thickness of the XZ plate board
-board_thickness = 16;
+board_thickness = 12;
 
 //Layer height * width over thickness. Used for idler sleeve
 single_wall_width = 0.3*2.2;

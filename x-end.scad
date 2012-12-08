@@ -14,8 +14,6 @@ module x_end_motor(){
     mirror([0,1,0]) {
 
         x_end_base([3,3,0,0], thru=false);
-        /// motor dummy
-        //%translate([21-5,-21-11,25]) cube([42,42,42], center = true);
 
 
         difference(){
@@ -48,7 +46,11 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
         union(){
             difference(){
                 #translate([-13.75-0.5,-10+len/2,30]) cube_fillet([18.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
-                bushing_negative(60);
+                if (bearing_choice == 1) {
+                    linear_bushing_negative(60);
+                } else {
+                    linear_bearing_negative(60);
+                }
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 
             if (bearing_choice == 1) {
@@ -65,7 +67,6 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
                 }
 
                 //bottom hole
-                
                 translate([0,17,-1]) cylinder(h = 4, r=2.75);
                 //nut slid in
                 translate([5,17,4]) cube([9.2*2,9.2*sqrt(3/4),4.1], center = true);
@@ -98,8 +99,8 @@ module x_end_idler(){
     difference() {
         x_end_base(len=42+idler_size_inner_r);
         // idler hole
-        translate([0,17+6+idler_size_inner_r,30.25-((bearing_type==0)? 3 : 0)]) rotate([0,-90,0]) cylinder(h = 80, r=idler_size_inner_r-0.2, $fn=30);
-        if (bearing_type == 0) 
+        translate([0,17+6+idler_size_inner_r,30.25-((idler_bearing==0)? 3 : 0)]) rotate([0,-90,0]) cylinder(h = 80, r=m4_diameter/2);
+        if (idler_bearing == 0)
         translate([-9,17+6+idler_size_inner_r,30.25-3]) {
             rotate([0,-90,0]) cylinder(h = 10, r=idler_size/2+4, $fn=30);
             translate([-5,10,0]) cube([10,20,idler_size+8], center=true);

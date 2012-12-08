@@ -9,13 +9,13 @@
 include <configuration.scad>
 use <y-drivetrain.scad>
 
-module nutrod(){
+module nutrod(r=4.4){
     rotate([0,90,0]){
         //translate([0,0,-0.1]) nut(m8_nut_diameter,6.7,false);
         //this is pretty but annoying
         //translate([-7.5/2,0,7/2-1.5]) cube([7.5,15,7], center=true);
         //translate([0,0,-1.5]) cylinder(h = 7, r=7.5);
-        translate([0,0,-5]) cylinder(h = 270, r=4.4, $fn=30);
+        translate([0,0,-5]) cylinder(h = 270, r=r, $fn=30);
     }
 }
 
@@ -39,7 +39,7 @@ module leftfront(thru = false){
             translate([0,11,10]) rotate([0,0,0]) nutrod();
             translate([0,11,30]) rotate([0,0,0]) nutrod();
 
-            translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
+            translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod(r=5.4);
 
             if(thru==false){
                 translate([11,15+y_end_plug,45+4]) rotate([0,0,0]) cube([8.2,30,4], center=true);

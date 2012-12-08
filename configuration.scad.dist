@@ -64,6 +64,14 @@ bearing_type = 0;
 
 idler_bearing = 0;
 
+// Fillets ********************************************************************
+// 0 = no fillets
+// 1 = fillet
+
+use_fillets = 0;
+
+
+
 // z-rod constraint bearing *************************************************** 
 // 0 = none (fine unless you have heavy x axis)
 // 1 = 608 (needs precise insert)
@@ -84,12 +92,6 @@ single_wall_width = 0.3*2.2*1.01;
 // You are not supposed to change this
 board_to_xz_distance = 26;
 xaxis_rod_distance = 45;
-//included wade has mounting hole centers 50mm apart
-carriage_l = 62;
-carriage_hole_to_side = 6;
-carriage_hole_height = 4;
-x_beltclamp_shortening = 29;
-x_beltclamp_width = 20;
 
 //calculated from settings
 

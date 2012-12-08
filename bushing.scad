@@ -114,12 +114,13 @@ module linear_bushing(h=65){
     %linear_bushing_negative(h);
 }
 
+// this should be more parametric
 module firm_foot(){
     difference(){
         union() {
-            translate([0,13,0]) cube_fillet([3,18,20], top=[11,0,0,0], center=true);
+            translate([3-0.25,16,0]) cube_fillet([8.5,18,20], top=[11,0,0,0], center=true);
         }
-        translate([1.5,14,0]) rotate([0,-90,0]) screw();
+        #translate([7,14,0]) rotate([0,-90,0]) screw();
     }
 }
 
@@ -232,11 +233,9 @@ module linear_holder_base(length, fillet=false){
 %cylinder(r=smooth_bar_diameter/2, h=90);
 
 y_bearing();
-translate([0,46,0]) y_bearing();
-rotate([0,0,180]) {
-    if (bearing_choice == 2) {
-        translate([24, -23, 0]) y_bearing();
-    } else {
-        translate ([28, -23,0]) mirror([1,0,0]) y_bearing(true);
-    }
+translate([0,52,0]) y_bearing();
+if (bearing_choice == 2) {
+    translate([-28, 23, 0]) y_bearing();
+} else {
+    translate ([-30,23,0]) mirror([1,0,0]) y_bearing(true);
 }

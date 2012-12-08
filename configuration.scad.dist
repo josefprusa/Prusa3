@@ -38,18 +38,19 @@ belt_tooth_ratio = 0.5;
 
 //Choose from:
 
-// 0 = Z as lm[e]8uu, X and Y bushings
-// 1 = all bushings
-// 2 = all bearings [default. Do not change unless you really know what you are doing]
+// 0 = Z as lm[e]8uu, X and Y bushings. (Quiet variant)
+// 1 = all bushings (bushings on Z will probably develop wobble fast)
+// 2 = all bearings [default. Do not change unless you really know what you are doing] (safe choice)
 // DO NOT OFFER 0 or 1 VARIANTS FOR SALE. We really mean that. In the long run it hurts everyone.
 
 bearing_choice = 2;
 
 // Bushing version
-// 0 = square igus housings. By igus we mean JFM-0810-10 or GFM-0810-10
-// 1 = round igus (works better if printed precisely)
-// 2 = bronze self-aligning bushings
-bushing_type = 0;
+// 0 = igus in square housings. By igus we mean JFM-0810-10 or GFM-0810-10 
+//      (needs less work during building, but will have wobble)
+// 1 = round igus (may need redrilling witg 10mm drill)
+// 2 = bronze self-aligning bushings  (not tested)
+bushing_type = 1;
 
 //Bearing version
 // 0 = default lm8uu
@@ -63,12 +64,13 @@ bearing_type = 0;
 
 idler_bearing = 0;
 
-// z-rod constraint *********************************************************** 
-// 0 = none
-// 1 = 608
-// 2 = 625 [inner diameter matches threaded rod]
+// z-rod constraint bearing *************************************************** 
+// 0 = none (fine unless you have heavy x axis)
+// 1 = 608 (needs precise insert)
+// 2 = 625 [inner diameter matches threaded rod] (default, even without bearing
+// inserted as it keeps top of threaded rod hidden)
 
-z_rod_constraint = 1;
+z_rod_constraint = 2;
 
 // Thickness of the XZ plate board
 board_thickness = 16;
@@ -82,9 +84,12 @@ single_wall_width = 0.3*2.2*1.01;
 // You are not supposed to change this
 board_to_xz_distance = 26;
 xaxis_rod_distance = 45;
-carriage_l = 74;
-carriage_hole_to_side = 5;
+//included wade has mounting hole centers 50mm apart
+carriage_l = 62;
+carriage_hole_to_side = 6;
 carriage_hole_height = 4;
+x_beltclamp_shortening = 29;
+x_beltclamp_width = 20;
 
 //calculated from settings
 
@@ -125,6 +130,12 @@ idler_width = (idler_bearing == 0) ? 9 : 5;
 
 ///counted stuff
 m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
+
+// Linear bearing options
+// With bit of play, it can be held by screw anyway.
+lm8uu_diameter=(bearing_type==1) ? 16 : 15;
+lm8uu_length=(bearing_type==1) ? 25.5 : 24.5;
+lm8uu_radius = lm8uu_diameter / 2 + 0.2;
 
 // functions
 include <inc/functions.scad>

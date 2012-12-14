@@ -49,9 +49,13 @@ module zrodholder(bearing_constraint=0, thickness=13, ylen=40, xlen=34){
                                 cylinder(r=14.5, h=thickness);
                                 translate([0,0,-1]) cylinder(r=z_rod_constraint_outer/2+0.2,h=thickness+2);
                             }
-                            translate([0,0,thickness/2]) difference(){
+                            translate([0,0,thickness/3]) difference(){
                                 cylinder(r=z_rod_constraint_outer/3+3,h=1.5, center=true);
-                                cube([100,12,100], center=true);
+                                cube([20,7,10], center=true);
+                            }
+                            #translate([0,0,thickness/3+0.15]) difference(){
+                                cylinder(r=z_rod_constraint_outer/3+3,h=1.2, center=true);
+                                cube([7,20,10], center=true);
                             }
 
                         }

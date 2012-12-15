@@ -165,8 +165,8 @@ module yside()
 
 	// middle nuts
 	// 100=default wood plank width (see pl function below)
-	translate([0,board_thickness-4,8+board_thickness])rotate([0,-90,90])nutwasher();
-	translate([0,board_thickness+100-4,8+board_thickness])rotate([0,90,90])nutwasher();
+	translate([0,board_thickness-4-3,8+board_thickness])rotate([0,-90,90])nutwasher();
+	translate([0,board_thickness+100-4+3,8+board_thickness])rotate([0,90,90])nutwasher();
 
 
 
@@ -521,4 +521,5 @@ translate([-bracket_width(12)/2+6-yrodseparation/2,-12+3+3+100,board_thickness+b
 translate([ bracket_width(12)/2-6-yrodseparation/2,-12+3+3+100,board_thickness+bracket_height(3)+0.5])rotate([180,0,0])screw();
 translate([-bracket_width(12)/2+6-yrodseparation/2,    3+3+100,board_thickness+bracket_height(3)+0.5])rotate([180,0,0])screw();
 translate([ bracket_width(12)/2-6-yrodseparation/2,    3+3+100,board_thickness+bracket_height(3)+0.5])rotate([180,0,0])screw();
+
 //--------------------------------------------------------------------------------------------------------------------------------

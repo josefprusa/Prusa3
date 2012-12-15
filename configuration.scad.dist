@@ -123,8 +123,14 @@ include <inc/functions.scad>
 
 // These constants define the geometry of the complete-printer.scad
 
-x_smooth_rod_length=325;
-y_smooth_rod_length=405;
-z_smooth_rod_length=235;
+//x_smooth_rod_length=325;
+//y_smooth_rod_length=405;
+//z_smooth_rod_length=235;
+bed_x_size=225;
+bed_y_size=225;
+
+x_smooth_rod_length=450+board_thickness*2+10; // 492 for 16mm thickness; 484 for 12mm thickness
+y_smooth_rod_length=470;
+z_smooth_rod_length=405;  
 bed_x_size=225;
 bed_y_size=225;

@@ -27,13 +27,13 @@ module nutrod(r=4.4){
 module leftfront(thru = false){
 	y_end_plug=2;
     // translate so the rod is on x = 0
-    translate([-11,-y_end_plug,0])
+    translate([-11,-y_end_plug,12-board_thickness])
 
         difference(){
             if (thru == false) {
-                cube_fillet([22,22,49], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
+                #cube_fillet([22,22,37+board_thickness], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
             } else {
-                cube_fillet([22,22,50.5], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
+                cube_fillet([22,22,38.5+board_thickness], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
             }
 
             translate([0,11,10]) rotate([0,0,0]) nutrod();

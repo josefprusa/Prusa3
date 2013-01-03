@@ -22,40 +22,22 @@ module x_carriage(){
             union() {
                 //upper bearing
                 rotate([0,0,180]) {
-                    if (bearing_choice == 2) {
-                        linear_bearing(fillet = true);
-                    } else {
-                        linear_bushing(27);
-                    }
+                    linear(bushing_xy);
                 }
+                translate([6.5, -10, 0]) cube_fillet([4.5, 20, 29], vertical = [2,2,3,0]);
 
                 //lower bearing
                 translate([xaxis_rod_distance,0,0]) {
-                    if (bearing_choice == 2) {
-                        linear_bearing(carriage_l, fillet = true);
-                    } else {
-                        linear_bushing(carriage_l);
-                    }
+                    linear(bushing_xy, carriage_l);
                 }
+                translate([xaxis_rod_distance - 11.5, -10, 0]) cube_fillet([5, 20, carriage_l], radius=2);
 
                 // main plate
-                //difference(){
-/*
-                translate([14,-10,0]) cube_fillet([xaxis_rod_distance - 19.1, 6, carriage_l], vertical = [3,0,3,2]);
-                translate([7.5,-10,0]) cube([20,6, (bearing_choice == 2 ? lm8uu_length+4 : 28 )]);
-                //bushing holders are not as massive as bearing holder, so some padding
-                translate([xaxis_rod_distance - 11.5, -10, 0]) cube_fillet([6.4, 20, carriage_l], vertical = [2,2,2,2]);
-                translate([5.5, -10, 0]) cube_fillet([6, 20, (bearing_choice == 2 ? lm8uu_length+4 : 28.5 )], radius = 2);
-                */
-                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 22,6.5,carriage_l], radius=2);
-                translate([6.5,-10.5,0]) cube_fillet([11,6.5,29], radius=2);
-
-                //translate([55,-17.5, 67]) rotate([0,70,0]) cube([80,60,60], center = true);
-                //}
+                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 20,6.5,carriage_l], radius=2);
+                translate([6.5,-10.5,0]) cube_fillet([12,6.5,29], radius=2);
 
                 //reduce springiness
-
-                translate([8,5,20.5]) cube([xaxis_rod_distance - 15, 5, 8]);
+                translate([9,6*single_wall_width,9]) cube([xaxis_rod_distance - 18, 5, 12]);
 
 
                 translate([20,0,carriage_hole_to_side]) {
@@ -91,8 +73,17 @@ module x_carriage(){
 
                 }
             }
+            //upper bearing
+            rotate([0,0,180]) {
+                linear_negative(bushing_xy);
+            }
+
+            //lower bearing
+            translate([xaxis_rod_distance,0,0]) {
+                linear_negative(bushing_xy, carriage_l);
+            }
             // extruder mounts
-            
+
             translate([20,-2,carriage_hole_to_side]) {
                 rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
                 translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
@@ -110,33 +101,18 @@ module x_carriage(){
                 translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
             }
 
-            
             // belt clamp mounts
             translate([20,-10.5,carriage_l-14]) belt_clamp_nut();
             translate([20,-10.5,carriage_l-44]) belt_clamp_nut();
 
-            
-        }
-    }
-
-    module holding_plate(){
-        translate([13,-10,0]){
-            difference(){
-                translate([2.5-13.8/2, -17.5,35]) cube([5,35,carriage_l], center = true);
-                translate([2.5-13.8/2, -17.5,35]) cube([7,25,25], center = true);
-                translate([0,-17.5, 35-25]) rotate([0,-90,0]) cylinder(h = 80, r=2.5, $fn=30);
-                translate([0,-17.5, 35+25]) rotate([0,-90,0]) cylinder(h = 80, r=2.5, $fn=30);
-            }
-
-            %translate([-7, -18 ,carriage_l/2]) rotate([-90,0,90]) groovemount();
         }
     }
 }
 
 module belt_clamp_nut() {
-    #translate([0,0,m3_nut_diameter/-2]) cube([2.5,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
+    translate([0,0,m3_nut_diameter/-2]) cube([2.5,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
     translate([0,m3_nut_diameter_bigger/2,0]){
-        #rotate([0, 90,0]) cylinder(r=3.5/2,h=10,$fn=32);
+        rotate([0, 90,0]) cylinder(r=3.5/2,h=10,$fn=32);
         rotate([0,-90,0]) cylinder(r=3.5/2,h=30,$fn=32);
     }
 }
@@ -151,26 +127,9 @@ module x_beltclamp(){
     }
 }
 
-module lme8uu(){
-    difference(){
-        cylinder(r=8,h=25);
-        translate([0,0,-0.1]) cylinder(r=4, h=25.2);
-    
-    }
-
-}
-
-//#translate([0,0,2]) lme8uu();
-//#translate([-xaxis_rod_distance,0,2]) lme8uu();
-//translate([0,0,-10]) cylinder(r=4,h=100);
-//translate([-xaxis_rod_distance,0,-10]) cylinder(r=4,h=100);
-
-
 x_carriage();
 translate([carriage_l/-2-10,12,0]) x_beltclamp();
 translate([carriage_l/-2+17,12,0]) x_beltclamp();
 
 %translate([-13,-10,carriage_l]) rotate([90,90,90]) x_beltclamp();
 %translate([-13,-10,carriage_l-30]) rotate([90,90,90]) x_beltclamp();
-
-//holding_plate();

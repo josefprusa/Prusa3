@@ -46,18 +46,10 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
         union(){
             difference(){
                 translate([-13.75-0.5,-10+len/2,30]) cube_fillet([18.5,len,60], center = true, vertical=vfillet, top=[5,3,5,3]);
-                if (bearing_choice == 1) {
-                    linear_bushing_negative(60);
-                } else {
-                    linear_bearing_negative(60);
-                }
+                    linear_negative(bushing_z, 60);
             }
             //rotate([0,0,0]) translate([0,-9.5,0]) 
-            if (bearing_choice == 1) {
-                linear_bushing(60);
-            } else {
-                linear_bearing(60);
-            }
+            linear(bushing_z, 60);
             // Nut trap
             difference(){
                 if ((bearing_choice != 1) || (bushing_type == 2)) {
@@ -111,7 +103,7 @@ module x_end_idler(){
 
 mirror([0,0,0]) x_end_idler(thru=true);
 // translate([40,40,0]) x_end_idler(thru=false);
-translate([40,0,0]) x_end_motor();
+translate([50,0,0]) x_end_motor();
 
 module pushfit_rod(diameter,length){
     cylinder(h = length, r=diameter/2, $fn=30);

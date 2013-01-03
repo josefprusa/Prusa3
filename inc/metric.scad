@@ -26,11 +26,6 @@ m3_diameter = 3.6;
 m3_nut_diameter = 5.3;
 m3_nut_diameter_horizontal = 6.1;
 
-// Bushing holder
-
-bushing_core_diameter = smooth_bar_diameter;
-bushing_material_thickness = 1;
-
 // Motors
 
 motor_shaft = 5.5;

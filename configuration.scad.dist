@@ -9,12 +9,13 @@
 // PLEASE SELECT ONE OF THE CONFIGURATIONS BELOW
 // BY UN-COMMENTING IT
 
-// Uncomment for metric settings
-// METRIC METRIC METRIC METRIC METRIC METRIC METRIC METRIC 
-
 include <inc/metric.scad>;
+include <inc/conf_bushing.scad>;
 
 // Custom settings here, tailor to your supplies and print settings
+
+layer_height = 0.3;
+width_over_thickness = 2.2;
 
 // Select your belt type ******************************************************
 
@@ -35,6 +36,12 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_ratio = 0.64;
 
 // Choose bearing/bushing configuration ***************************************
+
+// conf_b_* are in inc/conf_bushing.scad
+
+bushing_xy = conf_b_lm8uu;
+bushing_z = conf_b_lm8uu;
+
 
 //Choose from:
 
@@ -68,8 +75,7 @@ idler_bearing = 0;
 // 0 = no fillets
 // 1 = fillet
 
-use_fillets = 0;
-
+use_fillets = 1;
 
 
 // z-rod constraint bearing *************************************************** 
@@ -78,13 +84,10 @@ use_fillets = 0;
 // 2 = 625 [inner diameter matches threaded rod] (default, even without bearing
 // inserted as it keeps top of threaded rod hidden)
 
-z_rod_constraint = 2;
+z_rod_constraint = 0;
 
 // Thickness of the XZ plate board
 board_thickness = 12;
-
-//Layer height * width over thickness. Used for idler sleeve
-single_wall_width = 0.3*2.2*1.01;
 
 // END of custom settings
 
@@ -94,6 +97,7 @@ board_to_xz_distance = 26;
 xaxis_rod_distance = 45;
 
 //calculated from settings
+single_wall_width = width_over_thickness * layer_height;
 
 idler_size = (idler_bearing == 0) ? 22 : 13;
 
@@ -142,7 +146,6 @@ lm8uu_radius = lm8uu_diameter / 2 + 0.2;
 // functions
 include <inc/functions.scad>
 
-
 // These constants define the geometry of the complete-printer.scad
 
 //x_smooth_rod_length=325;
@@ -151,8 +154,6 @@ include <inc/functions.scad>
 bed_x_size=225;
 bed_y_size=225;
 
-x_smooth_rod_length=450+board_thickness*2+10; // 492 for 16mm thickness; 484 for 12mm thickness
+x_smooth_rod_length=460+board_thickness*2; // 492 for 16mm thickness; 484 for 12mm thickness
 y_smooth_rod_length=470;
-z_smooth_rod_length=405;  
-bed_x_size=225;
-bed_y_size=225;
+z_smooth_rod_length=405;

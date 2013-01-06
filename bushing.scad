@@ -52,6 +52,12 @@ module linear_bearing_negative(conf_b = bushing_xy, h = 0){
     }
 }
 
+module linear_negative_preclean(conf_b = bushing_xy) {
+    // makes sure there is nothing interfering
+    // to be substracted before linear()
+    cylinder(r = conf_b[1] + single_wall_width, h=300, center=true);
+}
+
 module linear_bushing_sloped(conf_b=bushing_xy, h= 100){
     // cut the bushing at angle, so it can be printed upside down
     intersection(){
@@ -127,10 +133,13 @@ module firm_foot(){
 module y_bearing(){
     difference() {
         union() {
-            linear();
+            difference() {
             translate([-9,0,10]) firm_foot();
+            linear_negative_preclean();
+            }
+            linear();
         }
-    linear_negative(bushing_xy, 20);
+    //linear_negative(bushing_xy, 20);
     }
 }
 
@@ -178,16 +187,11 @@ module linear(conf_b = bushing_xy, h = 0){
     %linear_negative(conf_b, h);
 }
 
-/*
 %cylinder(r=bushing_xy[0], h=90);
 
 y_bearing();
 translate([0,52,0]) y_bearing();
-if (bushing_xy[3] == 0) {
-    translate([-28, 23, 0]) y_bearing();
-} else {
-    translate ([-30,23,0]) mirror([1,0,0]) y_bearing(true);
-}
+translate ([-30,23,0]) mirror([1,0,0]) y_bearing();
 
 
 /*/
@@ -205,3 +209,4 @@ translate([50, -25,0]) {
     translate([0,-80,0]) linear(conf_b = conf_b_lm12luu);
     translate([0,80,0]) linear(conf_b = conf_b_bronze);
 }
+/*/

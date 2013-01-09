@@ -5,8 +5,8 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
+include <../../configuration.scad>
 use <bearing.scad>
-rod_distance = 45;
 
 module x_end_base(){
 // Main block
@@ -27,7 +27,7 @@ translate(v=[-5.5-10+1.5,-10,30]) cube(size = [10,46,32], center = true);
 // Bottom pushfit rod
 translate(v=[-14,-40,6]) rotate(a=[-90,0,0]) pushfit_rod(8,50);
 // Top pushfit rod
-translate(v=[-14,-40,rod_distance+6]) rotate(a=[-90,0,0]) pushfit_rod(8,50);
+translate(v=[-14,-40,x_rod_distance+6]) rotate(a=[-90,0,0]) pushfit_rod(8,50);
 // Nut trap
  translate(v=[0,-17,-1]) cylinder(h = 10, r=2.45);
  translate(v=[0,-17,3]) rotate([0,0,30]) cylinder(h = 5, r=4.5, $fn = 6);

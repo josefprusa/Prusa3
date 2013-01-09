@@ -5,13 +5,14 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
-use <bearing.scad>
+include <../configuration.scad>
+use <inc/bearing.scad>
 
 module x_carriage_base(){
  // Small bearing holder
  translate([-33/2,0,0]) rotate([0,0,90]) horizontal_bearing_base(1);
  // Long bearing holder
- translate([-33/2,45,0]) rotate([0,0,90]) horizontal_bearing_base(2);
+ translate([-33/2,x_rod_distance,0]) rotate([0,0,90]) horizontal_bearing_base(2);
  // Base plate
  translate([-33,-11.5,0]) cube([33,68,7]);
  // Belt holder base
@@ -29,7 +30,7 @@ module x_carriage_beltcut(){
  translate([-66,21.5+10,14]) rotate([45,0,0]) cube([67,15,15]);
  // Teeth cuts
  for ( i = [0 : 23] ){
-  translate([0-i*3,21.5+8,6]) cube([1.7,3,15]);
+  translate([0-i*belt_tooth_distance,21.5+8,6]) cube([1.7,3,15]);
  }
 }
 

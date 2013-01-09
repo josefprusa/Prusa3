@@ -5,6 +5,7 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
+include <../configuration.scad>
 
 
 
@@ -22,13 +23,12 @@ module extruder_base(){
  // Main body
  translate([-1,-2,0]) cube([22,56,24]);
  // Extruder plate mount
- translate([-16,49-5,0]) cube([59,10,24]);
- // Idler holder
- translate([33,36,0]) cube([10,14,24]);
- // Bottom thin plate
- translate([20,36,0]) cube([20,14,0.85]);
- // Top thin plate
- translate([20,36,24-3]) cube([20,14,3]);
+ if (hotend_mount == 1) { // groove-mount
+  translate([-16,49,0]) cube([55,5 + hotend_groovemount_depth - 1.5,24]);
+ } else {
+  translate([-16,49,0]) cube([55,5,24]);
+ }
+ 
  // Carriage mount cylinders
  translate([11,25,0]){
   //translate([-12,24,0]) cylinder(r=5, h=24);
@@ -67,6 +67,10 @@ module extruder_holes(){
  }
  // Filament path
  translate([1.5+11+3.5,65,11]) rotate([90,0,0]) cylinder(r=2, h=70);
+ if (hotend_mount == 1) {
+  // Hole for hotend
+  translate([1.5+11+3.5,65,11]) rotate([90,0,0]) cylinder(r=hotend_groovemount_diameter/2, h=12.5);
+ }
  // Hole for drive gear check
  translate([1.5+11+3.5-30,25,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
  translate([1.5+11+3.5-30,23,11]) rotate([90,0,90]) cylinder(r=4, h=70, $fn=20);
@@ -82,8 +86,10 @@ module extruder_holes(){
   // Idler mounting holse
   translate([11,25,10]){
    // Nut traps
-   translate([-3,-32.5,6-5.5/2]) cube([2.7,14,5.5]);
-   translate([-3,-32.5,-4-5.5/2]) cube([2.7,14,5.5]);
+   translate([-30,15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,-15,-5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
+   translate([-30,-15,5]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=30, $fn=6);
    // Screws
    translate([-30,-22,-4]) rotate([0,90,0]) cylinder(r=2, h=70);
    translate([-30,-22,6]) rotate([0,90,0]) cylinder(r=2, h=70);

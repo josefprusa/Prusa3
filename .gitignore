@@ -1,5 +1,6 @@
 .*
-*.stl
 *.gcode
+box_frame/output/*.stl
+single_plate/output/*.stl
 tags
 configuration.scad

@@ -31,7 +31,7 @@ module zmotorholder(thickness=13){
 }
 
 
-module zrodholder(bearing_constraint=0, thickness=13, ylen=40, xlen=34){
+module zrodholder(thickness=13, ylen=40, xlen=34){
     difference(){
         union(){
             difference(){
@@ -42,24 +42,6 @@ module zrodholder(bearing_constraint=0, thickness=13, ylen=40, xlen=34){
                     cube_fillet([xlen, 14, thickness], vertical=[0,0,0,3] );
                     //piece along cut side of the board
                     translate([-board_thickness,0,0]) cube_fillet([board_thickness*2, 5, thickness], radius=2);
-                    if (bearing_constraint > 0) {
-                        //bearing constrainig Z axis is put here
-                        translate([board_to_xz_distance, board_to_xz_distance, 0]) {
-                            difference() {
-                                cylinder(r=14.5, h=thickness);
-                                translate([0,0,-1]) cylinder(r=z_rod_constraint_outer/2+0.2,h=thickness+2);
-                            }
-                            translate([0,0,thickness/3]) difference(){
-                                cylinder(r=z_rod_constraint_outer/3+3,h=1.5, center=true);
-                                cube([20,7,10], center=true);
-                            }
-                            #translate([0,0,thickness/3+0.15]) difference(){
-                                cylinder(r=z_rod_constraint_outer/3+3,h=1.2, center=true);
-                                cube([7,20,10], center=true);
-                            }
-
-                        }
-                    }
                 }
                 //smooth rod hole
                 translate([board_to_xz_distance,5+(smooth_bar_diameter/2),-1]) cylinder(h=board_thickness+2, r=(smooth_bar_diameter/2));

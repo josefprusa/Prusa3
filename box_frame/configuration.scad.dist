@@ -40,33 +40,10 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_ratio = 0.5;
 
 // Choose bearing/bushing configuration ***************************************
-
 // conf_b_* are in inc/conf_bushing.scad
 
 bushing_xy = conf_b_lm8uu;
 bushing_z = conf_b_lm8uu;
-
-
-//Choose from:
-
-// 0 = Z as lm[e]8uu, X and Y bushings. (Quiet variant)
-// 1 = all bushings (bushings on Z will probably develop wobble fast)
-// 2 = all bearings [default. Do not change unless you really know what you are doing] (safe choice)
-// DO NOT OFFER 0 or 1 VARIANTS FOR SALE. We really mean that. In the long run it hurts everyone.
-
-bearing_choice = 2;
-
-// Bushing version
-// 0 = igus in square housings. By igus we mean JFM-0810-10 or GFM-0810-10 
-//      (needs less work during building, but will have wobble)
-// 1 = round igus (may need redrilling witg 10mm drill)
-// 2 = bronze self-aligning bushings  (not tested)
-bushing_type = 1;
-
-//Bearing version
-// 0 = default lm8uu
-// 1 = lme8uu
-bearing_type = 0;
 
 // Select idler bearing size **************************************************
 
@@ -81,14 +58,8 @@ idler_bearing = 0;
 
 use_fillets = 1;
 
-
-// z-rod constraint bearing *************************************************** 
-// 0 = none (fine unless you have heavy x axis)
-// 1 = 608 (needs precise insert)
-// 2 = 625 [inner diameter matches threaded rod] (default, even without bearing
-// inserted as it keeps top of threaded rod hidden)
-
-z_rod_constraint = 0;
+//set to 0 for single plate (affects z axis)
+i_am_box = 0;
 
 // Thickness of the XZ plate board
 board_thickness = 12;
@@ -104,8 +75,6 @@ xaxis_rod_distance = 45;
 single_wall_width = width_over_thickness * layer_height;
 
 idler_size = (idler_bearing == 0) ? 22 : 13;
-
-z_rod_constraint_outer = (z_rod_constraint == 0) ? 22 : 16;
 
 //use 4.5 for 608, 2.5 for 624
 idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
@@ -140,12 +109,6 @@ idler_width = (idler_bearing == 0) ? 9 : 5;
 
 ///counted stuff
 m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
-
-// Linear bearing options
-// With bit of play, it can be held by screw anyway.
-lm8uu_diameter=(bearing_type==1) ? 16 : 15;
-lm8uu_length=(bearing_type==1) ? 25.5 : 24.5;
-lm8uu_radius = lm8uu_diameter / 2 + 0.2;
 
 // functions
 include <inc/functions.scad>

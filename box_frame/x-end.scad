@@ -52,16 +52,12 @@ module x_end_base(vfillet=[3,3,3,3], thru=true, len=40){
             linear(bushing_z, 60);
             // Nut trap
             difference(){
-                if ((bearing_choice != 1) || (bushing_type == 2)) {
-                translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,0]);
-                } else {
                 translate([-2,17.5,4]) cube_fillet([16,18,8], center = true, vertical=[3,0,0,3]);
-                }
 
                 //bottom hole
                 translate([0,17,-1]) cylinder(h = 4, r=2.75);
                 //nut slid in
-                #translate([3,17,4]) cube([9.2*2,9.2*sqrt(3/4)+0.4,4.1], center = true);
+                translate([3,17,4]) cube([9.2*2,9.2*sqrt(3/4)+0.4,4.1], center = true);
 
                 translate([0,17,6.5]) cylinder(h = 4, r=2.75);
             }

@@ -31,7 +31,7 @@ module leftfront(thru = false){
 
         difference(){
             if (thru == false) {
-                #cube_fillet([22,22,37+board_thickness], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
+                cube_fillet([22,22,37+board_thickness], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
             } else {
                 cube_fillet([22,22,38.5+board_thickness], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
             }
@@ -42,11 +42,11 @@ module leftfront(thru = false){
             translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod(r=5.4);
 
             if(thru==false){
-                #translate([11,15+y_end_plug,45+3]) rotate([0,0,0]) cube([8.2,30,4], center=true);
+                translate([11,15+y_end_plug,45+3]) rotate([0,0,0]) cube([8.2,30,4], center=true);
                 translate([11,y_end_plug,45]) rotate([0,90,90]) cylinder(h = 270, r=4.0);
             }else{
                 translate([11,17-5,45+2.05]) rotate([0,0,0]) cube([8.2,30,4.1], center=true);
-                translate([11,2-5,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.0);
+                translate([11,2-5,45]) rotate([0,90,90]) cylinder(h = 270, r=4.0);
             }
 
         }

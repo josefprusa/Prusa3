@@ -18,26 +18,9 @@ module bolt_track(width, length, height) {
     }
 }
 
-function bracket_width(screw_area) = screw_area * 2 + threaded_rod_diameter;
+function bracket_width(screw_area) = screw_area * 2 + y_threaded_rod_long_r * 2;
 function bracket_depth(lip_thickness, screw_area) = screw_area * 2 + lip_thickness;
-function bracket_height(lip_length) = board_thickness + lip_length;
-
-module beveled_box(size, bevel_size=4) {
-    function pythag(a, b) = sqrt(a * a + b * b);
-    function bevelradius(x, y, bevel) = pythag(x, y) - bevel * max(x, y) / min(x, y);
-
-    xzbevel = bevelradius(size[0], size[2], bevel_size);
-    yzbevel = bevelradius(size[1], size[2], bevel_size);
-    intersection() {
-        cube(size);
-        translate([size[0] / 2, size[1] / 2, size[2] / 2])
-            rotate([0, 45, 0])
-            cube([xzbevel, size[1], xzbevel], center=true);
-        translate([size[0] / 2, size[1] / 2, size[2] / 2])
-            rotate([45, 0, 0])
-            cube([size[0], yzbevel, yzbevel], center=true);
-    }
-}
+function bracket_height(lip_length=0) = y_threaded_rod_long_r * 2 + 6 * layer_height  + lip_length;
 
 module yrodbracket(screw_area, lip_thickness, lip_length, bevel_size=2.0) {
     inner_radius = threaded_rod_diameter / 2;
@@ -49,9 +32,9 @@ module yrodbracket(screw_area, lip_thickness, lip_length, bevel_size=2.0) {
 
     difference() {
         translate([0, 0, -lip_length])
-            beveled_box([width, depth, height], bevel_size);
+            cube_fillet([width, depth, height], bevel_size, top=[2,2,2,2]);
         translate([screw_area, -1, -lip_length - lip_thickness])
-            bolt_track(threaded_rod_diameter, depth + 2, lip_length + lip_thickness + inner_radius);
+            bolt_track(y_threaded_rod_long_r * 2, depth + 2, lip_length + lip_thickness + inner_radius);
 
         translate([-1, lip_thickness, -lip_length - 1])
             cube([width + 2, depth, lip_length + 1]);
@@ -59,9 +42,9 @@ module yrodbracket(screw_area, lip_thickness, lip_length, bevel_size=2.0) {
         // screw holes
         for (x = [screw_center, width - screw_center]) {
             for (y = [lip_thickness + screw_center, screw_area + lip_thickness + screw_center]) {
-                translate([x, y, board_thickness])
+                translate([x, y, bracket_height() + 0.1])
                     rotate([180, 0, 0])
-                    screw();
+                    screw(head_drop=3);
             }
         }
     }

@@ -59,7 +59,7 @@ idler_bearing = 0;
 use_fillets = 1;
 
 //set to 0 for single plate (affects z axis)
-i_am_box = 0;
+i_am_box = 1;
 
 //radius of long threaded rod on Y frame
 //Use 5.4 for M10 or 4.4 for M8

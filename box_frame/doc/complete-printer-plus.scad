@@ -157,10 +157,10 @@ module yside()
 	{
 	// left top rod
 	color("MediumBlue")
-	translate([0,0,3+board_thickness + 30]) rotate([0,90,90]) cylinder(h = y_smooth_rod_length, r=4,center=true);
+	translate([0,0,3+board_thickness + 30]) rotate([0,90,90]) cylinder(h = y_smooth_rod_length, r=bushing_xy[0],center=true);
 	//left bottom rod
 	color("Aqua")
-	translate([0,0,3+board_thickness+4+1]) rotate([0,90,90]) cylinder(h =  y_smooth_rod_length+22, r=4,center=true);
+	translate([0,0,3+board_thickness+4+1]) rotate([0,90,90]) cylinder(h =  y_smooth_rod_length+22, r=y_threaded_rod_long_r ,center=true);
 
 
 	// middle nuts
@@ -311,7 +311,7 @@ screw(25);
 module z_rods()
 {
 	color("MediumBlue")
-	translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,42])cylinder(h=z_smooth_rod_length,r=4);
+	translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,42])cylinder(h=z_smooth_rod_length,r=bushing_z[0]);
 	color("Aqua")
 	translate([board_w/2-4-12+board_thickness-17,-26+12-board_thickness,56])cylinder(h = 390, r=2.5);
 }

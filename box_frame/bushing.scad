@@ -131,10 +131,11 @@ module firm_foot(){
 }
 
 module y_bearing(){
+
     difference() {
         union() {
             difference() {
-            translate([-9,0,10]) firm_foot();
+            translate([-9 - xy_delta, 0, 10]) firm_foot();
             linear_negative_preclean();
             }
             linear();
@@ -191,22 +192,7 @@ module linear(conf_b = bushing_xy, h = 0){
 
 y_bearing();
 translate([0,52,0]) y_bearing();
-translate ([-30,23,0]) mirror([1,0,0]) y_bearing();
 
-
-/*/
-translate([0,40,0]) linear(conf_b = conf_b_igus, h=65);
-linear(conf_b = conf_b_lm8uu, h = 65);
-translate([0,-40,0]) linear(conf_b = conf_b_lm12uu, h = 65);
-translate([0,-80,0]) linear(conf_b = conf_b_lm12luu, h = 65);
-translate([0,80,0]) linear(conf_b = conf_b_bronze, h = 65);
-
-translate([50, -25,0]) {
-
-    translate([0,40,0]) linear(conf_b = conf_b_igus);
-    linear(conf_b = conf_b_lm8uu);
-    translate([0,-40,0]) linear(conf_b = conf_b_lm12uu);
-    translate([0,-80,0]) linear(conf_b = conf_b_lm12luu);
-    translate([0,80,0]) linear(conf_b = conf_b_bronze);
+if (bushing_xy[2] <50) {
+    translate ([-30,23,0]) mirror([1,0,0]) y_bearing();
 }
-/*/

@@ -110,7 +110,7 @@ module nema17(places=[1,1,1,1], size=15.5, h=10, holes=false, shadow=false, $fn=
     }
 }
 
-module screw(h=20, r=2, r_head=3.5, head_drop=0, slant=true, poly=false, $fn=0){
+module screw(h=20, r=2, r_head=3.5, head_drop=0, slant=i_am_box, poly=false, $fn=0){
     //makes screw with head
     //for substraction as screw hole
     if (poly) {

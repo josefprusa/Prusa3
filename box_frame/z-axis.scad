@@ -8,13 +8,13 @@
 
 include <configuration.scad>
 
-module zmotorholder(thickness=20, bottom_thickness=5){
+module zmotorholder(thickness=23, bottom_thickness=5){
     difference(){
         union(){
             // Motor holding part
             difference(){
                 union(){
-                    zrodholder(thickness=thickness, xlen=45, ylen=45);
+                    zrodholder(thickness=thickness, xlen=45, ylen=45, zdelta=((i_want_to_use_single_plate_dxf_and_make_my_z_weaker == 0) ? 0 : 5));
                     translate([board_to_xz_distance, board_to_xz_distance, 0]) {
                         nema17(places=[0, 1, 1, 1], h=bottom_thickness + layer_height);
                     }
@@ -31,7 +31,7 @@ module zmotorholder(thickness=20, bottom_thickness=5){
 }
 
 
-module zrodholder(thickness=14, bottom_thickness=5, ylen=42, xlen=34){
+module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
     holder_inner_r = 9;
     difference(){
         union(){
@@ -39,7 +39,7 @@ module zrodholder(thickness=14, bottom_thickness=5, ylen=42, xlen=34){
                 union(){
                     //piece along the flat side of a board
                     cube_fillet([14, ylen, bottom_thickness], vertical=[8, 3, 0, 0]);
-                    cube_fillet([5, ylen, thickness], vertical=[3, 3, 0, 0], top = [thickness/1.5, 0, 0, 5]);
+                    cube_fillet([5, ylen, thickness], vertical=[3, 3, 0, 0], top = [thickness/2, 0, 0, 5]);
                     //hole for Z axis is thru this
                     cube_fillet([xlen, 14, bottom_thickness], vertical=[3, 0, 0, 3]);
                     translate([14,14,0]) {
@@ -63,7 +63,6 @@ module zrodholder(thickness=14, bottom_thickness=5, ylen=42, xlen=34){
                         cylinder(h=bottom_thickness + layer_height, r=(bushing_z[0] + 5 * single_wall_width));
                         if (bushing_z[0] < 5) {
                             translate([0, -5 , bottom_thickness / 2]) cube([20, 20, bottom_thickness + 10], center=true);
-                            echo(0);
                         } else {
                             translate([0, -bushing_z[0], bottom_thickness / 2]) cube([bushing_z[0] * 4, bushing_z[0] * 4, bottom_thickness + 10], center=true);
                         }
@@ -80,11 +79,11 @@ module zrodholder(thickness=14, bottom_thickness=5, ylen=42, xlen=34){
                 //front screws
                 if (i_am_box != 1) {
                     //single plate has both screws on front
-                    translate([16, 35.5, bottom_thickness+4]) rotate([0, -90, 0]) {
-                        screw(head_drop=12, h=122, r_head=4.5);
+                    translate([16, 35.5, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
+                        screw(head_drop=14, h=122, r_head=4.5);
                     }
-                    translate([16, 15.5, bottom_thickness+4.5]) rotate([0, -90, 0]) {
-                        screw(head_drop=12, h=122, r_head=4.5);
+                    translate([16, 15.5, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
+                        screw(head_drop=14, h=122, r_head=4.5);
                     }
                 } else {
                     translate([16, 30, bottom_thickness+4]) rotate([0, -90, 0]) {

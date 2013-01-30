@@ -18,7 +18,8 @@ conf_b_igus = [4, 5.1, 10, 1, "igus J(V)FM 0810-10 or GFM 0810-10"];
 conf_b_lm8uu = [4, 7.7, 24, 0, "lm8uu bearing (standard)"];
 
 conf_b_igus10 = [5, 6.1, 10, 1, "igus J(V)FM 1012-10"];
-conf_b_lm10uu = [5, 9.7, 29, 0, "lm10uu bearing"];
+conf_b_lm10uu = [5, 9.7, 29, 0, "lm10uu bearing (10mm smooth rod)"];
+conf_b_lm10luu = [5, 9.7, 55, 0, "lm10luu bearing (10mm smooth rod, long)"];
 
 conf_b_lme8uu =[4, 8.2, 25, 0, "lme8uu bearing"];
 conf_b_lm8luu = [4, 7.7, 45, 0, "lm8luu bearing (double length)"];

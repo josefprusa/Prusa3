@@ -59,7 +59,7 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
                             cube_fillet([board_thickness/2 + board_to_xz_distance + bushing_z[0], 5, thickness], radius=2, top = [0, 0, 0, thickness]);
                     }
                     //smooth rod insert
-                    translate([board_to_xz_distance, 9, 0]) intersection() {
+                    translate([board_to_xz_distance - z_delta, 9, 0]) intersection() {
                         cylinder(h=bottom_thickness + layer_height, r=(bushing_z[0] + 5 * single_wall_width));
                         if (bushing_z[0] < 5) {
                             translate([0, -5 , bottom_thickness / 2]) cube([20, 20, bottom_thickness + 10], center=true);
@@ -69,7 +69,7 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
                     }
                 }
                 //smooth rod hole
-                translate([board_to_xz_distance, 9, -1]) cylinder_poly(h=board_thickness+2, r=bushing_z[0]);
+                translate([board_to_xz_distance - z_delta, 9, -1]) cylinder_poly(h=board_thickness+20, r=bushing_z[0]);
                 // cutout
                 translate([board_to_xz_distance-1, 5+(bushing_z[0]), 0.4]) cube([2, 10, 100]);
                 //inside rouned corner

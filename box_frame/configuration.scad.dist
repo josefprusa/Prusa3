@@ -62,7 +62,7 @@ use_fillets = 1;
 i_am_box = 1;
 
 //if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
-//get stronger motor mount
+//get stronger motor mount. Only for i_am_box = 0
 i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 
 //radius of long threaded rod on Y frame

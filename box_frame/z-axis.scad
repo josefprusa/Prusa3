@@ -16,7 +16,7 @@ module zmotorholder(thickness=23, bottom_thickness=5){
                 union(){
                     zrodholder(thickness=thickness, xlen=45, ylen=45, zdelta=((i_want_to_use_single_plate_dxf_and_make_my_z_weaker == 0) ? 0 : 5));
                     translate([board_to_xz_distance, board_to_xz_distance, 0]) {
-                        nema17(places=[0, 1, 1, 1], h=bottom_thickness + layer_height);
+                        nema17(places=[0, 1, 1, 1], h=bottom_thickness + layer_height, $fn=23);
                     }
                 }
 

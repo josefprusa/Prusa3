@@ -52,10 +52,10 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
                     }
                     //piece along cut side of the board
                     if (i_am_box == 1) {
-                        translate([-board_thickness, 0, 0]) 
+                        translate([-board_thickness, 0, 0])
                             cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], 5, thickness], radius=2, top = [0, 0, 0, thickness]);
                     } else {
-                        translate([-board_thickness/2, 0, 0]) 
+                        translate([-board_thickness/2, 0, 0])
                             cube_fillet([board_thickness/2 + board_to_xz_distance + bushing_z[0], 5, thickness], radius=2, top = [0, 0, 0, thickness]);
                     }
                     //smooth rod insert
@@ -79,10 +79,10 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
                 //front screws
                 if (i_am_box != 1) {
                     //single plate has both screws on front
-                    translate([16, 35.5, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
+                    translate([16, 35, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
                         screw(head_drop=14, h=122, r_head=4.5);
                     }
-                    translate([16, 15.5, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
+                    translate([16, 15, bottom_thickness + 4.5 + zdelta]) rotate([0, -90, 0]) {
                         screw(head_drop=14, h=122, r_head=4.5);
                     }
                 } else {

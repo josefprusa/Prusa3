@@ -10,40 +10,43 @@ use <inc/bearing.scad>
 
 module x_carriage_base(){
  // Small bearing holder
- translate([-33/2,0,0]) rotate([0,0,90]) horizontal_bearing_base(1);
- // Long bearing holder
- translate([-33/2,x_rod_distance,0]) rotate([0,0,90]) horizontal_bearing_base(2);
- // Base plate
- translate([-33,-11.5,0]) cube([33,68,7]);
- // Belt holder base
- translate([-33,20,0]) cube([33,16,17]);
+ translate([-33/2,+2,0]) rotate([0,0,90]) horizontal_bearing_base(1);
+ hull(){
+     // Long bearing holder
+     translate([-33/2,x_rod_distance+2,0]) rotate([0,0,90]) horizontal_bearing_base(2);
+     // Belt holder base
+     translate([-36,20,0]) cube([39,16,17]);
+    }
+     // Base plate
+ translate([-38,-11.5,0]) cube([39+4,68,7+1.5]);
+
 }
 
 module x_carriage_beltcut(){
  // Cut in the middle for belt
  translate([-2.5-16.5+1,19,7]) cube([4.5,13,15]);
  // Cut clearing space for the belt
- translate([-38,5,7]) cube([40,13,15]);
+ translate([-39,5,7]) cube([50,13,15]);
  // Belt slit
- translate([-66,21.5+10,6]) cube([67,1,15]);
+ translate([-50,21.5+10,6]) cube([67,1,15]);
  // Smooth entrance
- translate([-66,21.5+10,14]) rotate([45,0,0]) cube([67,15,15]);
+ translate([-56,21.5+10,14]) rotate([45,0,0]) cube([67,15,15]);
  // Teeth cuts
- for ( i = [0 : 23] ){
-  translate([0-i*belt_tooth_distance,21.5+8,6]) cube([1.7,3,15]);
+ for ( i = [0 : 33] ){
+   translate([25-i*belt_tooth_distance,21.5+8,6+1.5]) cube([1.7,3,15]);
  }
 }
 
 module x_carriage_holes(){
  // Small bearing holder holes cutter
- translate([-33/2,0,0]) rotate([0,0,90]) horizontal_bearing_holes(1);
+  translate([-33/2,2,0]) rotate([0,0,90]) horizontal_bearing_holes(1);
  // Long bearing holder holes cutter
- translate([-33/2,45,0]) rotate([0,0,90]) horizontal_bearing_holes(2);
+  translate([-33/2,x_rod_distance+2,0]) rotate([0,0,90]) horizontal_bearing_holes(2);
   // Extruder mounting holes
-  translate([-16.5+12,24,-1])cylinder(r=1.7, h=20, $fn=8);
-  translate([-16.5+12,24,10])cylinder(r=3.1, h=20, $fn=6); 
-  translate([-16.5-12,24,-1])cylinder(r=1.7, h=20, $fn=8);
-  translate([-16.5-12,24,10])cylinder(r=3.1, h=20, $fn=6); 	
+  translate([-16.5+15,24,-1])cylinder(r=1.7, h=20, $fn=32);
+  translate([-16.5+15,24,10])cylinder(r=3.3, h=20, $fn=6); 
+  translate([-16.5-15,24,-1])cylinder(r=1.7, h=20, $fn=32);
+  translate([-16.5-15,24,10])cylinder(r=3.3, h=20, $fn=6); 	
 }
 
 module x_carriage_fancy(){

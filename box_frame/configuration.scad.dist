@@ -35,7 +35,8 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_distance = 2.032;
 //belt_tooth_ratio = 0.64;
 
-//GT2
+//GT2 there is bunch of GT2 belts with different tooth-to-tooth distance
+//adjust to your needs
 //belt_tooth_distance = 2;
 //belt_tooth_ratio = 0.5;
 
@@ -46,14 +47,19 @@ bushing_xy = conf_b_lm8uu;
 bushing_z = conf_b_lm8uu;
 
 // Select idler bearing size **************************************************
+// [outer_diameter, width, inner_diameter, uses_guide]
+// 608 [standard skate bearings]
+bearing_608 = [22, 7, 8, 1];
+// 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
+bearing_624 = [16, 5, 4, 1];
+// two 624 - for use without bearing guides
+bearing_624_double = [16, 10, 4, 0];
 
-// 0 = 608 [standard skate bearings]
-// 1 = 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
-
-idler_bearing = 0;
+idler_bearing = bearing_624_double;
 
 // Fillets ********************************************************************
-// 0 = no fillets
+// mostly cosmetic, except z axis.
+// 0 = no fillts
 // 1 = fillet
 
 use_fillets = 1;
@@ -70,7 +76,7 @@ i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 
 y_threaded_rod_long_r = 5.4;
 
-// Thickness of the XZ plate board
+// Thickness of the XZ plate board. Leave at 12 for single plate
 board_thickness = 12;
 
 // END of custom settings
@@ -85,10 +91,9 @@ single_wall_width = width_over_thickness * layer_height;
 
 idler_size = (idler_bearing == 0) ? 22 : 13;
 
-//use 4.5 for 608, 2.5 for 624
 idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
 
-idler_width = (idler_bearing == 0) ? 9 : 5;
+idler_width = (idler_bearing[1] > 7 ? idler_bearing[1] : 7) + 2 * idler_bearing[3];
 
 
 //deltas are used to enlarge parts for bigger bearings 

@@ -17,51 +17,64 @@
 
 include <configuration.scad>
 
+//thickness of guiding wall
 thickness=1;
-height=7+thickness;
-wall_ascent=5;
-wall_descent=0.5;
+
+belt_width = 7;
+height = belt_width + thickness;
+//height of the guiding wall, from beraring surface
+wall_ascent = 5;
+//guiding wall extends to sides of bearing too
+wall_descent = 1;
 
 module inner()
 {
-    difference()
-    {
-        cylinder(r=idler_size/2+single_wall_width*2,h=height);
+    difference(){
+        cylinder(r=idler_bearing[0] / 2 + single_wall_width * 2, h=height - (belt_width - idler_bearing[1])/2);
         translate([0,0,-1])
-            cylinder(r=idler_size/2,h=height+2);
+            cylinder(r=idler_bearing[0]/2,h=height+2);
     }
 
-    difference()
-    {
-        cylinder(r=idler_size/2+wall_ascent,h=thickness);
+    difference(){
+        union() {
+            cylinder(r=idler_bearing[0] / 2 + wall_ascent, h=thickness);
+            cylinder(r=idler_bearing[0] / 2, h=thickness + (belt_width - idler_bearing[1])/2);
+        }
         translate([0,0,-1])
-            cylinder(r=idler_size/2-wall_descent,h=thickness+2);
+            cylinder(r=idler_bearing[0]/2-wall_descent,h=thickness+10);
     }
 }
 
 module outer()
 {
-    difference()
-    {
-        cylinder(r=idler_size/2+2*single_wall_width*2+0.2,h=height);
+    difference(){
+        cylinder(r=idler_bearing[0]/2+2*single_wall_width*2+0.2,h=height);
         translate([0,0,-1])
-            cylinder(r=idler_size/2+single_wall_width*2+0.2,h=height+2);
+            cylinder(r=idler_bearing[0]/2+single_wall_width*2+0.2,h=height+2);
     }
 
-    difference()
-    {
-        cylinder(r=idler_size/2+wall_ascent,h=thickness);
+    difference(){
+        union(){
+            cylinder(r=idler_bearing[0]/2+wall_ascent,h=thickness);
+            cylinder(r=idler_bearing[0] / 2, h=thickness + (belt_width - idler_bearing[1])/2);
+        }
         translate([0,0,-1])
-            cylinder(r=idler_size/2-wall_descent,h=thickness+2);
+            cylinder(r=idler_bearing[0]/2-wall_descent,h=thickness+2);
     }
 }
 
-inner();
-translate([idler_size+2*wall_ascent+2,0,0])
-    outer();
+if (idler_bearing[3] == 1) {
+    inner();
+    translate([idler_bearing[0]+2*wall_ascent+2,0,0])
+        outer();
 
-translate([0,idler_size+2*wall_ascent+2,0]){
-inner();
-translate([idler_size+2*wall_ascent+2,0,0])
-    outer();
+    translate([0,idler_bearing[0]+2*wall_ascent+2,0]){
+        inner();
+        translate([idler_bearing[0]+2*wall_ascent+2,0,0])
+            outer();
+
+    }
+} else {
+    cube([0.1,0.1,0.1]);
+    echo ("None");
 }

@@ -23,11 +23,11 @@ thickness=1;
 belt_width = 7;
 height = belt_width + thickness;
 //height of the guiding wall, from beraring surface
-wall_ascent = 5;
+wall_ascent = 4.5;
 //guiding wall extends to sides of bearing too
 wall_descent = 1;
 
-module inner()
+module bearing_guide_inner()
 {
     difference(){
         cylinder(r=idler_bearing[0] / 2 + single_wall_width * 2, h=height - (belt_width - idler_bearing[1])/2);
@@ -45,7 +45,7 @@ module inner()
     }
 }
 
-module outer()
+module bearing_guide_outer()
 {
     difference(){
         cylinder(r=idler_bearing[0]/2+2*single_wall_width*2+0.2,h=height);
@@ -64,14 +64,14 @@ module outer()
 }
 
 if (idler_bearing[3] == 1) {
-    inner();
+    bearing_guide_inner();
     translate([idler_bearing[0]+2*wall_ascent+2,0,0])
-        outer();
+        bearing_guide_outer();
 
     translate([0,idler_bearing[0]+2*wall_ascent+2,0]){
-        inner();
+        bearing_guide_inner();
         translate([idler_bearing[0]+2*wall_ascent+2,0,0])
-            outer();
+            bearing_guide_outer();
 
     }
 } else {

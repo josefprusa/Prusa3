@@ -88,8 +88,6 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40){
     translate([0, 17, 0]) %cylinder(h = 70, r=2.5+0.2);
 }
 
-echo (idler_assy_r_outer(idler_bearing));
-
 module x_end_idler(){
     difference() {
         x_end_base(len=45);

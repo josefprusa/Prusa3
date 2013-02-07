@@ -159,15 +159,15 @@ module bearing_clamp(conf_b=bushing_xy, h=0){
     rotate([90, 0, 0]) {
         difference(){
             union(){
-                translate([m3_diameter / 2 + conf_b[1] + 1, 0, 0])
+                translate([m3_diameter / 2 + conf_b[1] + 0.3, 0, 0])
                     cylinder(h=h, r = m4_nut_diameter / 2 + 0.5, center = true);
-                translate([m3_diameter / 2 + conf_b[1] + 1, 0, 0]) {
+                translate([m3_diameter / 2 + conf_b[1] + 0.3, 0, 0]) {
                     bearing_clamp_brick(conf_b, h);
                     rotate([0,0,35])
                         bearing_clamp_brick(conf_b, h);
                 }
             }
-            translate([m3_diameter / 2 + conf_b[1] + 1, 0, 0])
+            #translate([m3_diameter / 2 + conf_b[1] + 0.3, 0, 0])
                 cylinder(r=m3_diameter / 2, h=h+2, center=true);
         }
     }

@@ -45,6 +45,9 @@ belt_tooth_ratio = 0.5;
 
 bushing_xy = conf_b_lm8uu;
 bushing_z = conf_b_lm8uu;
+// for longer bearings use one shorter in x-carriage to make place for belt attachment
+// by default use same as xy
+bushing_carriage = bushing_xy;
 
 // Select idler bearing size **************************************************
 // [outer_diameter, width, inner_diameter, uses_guide]

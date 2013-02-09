@@ -42,7 +42,7 @@ module motorholder(thickness=10){
 module idlermount(){
     difference(){
         union(){
-            cube_fillet([16,41,10 + idler_width], vertical = [0,0,0,0], top = [3,0,3,0], bottom = [3,0,3,0], center=true);
+            translate([0, idler_bearing[2]/2 - 2, 0] ) cube_fillet([16,36 + idler_bearing[2], 10 + idler_width], vertical = [0,0,0,0], top = [3,0,3,0], bottom = [3,0,3,0], center=true);
         }
 //        translate([0,12,-1]) cylinder(h = 120, r=idler_bearing[2]/2 + 1, $fn=7, center=true);
         translate([0,-12,-1]) cylinder(h = 25, r=4.5, center=true);
@@ -51,7 +51,11 @@ module idlermount(){
 //            %cylinder(h = idler_width, r=(idler_bearing[0] / 2) + 2 * single_wall_width, center=true);
 //            cylinder(h = idler_width + 1, r=(idler_bearing[0] / 2) + 8, center=true);
 //        }
-            translate([0,12,0]) idler_assy(idler_bearing);
+            translate([0,12,0]) {
+                idler_assy(idler_bearing);
+                translate([0, 10, 0]) cube([20, 20, idler_width + 1], center=true);
+            }
+
     }
 }
 

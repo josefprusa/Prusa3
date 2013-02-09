@@ -167,8 +167,10 @@ module bearing_clamp(conf_b=bushing_xy, h=0){
                         bearing_clamp_brick(conf_b, h);
                 }
             }
-            #translate([m3_diameter / 2 + conf_b[1] + 0.3, 0, 0])
+            translate([m3_diameter / 2 + conf_b[1] + 0.3, 0, 0]) {
                 cylinder(r=m3_diameter / 2, h=h+2, center=true);
+                %cylinder(r=m3_diameter / 2, h=h+2, center=true);
+            }
         }
     }
 }

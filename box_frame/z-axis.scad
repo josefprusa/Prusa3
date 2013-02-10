@@ -23,7 +23,7 @@ module zmotorholder(thickness=23, bottom_thickness=5){
                 // motor screw holes
                 translate([board_to_xz_distance, board_to_xz_distance, thickness]) {
                     mirror([0, 0, 1]) translate([0, 0, thickness-8])
-                        nema17(places=[0, 1, 1, 1], holes=true, h=bottom_thickness + 1, shadow=5);
+                        mirror([0, 0, 1]) nema17(places=[0, 1, 1, 1], holes=true, h=bottom_thickness + 1, shadow=-6 + layer_height);
                 }
             }
         }

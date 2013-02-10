@@ -18,8 +18,8 @@ module ybeltholder() {
 	include <../y-belt-holder.scad>
 }
 module bearing_guide() {
-	inner();
-	translate([0,0,7+0.9*2])rotate([0,180,0])outer();
+	bearing_guide_inner();
+	translate([0,0,7+0.9*2])rotate([0,180,0])bearing_guide_outer();
 }
 
 
@@ -119,8 +119,8 @@ yrodseparation=140;
 module yfront()
 {
 	// corners
-	leftfront();
-	translate([yrodseparation,0,0]) mirror([1,0,0]) leftfront();
+	render(convexity=2) leftfront();
+	translate([yrodseparation,0,0]) mirror([1,0,0]) render(convexity=2) leftfront();
 
 	// front bottom threaded rod
 	color("Aqua")
@@ -196,15 +196,15 @@ translate([-yrodseparation/2+60.5   ,-5-35, 58-3+0-2.8-1]) screw(heatbed_height/
 
 
 // bushings
-translate([yrodseparation/2   , -bed_y_size/4-10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
+render(convexity=3) translate([yrodseparation/2   , -bed_y_size/4-10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
 translate([yrodseparation/2+14, -bed_y_size/4-10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 translate([yrodseparation/2-14, -bed_y_size/4-10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 
-mirror([0,1,0])translate([yrodseparation/2   , -bed_y_size/4-10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
+render(convexity=3) mirror([0,1,0])translate([yrodseparation/2   , -bed_y_size/4-10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
 mirror([0,1,0])translate([yrodseparation/2+14, -bed_y_size/4-10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 mirror([0,1,0])translate([yrodseparation/2-14, -bed_y_size/4-10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 
-translate([-yrodseparation/2   , -10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
+render(convexity=3) translate([-yrodseparation/2   , -10   , 50    -0.5]) rotate([0,90,90]) y_bearing();
 translate([-yrodseparation/2+14, -10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 translate([-yrodseparation/2-14, -10+10, 50+6.5-0.5-5]) screw(heatbed_height/2+8);
 
@@ -234,14 +234,14 @@ board_w=bed_x_size+10+2*board_sides;
 
 
 // Z motor mounts
-translate([-board_w/2-5+12-board_thickness,12-board_thickness,42])
-rotate(-90)
-zmotorholder();
+translate([-board_w/2-5+12-board_thickness,12-board_thickness,50])
+rotate(-90) mirror([0, 0, 1])
+render(convexity=3) zmotorholder();
 
-translate([-board_w/2-5+12-board_thickness-1,12-board_thickness+8,42+6.5])
+translate([-board_w/2-5+12-board_thickness-1, board_thickness / 2, 39])
 rotate([-90,0,-90])
 screw(25);
-translate([-board_w/2-5+12-board_thickness+33,12-board_thickness-15,42+6.5])
+translate([-board_w/2-5+12-board_thickness+30,12-board_thickness-15,41])
 rotate([-90,0,0])
 screw(25);
 translate([-board_w/2-5+12-board_thickness+10.5,12-board_thickness-10.5,42+7])
@@ -255,15 +255,15 @@ rotate([180,0,0])
 M3screw();
 
 
-translate([board_w/2+5-12+board_thickness,12-board_thickness,42])
-rotate(-90)
+translate([board_w/2+5-12+board_thickness,12-board_thickness,50])
+rotate(-90) mirror([0, 0, 1])
 mirror([0,1,0])
-zmotorholder();
+render(convexity=3) zmotorholder();
 
-translate([board_w/2+5-12+board_thickness+1,12-board_thickness+8,42+6.5])
+translate([board_w/2+5-12+board_thickness+1, board_thickness / 2, 39])
 rotate([90,0,-90])
 screw(25);
-translate([board_w/2+5-12+board_thickness-33,12-board_thickness-15,42+6.5])
+translate([board_w/2+5-12+board_thickness-30,12-board_thickness-15,41])
 rotate([-90,0,0])
 screw(25);
 translate([board_w/2+5-12+board_thickness-10.5,12-board_thickness-10.5,42+7])
@@ -282,9 +282,9 @@ M3screw();
 //translate([-board_w/2-5,0,260])
 translate([-board_w/2-5+12-board_thickness,12-board_thickness,430])
 rotate(-90)
-zrodholder();
+render(convexity=3) zrodholder();
 
-translate([-board_w/2-5+12-board_thickness-1,12-board_thickness+8,430+6.5])
+translate([-board_w/2-5+12-board_thickness-1, board_thickness / 2, 430+7.5])
 rotate([0,90,0])
 screw(25);
 translate([-board_w/2-5+12-board_thickness-1+34,12-board_thickness+8-23,430+6.5])
@@ -296,9 +296,9 @@ screw(25);
 translate([board_w/2+5-12+board_thickness,12-board_thickness,430])
 rotate(-90)
 mirror([0,1,0])
-zrodholder();
+render(convexity=3) zrodholder();
 
-translate([board_w/2+5-12+board_thickness+1,12-board_thickness+8,430+6.5])
+translate([board_w/2+5-12+board_thickness+1, board_thickness / 2, 430+7.5])
 rotate([0,-90,0])
 mirror([0,1,0])
 screw(25);
@@ -312,6 +312,7 @@ module z_rods()
 {
 	color("MediumBlue")
 	translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,42])cylinder(h=z_smooth_rod_length,r=bushing_z[0]);
+    echo (z_smooth_rod_length);
 	color("Aqua")
 	translate([board_w/2-4-12+board_thickness-17,-26+12-board_thickness,56])cylinder(h = 390, r=2.5);
 }
@@ -341,12 +342,12 @@ x_smooth_rod_length=450+board_thickness*2+10;
 translate([-board_w/2+4+12-board_thickness,-26+12-board_thickness,140+ x_axis_height])
 rotate([0,0,90])
 //rotate([0,180,0])
-x_end_motor();
+render(convexity=4) x_end_motor();
 
 translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,140 + x_axis_height])
 rotate(90)
 //rotate([0,180,0])
-x_end_idler();
+render(convexity=4) x_end_idler();
 
 // bearing guide
 translate([board_w/2-4-12+board_thickness-27,-26+12-board_thickness-9-(10-(7+0.9*2))/2,140 + x_axis_height+27])
@@ -363,7 +364,7 @@ translate([0,-12+12-board_thickness-28,-3+149 + x_axis_height])
 rotate([0,90,0])
 translate([-45,0,75])
 rotate([0,180,0])
-x_carriage();
+render(convexity=3) x_carriage();
 
 // small nuts
 translate([0,-12+12-board_thickness-28,-3+149 + x_axis_height])

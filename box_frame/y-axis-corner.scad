@@ -61,4 +61,3 @@ translate([0,25,0]) {
     translate([25,0,0]) mirror([1,0,0]) leftfront();
     //translate([12,2,28]) rotate([0,0,0]) cube([10,4,1], center=true);
 }
-%cube([30,30,30], center=true);

@@ -9,6 +9,8 @@ settings section there
 RP every .scad in this directory once.
 Aim for 0.3mm layers and 2.2 extrusion width (width over thickness),
 for 0.66mm stroke width. Printer is tested at this setting.
+If you print bushing.stl in PLA it will melt due to heatbed being close, and
+the x-carriage is in danger too.
 
 Using doc/complete-printer-plus.scad as a visual clue and doc/manual.txt as a
 guide, build the printer.

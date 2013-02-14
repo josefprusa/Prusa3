@@ -9,12 +9,13 @@
 // PLEASE SELECT ONE OF THE CONFIGURATIONS BELOW
 // BY UN-COMMENTING IT
 
-// Uncomment for metric settings
-// METRIC METRIC METRIC METRIC METRIC METRIC METRIC METRIC 
-
 include <inc/metric.scad>;
+include <inc/conf_bushing.scad>;
 
 // Custom settings here, tailor to your supplies and print settings
+
+layer_height = 0.3;
+width_over_thickness = 2.2;
 
 // Select your belt type ******************************************************
 
@@ -34,44 +35,53 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_distance = 2.032;
 //belt_tooth_ratio = 0.64;
 
-//GT2
+//GT2 there is bunch of GT2 belts with different tooth-to-tooth distance
+//adjust to your needs
 //belt_tooth_distance = 2;
 //belt_tooth_ratio = 0.5;
 
 // Choose bearing/bushing configuration ***************************************
+// conf_b_* are in inc/conf_bushing.scad
 
-//Choose from:
-
-// 0 = Z as lm[e]8uu, X and Y bushings
-// 1 = all bushings
-// 2 = all bearings [default. Do not change unless you really know what you are doing]
-// DO NOT OFFER 0 or 1 VARIANTS FOR SALE. We really mean that. In the long run it hurts everyone.
-
-bearing_choice = 2;
-
-// Bushing version
-// 0 = square igus housings. By igus we mean JFM-0810-10 or GFM-0810-10
-// 1 = round igus (works better if printed precisely)
-// 2 = bronze self-aligning bushings
-bushing_type = 0;
-
-//Bearing version
-// 0 = default lm8uu
-// 1 = lme8uu
-bearing_type = 0;
+bushing_xy = conf_b_lm8uu;
+bushing_z = conf_b_lm8uu;
+// for longer bearings use one shorter in x-carriage to make place for belt attachment
+// by default use same as xy
+bushing_carriage = bushing_xy;
 
 // Select idler bearing size **************************************************
+// [outer_diameter, width, inner_diameter, uses_guide]
+// 608 [standard skate bearings] with bearing guide
+bearing_608 = [22, 7, 8, 1];
+//608 bearings with fender washers
+bearing_608_washers = [22, 10, 8, 0];
+// 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
+bearing_624 = [16, 5, 4, 1];
+// two 624 - for use without bearing guides. My favourite [ax]
+bearing_624_double = [16, 10, 4, 0];
 
-// 0 = 608 [standard skate bearings]
-// 1 = 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
+idler_bearing = bearing_624_double;
 
-idler_bearing = 0;
+// Fillets ********************************************************************
+// mostly cosmetic, except z axis.
+// 0 = no fillets
+// 1 = fillet
 
-// Thickness of the XZ plate board
+use_fillets = 1;
+
+//set to 0 for single plate (affects z axis)
+i_am_box = 1;
+
+//if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
+//get stronger motor mount. Only for i_am_box = 0
+i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
+
+//radius of long threaded rod on Y frame
+//Use 5.4 for M10 or 4.4 for M8
+y_threaded_rod_long_r = 5.4;
+
+// Thickness of the XZ plate board. Leave at 12 for single plate
 board_thickness = 12;
-
-//Layer height * width over thickness. Used for idler sleeve
-single_wall_width = 0.3*2.2;
 
 // END of custom settings
 
@@ -79,18 +89,15 @@ single_wall_width = 0.3*2.2;
 // You are not supposed to change this
 board_to_xz_distance = 26;
 xaxis_rod_distance = 45;
-carriage_l = 74;
-carriage_hole_to_side = 5;
-carriage_hole_height = 4;
 
 //calculated from settings
+single_wall_width = width_over_thickness * layer_height;
 
-idler_size = (idler_bearing == 0) ? 22 : 13;
+idler_width = (idler_bearing[1] > 7 ? idler_bearing[1] : 7) + 2.5 * idler_bearing[3] ;
 
-//use 4.5 for 608, 2.5 for 624
-idler_size_inner_r = (idler_bearing == 0) ? 4.5 : 2.5;
-
-idler_width = (idler_bearing == 0) ? 9 : 5;
+//deltas are used to enlarge parts for bigger bearings 
+xy_delta = ((bushing_xy[1] <= 7.7) ? 0 : bushing_xy[1] - 7.7) * 0.9;
+z_delta = (bushing_z[1] <= 7.7) ? 0 : bushing_z[1] - 7.7;
 
 // CHANGE ONLY THE STUFF YOU KNOW
 // IT WILL REPLACE DEFAULT SETTING
@@ -124,7 +131,6 @@ m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
 // functions
 include <inc/functions.scad>
 
-
 // These constants define the geometry of the complete-printer.scad
 
 //x_smooth_rod_length=325;
@@ -133,8 +139,6 @@ include <inc/functions.scad>
 bed_x_size=225;
 bed_y_size=225;
 
-x_smooth_rod_length=450+board_thickness*2+10; // 492 for 16mm thickness; 484 for 12mm thickness
+x_smooth_rod_length=460+board_thickness*2; // 492 for 16mm thickness; 484 for 12mm thickness
 y_smooth_rod_length=470;
-z_smooth_rod_length=405;  
-bed_x_size=225;
-bed_y_size=225;
+z_smooth_rod_length=405;

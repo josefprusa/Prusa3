@@ -6,9 +6,11 @@ Copy configuration.scad.dist to configuration.scad and fill custom
 settings section there
 
 
-RP every .scad in this directory (except complete-printer) once.
+RP every .scad in this directory once.
 Aim for 0.3mm layers and 2.2 extrusion width (width over thickness),
 for 0.66mm stroke width. Printer is tested at this setting.
+If you print bushing.stl/y-carriage.stl in PLA it may deform due to heatbed being
+close, and printed groovemount is in danger too.
 
-Using doc/complete-printer.scad as a visual clue and doc/manual.txt as a
+Using doc/complete-printer-plus.scad as a visual clue and doc/manual.txt as a
 guide, build the printer.

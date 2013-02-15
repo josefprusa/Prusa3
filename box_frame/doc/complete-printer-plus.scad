@@ -13,7 +13,7 @@ use <../x-end.scad>
 use <../x-carriage.scad>
 use <../y-axis-bracket.scad>
 use <../bushing.scad>
-use <../bearing-guide.scad>
+use <../inc/bearing-guide.scad>
 module ybeltholder() {
 	include <../y-belt-holder.scad>
 }

@@ -7,6 +7,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
+use <inc/bearing-guide.scad>
 
 module motorholder(thickness=10){
     difference(){
@@ -71,3 +72,10 @@ module idlermount(){
 motorholder();
 translate([32,20,8]) rotate([0,90,0]) idlermount();
 
+if (idler_bearing[3] == 1) {
+    translate([0, -12 - idler_bearing[0] / 2, 0]) {
+        bearing_guide_inner();
+        translate([idler_bearing[0]+10, 0, 0])
+            bearing_guide_outer();
+    }
+}

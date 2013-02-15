@@ -15,7 +15,7 @@
  * @category Printed
  */
 
-include <configuration.scad>
+include <../configuration.scad>
 
 //thickness of guiding wall
 thickness=1;
@@ -64,9 +64,6 @@ module bearing_guide_outer()
 }
 
 if (idler_bearing[3] == 1) {
-    bearing_guide_inner();
-    translate([idler_bearing[0]+2*wall_ascent+2,0,0])
-        bearing_guide_outer();
 
     translate([0,idler_bearing[0]+2*wall_ascent+2,0]){
         bearing_guide_inner();

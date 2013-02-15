@@ -8,7 +8,7 @@
 
 include <configuration.scad>
 use <bushing.scad>
-use <bearing-guide.scad>
+use <inc/bearing-guide.scad>
 
 
 module x_end_motor(){
@@ -113,4 +113,12 @@ module pushfit_rod(diameter, length){
     translate([0, -diameter/4, length/2]) cube([diameter, diameter/2, length], center = true);
 
     translate([0, -diameter/2-1.2, length/2]) cube([diameter, 1, length], center = true);
+}
+
+if (idler_bearing[3] == 1) {
+    translate([-25, -20 - idler_bearing[0] / 2, 0]) {
+        render() bearing_guide_inner();
+        translate([idler_bearing[0]+10, 0, 0])
+            render()bearing_guide_outer();
+    }
 }

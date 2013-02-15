@@ -92,7 +92,7 @@ module x_end_idler(){
     difference() {
         x_end_base(len=45);
         // idler hole
-        translate([-14, 26, 30]) rotate([0, 90, 0]) {
+        translate([-14, 26, 29]) rotate([0, 90, 0]) {
             idler_assy(idler_bearing);
             translate([0,20,0])
                 cube([idler_assy_r_outer(idler_bearing) * 2, 40, idler_width + 1], center=true);

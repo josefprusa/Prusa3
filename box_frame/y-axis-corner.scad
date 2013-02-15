@@ -9,13 +9,10 @@
 include <configuration.scad>
 use <y-drivetrain.scad>
 
-module nutrod(){
+module nutrod(r=4.4){
+    //threared rods
     rotate([0,90,0]){
-        //translate([0,0,-0.1]) nut(m8_nut_diameter,6.7,false);
-        //this is pretty but annoying
-        //translate([-7.5/2,0,7/2-1.5]) cube([7.5,15,7], center=true);
-        //translate([0,0,-1.5]) cylinder(h = 7, r=7.5);
-        translate([0,0,-5]) cylinder(h = 270, r=4.4, $fn=30);
+        translate([0,0,-5]) cylinder(h = 270, r=r, $fn=30);
     }
 }
 
@@ -25,28 +22,31 @@ module nutrod(){
  */
 
 module leftfront(thru = false){
-	y_end_plug=2;
+    y_end_plug=2;
     // translate so the rod is on x = 0
     translate([-11,-y_end_plug,0])
 
         difference(){
             if (thru == false) {
-                cube_fillet([22,22,49], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
+                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 37 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
             } else {
-                cube_fillet([22,22,50.5], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
+                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 38.5 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
             }
 
+            //threaded rods across (short)
             translate([0,11,10]) rotate([0,0,0]) nutrod();
             translate([0,11,30]) rotate([0,0,0]) nutrod();
-
-            translate([11,0,20]) rotate([0,0,90]) rotate([00,0,0]) nutrod();
+            //threaded rod along (long, M10)
+            translate([11, 0, 14.6 + y_threaded_rod_long_r]) rotate([0,0,90]) nutrod(r=y_threaded_rod_long_r);
 
             if(thru==false){
-                #translate([11,15+y_end_plug,45+3]) rotate([0,0,0]) cube([8.2,30,4], center=true);
-                translate([11,y_end_plug,45]) rotate([0,90,90]) cylinder(h = 270, r=4.0);
+                //Leave space on part top thru which the rod is inserted, but not too big so it still snaps in
+                translate([11, 15 + y_end_plug, 45 + bushing_xy[0] * 0.75 + xy_delta]) cube([bushing_xy[0] * 2.05, 30, 4], center=true);
+                //Actual smoooth rod
+                translate([11, y_end_plug, 45 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=bushing_xy[0]);
             }else{
-                translate([11,17-5,45+2.05]) rotate([0,0,0]) cube([8.2,30,4.1], center=true);
-                translate([11,2-5,45]) #rotate([0,90,90]) cylinder(h = 270, r=4.0);
+                translate([11, 17-5, 45 + 2.05 + xy_delta]) cube([8.2, 30, 4.1], center=true);
+                translate([11, -3, 45 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=4.0);
             }
 
         }
@@ -61,4 +61,3 @@ translate([0,25,0]) {
     translate([25,0,0]) mirror([1,0,0]) leftfront();
     //translate([12,2,28]) rotate([0,0,0]) cube([10,4,1], center=true);
 }
-

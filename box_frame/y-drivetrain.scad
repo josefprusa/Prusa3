@@ -38,29 +38,36 @@ module motorholder(thickness=10){
     }
 }
 
-
-module idlermount(support=false){
-    difference(){
-        union(){
-            //translate([8,8,0]) cylinder(h = 19, r=8);
-            //translate([8,33,0]) cylinder(h = 19, r=8);
-            translate([0,0,0]) cube_fillet([16,41,10+idler_width], vertical = [0,0,0,0], top = [3,0,3,0], bottom = [3,0,3,0]);
-        }
-        translate([8,8,-1]) cylinder(h = 120, r=idler_size_inner_r);
-        translate([8,33,-1]) cylinder(h = 25, r=4.5);
-
-        translate([8,8,4]) {
-            %translate([0,0,1]) cylinder(h = idler_width, r=(idler_size/2)+2*single_wall_width);
-            cylinder(h = idler_width+2, r=(idler_size/2)+8);
-        }
-    }
-    if (support) {
-        translate([0,-2,15]) cube([16,16,0.4]);
-        translate([0,-2,0]) cube([16,1.3,15]);
-    }
-
+module oval(r=4,l=15,h=2){
+translate([l/2,0,0])cylinder(r=r,h=h,$fn=4);
+translate([-l/2,0,0])cylinder(r=r,h=h,$fn=4);
+translate([0,0,h/2])cube([l,r*2,h],center=true);
 }
 
+
+module idlermount(){
+    difference(){
+        union(){
+            translate([0, idler_bearing[2]/2 - 6, 0] ) cube_fillet([16,40 + idler_bearing[2], 10 + idler_width], vertical = [0,0,0,0], top = [3,0,3,0], bottom = [3,0,3,0], center=true);
+        }
+//        translate([0,12,-1]) cylinder(h = 120, r=idler_bearing[2]/2 + 1, $fn=7, center=true);
+        translate([0,-10,-12]) rotate([0,0,90]) oval(r=4.5,l=12,h=25);
+	translate([0,-20,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+	translate([0,-20,0]) rotate([90,0,0]) cylinder(r=3.2/2, h=15, $fn=10, center=true);
+
+//        translate([0,12,0]) {
+//            %cylinder(h = idler_width, r=(idler_bearing[0] / 2) + 2 * single_wall_width, center=true);
+//            cylinder(h = idler_width + 1, r=(idler_bearing[0] / 2) + 8, center=true);
+//        }
+            translate([0,12,0]) {
+                idler_assy(idler_bearing);
+                translate([0, 10, 0]) cube([20, 20, idler_width + 1], center=true);
+            }
+
+    }
+}
+
+
 motorholder();
-translate([25,0,16]) rotate([0,90,0]) idlermount();
+translate([32,20,8]) rotate([0,90,0]) idlermount();
 

@@ -1,7 +1,7 @@
 Assembly
 
-This document will guide you through putting together your Prusa i3.  
-Please read it through briefly before starting your build, and make sure you have everything you need to continue. 
+This document will guide you through putting together your Prusa i3.
+Please read it through briefly before starting your build, and make sure you have everything you need to continue.
 It's frustrating to be stuck with a half-finished machine because you are missing a part or tool.
 It's recommended to do the assembly with 2 or more people. If you are doing this alone, do the instructions in order.
 If there are two of you, each step is marked P1 or P2. Decide which one of you is Player 1 and act accordingly.
@@ -103,17 +103,18 @@ Other parts needed:
 -1 ??? bolt
 -1 ??? bearing
 -7 linear bearings
+-7 M3x25 bolt with nut and washers
 -2 smooth rods
 Tools needed
 -Screwdriver or allen key to fit your M3 bolt heads and the M3 grub screw
 
 The X axis consists of 3 parts - the motor end, the idler end, and the carriage. 
-Insert four linear bearings (two per part) into the motor and idler ends of the x axis. 
-Slide a smooth rod through each pair of linear bearings to make sure they slide smoothly and don't move around. If they do move around, pad them with a folded sheet of paper.
+Insert four linear bearings (two per part) into the motor and idler ends of the x axis, gently fix them in place with M3x25 screw
+Slide a smooth rod through each pair of linear bearings to make sure they slide smoothly and don't move around. If they do move around, tighten the screw. Remove the smooth rods
 Insert two smooth rods into the motor end of the X axis (the one with the three mounting points for the motor). Push them in as far as they will go.
-Insert three linear bearings into the carriage. Slide the carriage onto the smooth rods.
+Insert three linear bearings into the carriage. Slide the carriage onto the smooth rods and fix them with screws as with x ends.
 Attach the idler bearing onto the idler end using an ??? bolt.
-Push the idler onto the smooth rods, trapping the carriage in. Make sure it can move along the rods with minimal effort.
+Push the idler onto the smooth rods, trapping the carriage in. Make sure the carriage can move along the rods with minimal effort.
 Attach a NEMA17 motor to the motor end using 3 M3x10 bolts. The bolt heads will sink into the part, and the motor will be on the side opposite the linear bearings.
 Place a pulley on the motor and fasten it to the shaft using a grub screw. Make sure the belt path is aligned with the gap in the x end pieces.
 Insert a belt into the carriage belt holder such that it meshes with the printed teeth.
@@ -139,22 +140,26 @@ Other parts needed:
 -1 ??? bolt
 -1 ??? bearing
 -3 linear bearings
+-3 M3x25 bolt with nut and washers
 -2 405mm smooth rods
--34 M8 nuts (substitute 5/16" for M8 in inchland)
--34 M8 washers
+-22 M8 nuts (substitute 5/16" for M8 in inchland)
+-22 M8 washers
+-12 M10 nuts (?? in inchland)
+-12 M10 washers
 -4 140mm M8 (5/16") threaded rod (longer is ok)
--2 430mm M8 (5/16") threaded rod (longer is ok)
+-2 430mm M10 (??/16") threaded rod (longer is ok)
 -9 3.5x12mm wood screws (or shorter if your plate is thinner)
 Tools needed:
 -Screwdriver to fit your wood screws
 -Screwdriver or allen key to fit your M3 bolt heads and the M3 grub screw
 -13mm wrench
 -Another 13mm wrench (optional but violently recommended)
+-17mm wrench
+-Another 17mm wrench (optional, but...)
 -Pencil or marker that is visible on the plate material
 -Drill with 3.2mm (1/8") or 3mm drill bit
 -Tape for holding things in place
 
-Place the linear bearings in the linear bearing holders.
 Place the belt drive pulley on the motor shaft and tighten it with the grub screw.
 Attach the motor to the y axis motor holder using two M3x10 bolts. (ystep1.png)
 Thread two of the 140mm threaded rods through the motor holder. It should sit about 1/3 along the length of the rods, so that the motor is approximately centered.
@@ -180,7 +185,8 @@ Measure as close as you can to the motor, and as close as you can to the idler.
 Adjust the inner nuts and tighten the outer nuts, while checking the distance repeatedly. 
 Use two wrenches to tighten the nuts without moving the plastic part along the rod.
 Once done, pop the smooth rods out of the plastic parts. (ystep11.png)
-Place the three linear bearings in their holders, and slide them onto the rods. Two on one rod, one on the other.
+Place the linear bearings in the linear bearing holders, fix them firmly with M3x25 screws
+Slide them onto the rods. Two on one rod, one on the other.
 Place your heated bed PCB on the plate and tape it down so it doesn't move around.
 Mark and drill the 4 corner holes of the PCB with a 3.2mm (1/8") or 3mm drill.
 Remove the heated bed PCB from the plate and place the plate on a flat surface.
@@ -226,5 +232,3 @@ If you want to, place the 47.5x10 plate on top of the entire structure and attac
 
 
 ===Assemble the Z axis(P1)===
-
-

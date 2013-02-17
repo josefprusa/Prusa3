@@ -372,13 +372,13 @@ echo("bhmh", mounting_holes)
 	//carriage mountig holes
 	translate([-24.5+64+4,0,3]) {
 		translate([-50,0,0]) {
-			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m4_diameter/2, h=wade_block_depth+base_extra_depth, center=true,$fn=20);
-			cylinder(r=m4_nut_diameter/2, h=8, center=true,$fn=20);
+			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m3_diameter/2, h=wade_block_depth+base_extra_depth, center=true);
+			translate([0, 0, 1]) cylinder(r=m3_washer_diameter/2, h=10.1, center=true);
 		}
 		
 		translate([0,0,0]) {
-			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m4_diameter/2, h=wade_block_depth+0.2+base_extra_depth, center=true,$fn=20);
-			cylinder(r=m4_nut_diameter/2, h=8, center=true,$fn=20);
+			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m3_diameter/2, h=wade_block_depth+0.2+base_extra_depth, center=true);
+			translate([0, 0, 2]) cylinder(r=m3_washer_diameter/2, h=10.1, center=true);
 		}
 	}
 

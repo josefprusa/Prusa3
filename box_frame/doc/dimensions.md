@@ -30,14 +30,15 @@ You need 2 smooth rods
 
 ### X axis smooth rod is sum of:
  * workarea (200mm)
- * x carriage width (85mm for box extruder, 58mm for single plate)
+ * x carriage width (85mm for box carriage, 58mm for single plate)
  * 90 mm inside X end parts
-For 375mm minimum with box model extruder. Its also box width, so *370*
+ * for dualhead extruders, distance between hotends (70 for two extruders on box carriage)
+For 375mm minimum with box model carriage. Its also box width, so *370* for single plate, 475 for default box
 
 ## Z axis
 You need 2 smooth rods and 2 M5 threaded rods
 
 ### Z axis smooth rod:
-Box height - 50mm, so *320mm*
+Box height - 50mm, so *320mm* for single plate, or 400 for default box
 ### Z axis threaded rod
-Smooth rod - 20mm, so *300mm*
+Smooth rod - 20mm, so *300mm* (or 380 for default box)

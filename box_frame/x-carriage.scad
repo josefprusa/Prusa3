@@ -30,7 +30,10 @@ module x_carriage(){
             union() {
                 //upper bearing
                 rotate([0,0,180]) {
-                    linear(bushing_carriage);
+                    difference(){
+                        linear(bushing_carriage);
+                        translate([-15, -9/2, -0.1]) cube([3, 9, bushing_carriage[2] + 5]);
+                    }
                 }
                 translate([6.5, -10, 0]) cube_fillet([4.5, 20, bushing_carriage_len], vertical = [2,2,3,0]);
 
@@ -45,7 +48,7 @@ module x_carriage(){
                 translate([6.5,-10.5,0]) cube_fillet([12, 6.5, bushing_carriage_len], radius=2);
 
                 //reduce springiness
-                translate([9,6*single_wall_width,9]) cube([xaxis_rod_distance - 18, 5, 12]);
+                translate([9,6*single_wall_width+1,9]) cube([xaxis_rod_distance - 18, 4, 12]);
 
                 //space around screws
                 translate([20,0,carriage_hole_to_side]) {

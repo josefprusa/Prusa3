@@ -89,7 +89,7 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
         }
     }
 }
-//translate([0, -2, 0]) mirror([0, 1, 0]) zmotorholder();
+translate([0, -2, 0]) mirror([0, 1, 0]) zmotorholder();
 translate([0, 2, 0]) zmotorholder();
 translate([21, -62, 0]) zrodholder();
-//translate([20, 62, 0]) mirror([0, 1, 0]) zrodholder();
+translate([20, 62, 0]) mirror([0, 1, 0]) zrodholder();

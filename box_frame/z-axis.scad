@@ -64,7 +64,7 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
                         cylinder(h=bottom_thickness / 2, r=(bushing_z[0] + 5 * single_wall_width));
                 }
                 //smooth rod hole
-                translate([board_to_xz_distance - z_delta, 9, -1]) cylinder_poly(h=board_thickness+20, r=bushing_z[0]);
+                translate([board_to_xz_distance - z_delta, 9, -1]) cylinder_poly(h=board_thickness+20, r=bushing_z[0] + single_wall_width / 4);
                 //inside rouned corner
                 translate([0, 5, -1]) cylinder(r=1.2, h=100, $fn=8);
                 //side screw
@@ -91,5 +91,5 @@ module zrodholder(thickness=15, bottom_thickness=5, ylen=42, xlen=34, zdelta=0){
 }
 translate([0, -2, 0]) mirror([0, 1, 0]) zmotorholder();
 translate([0, 2, 0]) zmotorholder();
-translate([21, -62, 0]) zrodholder();
-translate([20, 62, 0]) mirror([0, 1, 0]) zrodholder();
+translate([23, -64, 0]) zrodholder();
+translate([23, 64, 0]) mirror([0, 1, 0]) zrodholder();

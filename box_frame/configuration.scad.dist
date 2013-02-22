@@ -40,6 +40,8 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_distance = 2;
 //belt_tooth_ratio = 0.5;
 
+belt_thickness = 1.75;
+
 // Choose bearing/bushing configuration ***************************************
 // conf_b_* are in inc/conf_bushing.scad
 

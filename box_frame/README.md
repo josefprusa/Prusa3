@@ -1,9 +1,8 @@
-=This is Prusa iteration 3=
+# This is Prusa iteration 3
 Published under GPL v3
 
-To start:
-Copy configuration.scad.dist to configuration.scad and fill custom
-settings section there
+## To start:
+Copy configuration.scad.dist to configuration.scad and fill custom settings section there
 
 Print calibarion part form extras and check that:
  * your bearings fit tightly in the holder
@@ -14,10 +13,7 @@ Print calibarion part form extras and check that:
  * Your belt can be inserted in the slot and sits there __firmly__.
 
 RP every .scad in this directory once
-Aim for 0.3mm layers and 2.2 extrusion width (width over thickness),
-for 0.66mm stroke width. Printer is tested at this setting.
-If you print bushing.stl/y-carriage.stl in PLA it may deform due to heatbed being
-close, and printed groovemount is in danger too.
+Aim for 0.3mm layers and 2.2 extrusion width (width over thickness), for 0.66mm stroke width. Printer is tested at this setting.
+If you print bushing.stl/y-carriage.stl in PLA it may deform due to heatbed being close, and printed groovemount is in danger too.
 
-Using doc/complete-printer-plus.scad as a visual clue and doc/manual.txt as a
-guide, build the printer.
+Using doc/complete-printer-plus.scad as a visual clue and doc/manual.txt as a guide, build the printer.

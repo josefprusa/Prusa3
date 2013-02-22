@@ -141,3 +141,10 @@ module idler_assy(idler_bearing = [22, 7, 8, 1]) {
 
     cylinder(h = idler_width + 1, r=idler_assy_r_outer(idler_bearing), center=true);
 }
+
+module maketeeth(len){
+    //Belt teeth. To be substracted from model
+    for (i = [0 : len / belt_tooth_distance]) {
+        translate([0, 0, i * belt_tooth_distance]) cube([2, 10, belt_tooth_distance * belt_tooth_ratio], center = true);
+    }
+}

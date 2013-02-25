@@ -10,6 +10,9 @@ include <configuration.scad>
 use <bushing.scad>
 use <inc/bearing-guide.scad>
 
+//height and width of the x blocks depend on x smooth rod radius
+x_box_height = 52 + 2 * bushing_xy[0];
+x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
 
 module x_end_motor(){
 
@@ -20,10 +23,11 @@ module x_end_motor(){
 
         translate([0, -z_delta - 2, 0]) difference(){
             union(){
-                translate([-13.75, -14 + z_delta / 2, 26 - z_delta / 4]) cube_fillet([17.5, 14 + z_delta, 52 + z_delta / 2], center = true, vertical=[0, 0, 3, 1.5], top=[0, 3, 6, 3], $fn=16);
+                translate([-13.75, -14 + z_delta / 2, 30]) cube_fillet([17.5, 14 + z_delta, x_box_height], center = true, vertical=[0, 0, 3, 1.5], top=[0, 3, 6, 3], $fn=16);
                 translate([-10, -34, 9]) intersection(){
-                    translate([0, 0, -z_delta / 4]) cube_fillet([10, 37, 18 + z_delta / 2], center = true, vertical=[0, 0, 0, 0], top=[0, 3, 5, 3]);
+                    translate([0, 0, 0]) cube_fillet([10, 37, x_box_height - 42], center = true, vertical=[0, 0, 0, 0], top=[0, 3, 5, 3]);
                     translate([-10/2, 10, -26]) rotate([45, 0, 0]) cube_fillet([10, 60, 60], radius=2);
+                    translate([0, 0, 21]) cube([10, 60, x_box_height], center = true);
                 }
                 translate([-15, -32, 30.25]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 0, 1, 1], h=10);
             }
@@ -43,9 +47,6 @@ module x_end_motor(){
 }
 
 module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40){
-    //height and width of the x blocks depend on x smooth rod radius
-    x_box_height = 52 + 2 * bushing_xy[0];
-    x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
 
     difference(){
         union(){

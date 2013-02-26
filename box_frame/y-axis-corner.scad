@@ -28,9 +28,9 @@ module leftfront(thru = false){
 
         difference(){
             if (thru == false) {
-                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 37 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
+                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 40 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,6,6,6], fn=8);
             } else {
-                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 38.5 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
+                translate([0,0,12-board_thickness]) cube_fillet([22, 22, 41.5 + board_thickness + xy_delta], vertical=[4,4,4,4], top=[2,4,9,4], fn=8);
             }
 
             //threaded rods across (short)
@@ -41,12 +41,12 @@ module leftfront(thru = false){
 
             if(thru==false){
                 //Leave space on part top thru which the rod is inserted, but not too big so it still snaps in
-                translate([11, 15 + y_end_plug, 45 + bushing_xy[0] * 0.75 + xy_delta]) cube([bushing_xy[0] * 2.05, 30, 4], center=true);
+                translate([11, 15 + y_end_plug, 48 + bushing_xy[0] * 0.75 + xy_delta]) cube([bushing_xy[0] * 2.05, 30, 4], center=true);
                 //Actual smoooth rod
-                translate([11, y_end_plug, 45 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=bushing_xy[0]);
+                translate([11, y_end_plug, 48 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=bushing_xy[0]);
             }else{
-                translate([11, 17-5, 45 + 2.05 + xy_delta]) cube([8.2, 30, 4.1], center=true);
-                translate([11, -3, 45 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=4.0);
+                translate([11, 17-5, 48 + 2.05 + xy_delta]) cube([8.2, 30, 4.1], center=true);
+                translate([11, -3, 48 + xy_delta]) rotate([0, 90, 90]) cylinder(h = 270, r=4.0);
             }
 
         }

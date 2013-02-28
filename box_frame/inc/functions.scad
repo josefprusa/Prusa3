@@ -32,11 +32,15 @@ module cylinder_poly(r, h, center=false){
 
 module fillet(radius, height=100, $fn=0) {
     //this creates acutal fillet
-    translate([-radius, -radius, -height/2-0.01])
-        difference() {
-            cube([radius*2, radius*2, height+0.02]);
-            cylinder(r=radius, h=height+0.02, $fn=$fn);
+    translate([-radius, -radius, -height / 2 - 0.02]) difference() {
+        cube([radius * 2, radius * 2, height + 0.04]);
+        if ($fn == 0 && (radius == 2 || radius == 3 || radius == 4)) {
+            cylinder(r=radius, h=height + 0.04, $fn=4 * radius);
+        } else {
+            cylinder(r=radius, h=height + 0.04, $fn=$fn);
         }
+
+    }
 }
 
 module cube_fillet(size, radius=-1, vertical=[3,3,3,3], top=[0,0,0,0], bottom=[0,0,0,0], center=false, $fn=0){
@@ -135,7 +139,7 @@ function idler_assy_r_outer(idler_bearing) = (idler_bearing[0] / 2) + (idler_bea
 
 module idler_assy(idler_bearing = [22, 7, 8, 1]) {
 
-    translate([0,0,-1]) cylinder(h = 120, r=idler_bearing[2]/2 + 1, $fn=7, center=true);
+    translate([0,0,-1]) cylinder(h = 120, r=(idler_bearing[2] + 1) / 2, $fn=7, center=true);
     //bearing shadow
     %cylinder(h = idler_bearing[1], r=idler_bearing[0]/2, center=true);
 

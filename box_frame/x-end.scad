@@ -18,7 +18,7 @@ module x_end_motor(){
 
     mirror([0, 1, 0]) {
 
-        x_end_base([3, 3, 0, 0], thru=false);
+        x_end_base([3, 3, min((bushing_xy[0] - 4) * 2, 3), 0], thru=false);
 
 
         translate([0, -z_delta - 2, 0]) difference(){

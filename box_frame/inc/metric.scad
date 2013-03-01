@@ -21,7 +21,7 @@ m8_diameter = 9;
 //iso4032 says Width across corners = 14.38
 m8_nut_diameter = 14.1;
 
-m4_diameter = 4.5;
+m4_diameter = 4.7;
 //iso4032 says 7.66
 m4_nut_diameter = 7.6;
 m4_nut_diameter_horizontal = 8;

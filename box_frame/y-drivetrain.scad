@@ -39,11 +39,11 @@ module motorholder(thickness=10){
     }
 }
 
-module oval(r=4, l=15, h=2){
+module oval(r=4, l=14, h=2){
     intersection() {
         union() {
             translate([l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
-            translate([-l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
+            //translate([-l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
             translate([0, 0, h / 2]) cube([l, r * 2, h], center=true);
         }
         translate([0, 0, h / 2]) cube([l + r * 1.2, r * 2, h], center=true);
@@ -63,9 +63,14 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
                 translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
             }
         }
-        translate([-12, -10, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod, l=12, h=25);
-        //nut
-        translate([0, -17, idler_height / 2]) rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=9, $fn=6, center=true);
+        translate([-12, -9, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod, l=12, h=25);
+        translate([0, -15 - single_wall_width, idler_height / 2]) {
+            //nut
+            rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.3, $fn=6);
+            //nut insert
+            translate([0, -3.3, -m4_diameter * 1.5 / 2]) cube([20, 3.3, m4_diameter * 1.5]);
+        }
+
         translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=7, center=true);
 
             translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {

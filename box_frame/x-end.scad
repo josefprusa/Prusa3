@@ -109,17 +109,13 @@ module x_end_idler(){
 }
 
 module x_tensioner(len=62, idler_height=16) {
-    difference() {
         idlermount(len=len, rod=m4_diameter / 2, idler_height=idler_height, narrow_len=46, narrow_width=idler_width + 2 - single_wall_width);
-        translate([3, -14.7, idler_height / 2]) cube([10, 3.3, m4_diameter * 1.55], center=true);
-    }
-        translate([-(idler_width + 2 - single_wall_width) / 2, -13.1, 0]) cube([idler_width + 2 - single_wall_width, single_wall_width, idler_height]);
 }
 
 
 translate([-40, 0, 4 - bushing_xy[0]]) x_tensioner();
 mirror([0, 0, 0]) x_end_idler(thru=true);
-//translate([50, 0, 0]) x_end_motor();
+translate([50, 0, 0]) x_end_motor();
 
 module pushfit_rod(diameter, length){
     cylinder(h = length, r=diameter/2, $fn=30);

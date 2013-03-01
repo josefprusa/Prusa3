@@ -118,8 +118,8 @@ module x_tensioner(len=62, idler_height=20) {
 
 
 translate([-40, 0, 4 - bushing_xy[0]]) x_tensioner();
-//mirror([0, 0, 0]) x_end_idler(thru=true);
-//translate([50, 0, 0]) x_end_motor();
+mirror([0, 0, 0]) x_end_idler(thru=true);
+translate([50, 0, 0]) x_end_motor();
 
 module pushfit_rod(diameter, length){
     cylinder(h = length, r=diameter/2, $fn=30);

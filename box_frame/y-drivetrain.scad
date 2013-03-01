@@ -40,9 +40,14 @@ module motorholder(thickness=10){
 }
 
 module oval(r=4, l=15, h=2){
-    translate([l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
-    translate([-l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
-    translate([0, 0, h / 2]) cube([l, r * 2, h], center=true);
+    intersection() {
+        union() {
+            translate([l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
+            translate([-l / 2, 0, 0]) cylinder(r=r, h=h, $fn=4);
+            translate([0, 0, h / 2]) cube([l, r * 2, h], center=true);
+        }
+        translate([0, 0, h / 2]) cube([l + r * 1.2, r * 2, h], center=true);
+    }
 }
 
 
@@ -51,13 +56,15 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
         union(){
             //wide part holding bearing
             translate([- (10 + idler_width) / 2, -25 + narrow_len, 0] ) cube_fillet([10 + idler_width, len + idler_bearing[2] - narrow_len, idler_height]);
+            //For X there is narrow part inside the x-idler
             if (narrow_len > 0){
                 translate([-narrow_width / 2, -25, 0] ) cube_fillet([narrow_width, len + idler_bearing[2], idler_height], vertical=[0, 0, 2, 2]);
             }
         }
         translate([-12, -10, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod, l=12, h=25);
-        translate([0, -17, idler_height / 2]) rotate([90, 0, 0]) cylinder(r=3.4, h=9, $fn=6, center=true);
-        translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=3.2/2, h=15, $fn=7, center=true);
+        //nut
+        translate([0, -17, idler_height / 2]) rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=9, $fn=6, center=true);
+        translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=7, center=true);
 
             translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
                 rotate([0, 90, 0]) idler_assy(idler_bearing);

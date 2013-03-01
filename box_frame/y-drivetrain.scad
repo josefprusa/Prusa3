@@ -55,10 +55,12 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
     difference(){
         union(){
             //wide part holding bearing
-            translate([- (10 + idler_width) / 2, -25 + narrow_len, 0] ) cube_fillet([10 + idler_width, len + idler_bearing[2] - narrow_len, idler_height]);
+            translate([- (10 + idler_width) / 2, -25 + narrow_len, 0] ) cube_fillet([10 + idler_width, len + idler_bearing[2] * 1.1 - narrow_len, idler_height]);
             //For X there is narrow part inside the x-idler
             if (narrow_len > 0){
                 translate([-narrow_width / 2, -25, 0] ) cube_fillet([narrow_width, len + idler_bearing[2], idler_height], vertical=[0, 0, 2, 2]);
+                mirror([1, 0, 0]) translate([-narrow_width / 2, narrow_len -25, idler_height / 2 ]) fillet(1.5, idler_height - 0.04, $fn=8);
+                translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
             }
         }
         translate([-12, -10, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod, l=12, h=25);

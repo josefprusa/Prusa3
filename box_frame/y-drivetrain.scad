@@ -50,7 +50,6 @@ module oval(r=4, l=14, h=2){
     }
 }
 
-
 module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diameter_horizontal / 2, idler_height=16){
     difference(){
         union(){
@@ -63,7 +62,7 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
                 translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
             }
         }
-        translate([-12, -9, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod, l=12, h=25);
+        translate([-12, -9, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod + 0.01, l=12, h=25);
         translate([0, -15 - single_wall_width, idler_height / 2]) {
             //nut
             rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.3, $fn=6);
@@ -72,7 +71,6 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
         }
 
         translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=7, center=true);
-
             translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
                 rotate([0, 90, 0]) idler_assy(idler_bearing);
                 translate([0, 10, 0]) cube([idler_width + 1, 20, idler_height + 2], center=true);

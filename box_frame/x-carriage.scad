@@ -12,8 +12,8 @@ use <bushing.scad>
 use <extras/groovemount.scad>
 
 
-//Use 30 for single extruder, 50 for wades, 80 for dual extruders
-carriage_l_base = 80;
+//Use 30 for single extruder, 50 for wades, 80 for dual extruders (moved to config file)
+//carriage_l_base = 80;
 //check if we need to extend carriage to fit bearings
 carriage_l_real = max(adjust_bushing_len(bushing_xy, carriage_l_base, layer_height * 9), adjust_bushing_len(bushing_carriage, carriage_l_base, layer_height * 9));
 // if the carriage was extended, we want to increase carriage_hole_to_side
@@ -31,7 +31,7 @@ module x_carriage(){
                 //lower bearing
                 translate([xaxis_rod_distance,0,0]) rotate([0, 0, 90]) linear(bushing_xy, carriage_l);
 
-                //This block moves with varying bearing thickness to ensire the front side is flat
+                //This block moves with varying bearing thickness to ensure the front side is flat
                 translate([0, -bushing_foot_len(bushing_xy), 0]) {
                     // main plate
                     translate([0, -1, 0]) cube_fillet([xaxis_rod_distance + 8, 6, carriage_l], radius=2);
@@ -40,6 +40,8 @@ module x_carriage(){
 
                 translate([45/2,0,0]){
 
+                    //fill the space where the belt is, as it will be substracted at later point and we want it stiff here.
+                    translate([-13, -10, 0]) cube([8, 10, carriage_l]);
                     //belt smooth side
                     translate([-13.5 - belt_thickness, -8.5, 0]) cube_fillet([5, 15, carriage_l], vertical = [2, 2, 0, 0]);
                     //belt teethed side, with cutouts for belt ends.
@@ -49,8 +51,6 @@ module x_carriage(){
                         translate([-3.5, 0, 43]) cube([13, 10, 8], center = true);
                         translate([-3.5, 0, 18]) cube([13, 10, 8], center = true);
                     }
-                    //fill the space where the belt is, as it will be substracted at later point and we want it stiff here.
-                    translate([-13, -10, 0]) cube([8, 10, carriage_l]);
 
                 }
             }

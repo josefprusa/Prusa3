@@ -25,10 +25,12 @@ module linear_bushing_negative_single(conf_b=bushing_xy, h=0){
     translate([0, 0, -0.01])  cylinder(r = conf_b[1], h = adjust_bushing_len(conf_b, h) + 0.02);
 }
 
-module linear_bearing_negative_single(conf_b=bushing_xy, h=0){
+module linear_bearing_negative_single(conf_b=bushing_xy, h=0, shadow=false){
     // barrel with the dimensions of the bearing
     translate([0, 0, -0.01 + 3 * layer_height])  cylinder(r = conf_b[1], h = adjust_bushing_len(conf_b, h) + 0.02);
-    translate([0, -conf_b[1]+1, -0.01 + 3 * layer_height]) cube([30, 2 * conf_b[1] - 2, adjust_bushing_len(conf_b, h) + 0.02]);
+    if (shadow == false) {
+        translate([0, -conf_b[1]+1, -0.01 + 3 * layer_height]) cube([30, 2 * conf_b[1] - 2, adjust_bushing_len(conf_b, h) + 0.02]);
+    }
 }
 
 module linear_bushing_single(conf_b=bushing_xy, h=0) {
@@ -44,13 +46,13 @@ module linear_bushing_negative(conf_b=bushing_xy, h=0){
     linear_bushing_negative_single(conf_b, h=adjust_bushing_len(conf_b, h));
 }
 
-module linear_bearing_negative(conf_b = bushing_xy, h = 0){
+module linear_bearing_negative(conf_b = bushing_xy, h = 0, shadow=false){
     //same as linear_bushing_negative, but with z direction constrained parts
     translate([0,0,-0.1]) cylinder(r = conf_b[0] + single_wall_width, h=adjust_bushing_len(conf_b, h, 8*layer_height)+0.2);
     //lower bearing
-    linear_bearing_negative_single(conf_b);
+    linear_bearing_negative_single(conf_b, 0, shadow);
     if (h > 2*conf_b[2] + 9*layer_height){
-        translate([0,0,h]) mirror([0,0,1]) linear_bearing_negative_single(conf_b);
+        translate([0,0,h]) mirror([0,0,1]) linear_bearing_negative_single(conf_b, 0, shadow);
     }
 }
 
@@ -177,12 +179,12 @@ module bearing_clamp(conf_b=bushing_xy, h=0){
 }
 
 
-module linear_negative(conf_b = bushing_xy, h = 0){
+module linear_negative(conf_b = bushing_xy, h = 0, shadow=false){
     //selects right negative based on type
     if (conf_b[3] == 0) {
-        linear_bearing_negative(conf_b, h);
+        linear_bearing_negative(conf_b, h, shadow);
     } else {
-        linear_bushing_negative(conf_b, h);
+        linear_bushing_negative(conf_b, h, shadow);
     }
 }
 
@@ -193,7 +195,7 @@ module linear(conf_b = bushing_xy, h = 0){
     } else {
         linear_bushing(conf_b, h);
     }
-    //%linear_negative(conf_b, h);
+    %linear_negative(conf_b, h, true);
 }
 
 if (i_am_box == 1) {

@@ -26,8 +26,9 @@ module linear_bushing_negative_single(conf_b=bushing_xy, h=0){
 }
 
 module linear_bearing_negative_single(conf_b=bushing_xy, h=0){
-    // as above but moved by 3 layers up
-    translate([0, 0, -0.01+3*layer_height])  cylinder(r = conf_b[1], h = adjust_bushing_len(conf_b, h) + 0.02);
+    // barrel with the dimensions of the bearing
+    translate([0, 0, -0.01 + 3 * layer_height])  cylinder(r = conf_b[1], h = adjust_bushing_len(conf_b, h) + 0.02);
+    translate([0, -conf_b[1]+1, -0.01 + 3 * layer_height]) cube([30, 2 * conf_b[1] - 2, adjust_bushing_len(conf_b, h) + 0.02]);
 }
 
 module linear_bushing_single(conf_b=bushing_xy, h=0) {
@@ -97,7 +98,7 @@ module linear_bearing(conf_b=bushing_xy, h=0){
                 translate([12,0,-1]) rotate([0,0,45]) cube([20, 20, 200], center=true);
             }
             intersection(){
-                translate([0, -(bushing_outer_radius(conf_b)), 0]) cube([100, 2*bushing_outer_radius(conf_b) , 200]);
+                translate([0, -(bushing_outer_radius(conf_b)), 0]) cube([30, 2*bushing_outer_radius(conf_b) , max(h, conf_b[2] + 9 * layer_height)]);
                 union() {
                     // upper clamp for long holders
                     if (h > 2*conf_b[2] + 9*layer_height || conf_b[2] > 45){
@@ -120,7 +121,7 @@ module linear_bearing(conf_b=bushing_xy, h=0){
 }
 
 // this should be more parametric
-module firm_foot(conf_b){
+module firm_foot(conf_b = conf_b_lm8uu){
     difference(){
         union() {
             translate([8.5/2,0,0]) cube_fillet([8.5, 42 + xy_delta * 2, 20], top=[11, 0, 11, 0], center=true);
@@ -186,13 +187,13 @@ module linear_negative(conf_b = bushing_xy, h = 0){
 }
 
 module linear(conf_b = bushing_xy, h = 0){
-    //selects right negative based on type
+    //selects right model based on type
     if (conf_b[3] == 0) {
         linear_bearing(conf_b, h);
     } else {
         linear_bushing(conf_b, h);
     }
-    %linear_negative(conf_b, h);
+    //%linear_negative(conf_b, h);
 }
 
 if (i_am_box == 1) {

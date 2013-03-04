@@ -12,138 +12,84 @@ use <bushing.scad>
 use <extras/groovemount.scad>
 
 
-
-carriage_l = 86;
-carriage_hole_to_side = 3;
-carriage_hole_height = 4;
+//Use 30 for single extruder, 50 for wades, 80 for dual extruders
+carriage_l_base = 80;
+//check if we need to extend carriage to fit bearings
+carriage_l_real = max(adjust_bushing_len(bushing_xy, carriage_l_base, layer_height * 9), adjust_bushing_len(bushing_carriage, carriage_l_base, layer_height * 9));
+// if the carriage was extended, we want to increase carriage_hole_to_side
+carriage_hole_to_side = max(3, ((carriage_l_real - carriage_l_base) / 2));
+carriage_l = carriage_l_base + 2 * carriage_hole_to_side;
 
 bushing_carriage_len = adjust_bushing_len(bushing_carriage, 21, layer_height * 9);
-
-x_beltclamp_space = (carriage_l - bushing_carriage_len) - 2;
-
-x_beltclamp_len = (x_beltclamp_space > 30 ? x_beltclamp_space/2 : x_beltclamp_space) - 4;
-
 
 module x_carriage(){
     mirror([1,0,0]) {
         difference() {
             union() {
                 //upper bearing
-                rotate([0,0,180]) {
-                    difference(){
-                        linear(bushing_carriage);
-                        translate([-15, -9/2, -0.1]) cube([3, 9, bushing_carriage[2] + 5]);
-                    }
-                }
-                translate([6.5, -10, 0]) cube_fillet([4.5, 20, bushing_carriage_len], vertical = [2,2,3,0]);
-
+                rotate([0, 0, 90]) linear(bushing_carriage);
                 //lower bearing
-                translate([xaxis_rod_distance,0,0]) {
-                    linear(bushing_xy, carriage_l);
-                }
-                translate([xaxis_rod_distance - 11.5, -10, 0]) cube_fillet([5, 20, carriage_l], radius=2);
+                translate([xaxis_rod_distance,0,0]) rotate([0, 0, 90]) linear(bushing_xy, carriage_l);
 
-                // main plate
-                translate([14,-10.5,0]) cube_fillet([xaxis_rod_distance - 20,6.5,carriage_l], radius=2);
-                translate([6.5,-10.5,0]) cube_fillet([12, 6.5, bushing_carriage_len], radius=2);
-
-                //reduce springiness
-                translate([9,6*single_wall_width+1,9]) cube([xaxis_rod_distance - 18, 4, 12]);
-
-                //space around screws
-                translate([20,0,carriage_hole_to_side]) {
-                    rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
+                //This block moves with varying bearing thickness to ensire the front side is flat
+                translate([0, -bushing_foot_len(bushing_xy), 0]) {
+                    // main plate
+                    translate([0, -1, 0]) cube_fillet([xaxis_rod_distance + 8, 6, carriage_l], radius=2);
+                    translate([-8, -1, 0]) cube_fillet([xaxis_rod_distance + 16, 6, bushing_carriage_len + 3], radius=2);
                 }
-                translate([20, 0, 30 + carriage_hole_to_side]) {
-                    rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
-                }
-                translate([20, 0, 50 + carriage_hole_to_side]) {
-                    rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
-                }
-                if (carriage_l > 80 + carriage_hole_to_side) {
-                    translate([20, 0, 80 + carriage_hole_to_side]) {
-                        rotate([90,0,0]) cylinder(r=(carriage_hole_to_side > 5 ? 5 : carriage_hole_to_side), h=12, center=true);
-                    }
-                }
-
 
                 translate([45/2,0,0]){
 
-                    // belt dummy
-                    %translate([0,0,carriage_l/2]) cube([20,6,carriage_l], center = true);
-
-                    //belt flat side. replaced by x_beltclamp
-                    //difference() {
-                    // translate([-13.5,0,carriage_l/2]) cube_fillet([7,14,carriage_l], vertical = [3,3,0,0], center = true);
-                    // translate([-45/2,0,0]) bushing_negative();
-                    //}
-
+                    //belt smooth side
+                    translate([-13.5 - belt_thickness, -8.5, 0]) cube_fillet([5, 15, carriage_l], vertical = [2, 2, 0, 0]);
+                    //belt teethed side, with cutouts for belt ends.
                     difference(){
-                        translate([-3.0,0,carriage_l/2]) cube_fillet([11,14,carriage_l], vertical = [2,2,0,0], center = true);
-                        translate([-3.5,0,(carriage_l+38)/2]) cube([13,10,8], center = true);
-                        translate([-8.5, 0, 0]) cube([2, 10, bushing_carriage_len * 2 + 3], center = true);
-                            translate([-8, 0, carriage_l - x_beltclamp_space]) maketeeth(x_beltclamp_space);
+                        translate([-3, -1, carriage_l/2]) cube_fillet([11, 16, carriage_l], vertical = [2, 2, 0, 0], center = true);
+                        translate([-3.5, 0, 70]) cube([13, 10, 8], center = true);
+                        translate([-3.5, 0, 43]) cube([13, 10, 8], center = true);
+                        translate([-3.5, 0, 18]) cube([13, 10, 8], center = true);
                     }
+                    //fill the space where the belt is, as it will be substracted at later point and we want it stiff here.
+                    translate([-13, -10, 0]) cube([8, 10, carriage_l]);
 
                 }
             }
-            //upper bearing
-            rotate([0,0,180]) {
+            //Ensure upper bearing can be inserted cleanly
+            rotate([0,0,90]) {
                 linear_negative(bushing_carriage);
             }
-
-            //lower bearing
-            translate([xaxis_rod_distance,0,0]) {
+            //Same for lower bearing
+            translate([xaxis_rod_distance,0,0]) rotate([0, 0, 90]) {
                 linear_negative(bushing_xy, carriage_l);
             }
             // extruder mounts
-
-            translate([20,-2,carriage_hole_to_side]) {
-                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+            translate([20, -2, carriage_hole_to_side]) {
+                rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true);
+                translate([0, 9, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+            }
+            translate([20, -2, carriage_hole_to_side + 30]) {
+                rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true);
                 translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
             }
-            translate([20,-2,carriage_hole_to_side+30]) {
-                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+            if (carriage_l >= 50 + 2 * carriage_hole_to_side) {
+                translate([20, -2, carriage_hole_to_side + 30 + 20]) {
+                    rotate([90,0,0]) cylinder(r=1.8, h=32, center=true);
+                    translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+                }
             }
-            translate([20,-2,carriage_hole_to_side+30+20]) {
-                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+            if (carriage_l >= 80 + 2 * carriage_hole_to_side) {
+                translate([20,-2,carriage_hole_to_side+30+20+30]) {
+                    rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
+                    translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+                }
             }
-            translate([20,-2,carriage_hole_to_side+30+20+30]) {
-                rotate([90,0,0]) cylinder(r=1.8, h=22, center=true);
-                translate([0,9,0]) rotate([90,60,0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+            //belt insert
+            translate([-8.5 + 45 / 2, 0, 0]) mirror([1, 0, 0]) {
+                belt(carriage_l, 5);
+                %belt(carriage_l);
             }
-
-            // belt clamp mounts
-            translate([20, -10.5, 70 + carriage_hole_to_side]) belt_clamp_nut();
-            translate([20, -10.5, 40 + carriage_hole_to_side]) belt_clamp_nut();
-
-        }
-    }
-}
-
-module belt_clamp_nut() {
-    translate([0,0,m3_nut_diameter/-2]) cube([2.5,m3_nut_diameter_bigger,m3_nut_diameter+0.3]);
-    translate([-5,m3_nut_diameter_bigger/2,0]){
-        rotate([0, 90,0]) cylinder(r=3.5/2,h=20,$fn=32, center=true);
-        //rotate([0,-90,0]) cylinder(r=3.5/2,h=30,$fn=32);
-    }
-}
-module x_beltclamp(){
-    translate([1,0,0]) difference(){
-        cube_fillet([x_beltclamp_len, 17, 7]);
-        translate([carriage_l-32-30,m3_nut_diameter_bigger,0]/2){
-            cylinder(r=3.4/2,h=30);
-            translate([0,0,7]) mirror([0,0,1]) screw(slant=false,r=1.7,head_drop=3);
-
         }
     }
 }
 
 x_carriage();
-translate([carriage_l/-2-10,14,0]) x_beltclamp();
-translate([carriage_l/-2+17,14,0]) x_beltclamp();
-
-//%translate([-13,-10,carriage_l]) rotate([90,90,90]) x_beltclamp();
-//%translate([-13,-10,carriage_l-30]) rotate([90,90,90]) x_beltclamp();

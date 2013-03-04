@@ -138,8 +138,8 @@ include <inc/functions.scad>
 //x_smooth_rod_length=325;
 //y_smooth_rod_length=405;
 //z_smooth_rod_length=235;
-bed_x_size=225;
-bed_y_size=225;
+bed_x_size=350;
+bed_y_size=350;
 
 x_smooth_rod_length=460+board_thickness*2; // 492 for 16mm thickness; 484 for 12mm thickness
 y_smooth_rod_length=470;

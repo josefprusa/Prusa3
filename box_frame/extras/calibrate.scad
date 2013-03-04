@@ -42,7 +42,8 @@ intersection() {
 
         }
         //belt
-        translate([9.5, -2, 0]) maketeeth(25);
+        translate([10, -2, 0]) belt(25);
+        #translate([10, -2, 0]) belt(25);
 
 
     }

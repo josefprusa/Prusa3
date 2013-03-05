@@ -61,9 +61,7 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
                 //rotate([0, 0, 0]) translate([0, -9.5, 0]) 
                 translate([z_delta, 0, 0]) render(convexity = 5) linear(bushing_z, x_box_height);
                 // Nut trap
-                //difference(){
-                translate([-2, 17, 4]) cube_fillet([20, 16, 8], center = true, vertical=[7, 0, 0, 0], $fn=4);
-                    //bottom hole
+                translate([-2, 18, 5]) cube_fillet([20, 14, 10], center = true, vertical=[8, 0, 0, 5], $fn=4);
                 //}
             }
         }
@@ -82,12 +80,16 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
                 translate([0, -7, xaxis_rod_distance+6]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, 50);
             }
         }
-        translate([0, 0, 4 - bushing_xy[0]]) {  // m5 nut insert
-                    translate([0, 17, -10]) rotate([0,0,45]){
-                        cylinder(h = 40, r=2.75);
-                        //nut slid in
-                        translate([3, 0, 14]) cube([9.2*2, 9.2*sqrt(3/4)+0.4, 4.1], center = true);
-                    }
+        translate([0, 0, 5 - bushing_xy[0]]) {  // m5 nut insert
+            translate([0, 17, 0]) rotate([0, 0, 45]){
+                translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=2.75);
+                translate ([0, 0, 4.1 / 2 + 4 + layer_height]) cylinder(h=10, r=2.75);
+                //nut slid in
+                translate([3, 0, 4]) cube([8, 9.2 * sqrt(3 / 4) + 0.4, 4.1], center = true);
+                translate([0, 0, 4]) cylinder(r=4.6, h=4.1, center = true, $fn=6);
+                %translate([0, 0, 4]) cylinder(r=4.6, h=4.1, center = true, $fn=6);
+
+            }
         }
     }
     //threaded rod

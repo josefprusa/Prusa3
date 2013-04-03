@@ -20,16 +20,16 @@ width_over_thickness = 2.2;
 // Select your belt type ******************************************************
 
 //T2.5
-//belt_tooth_distance = 2.5;
-//belt_tooth_ratio = 0.5;
+belt_tooth_distance = 2.5;
+belt_tooth_ratio = 0.5;
 
 //T5 (strongly discouraged)
 //belt_tooth_distance = 5;
 //belt_tooth_ratio = 0.75;
 
 //HTD3
-belt_tooth_distance = 3;
-belt_tooth_ratio = 0.75;
+//belt_tooth_distance = 3;
+//belt_tooth_ratio = 0.75;
 
 //MXL
 //belt_tooth_distance = 2.032;
@@ -58,20 +58,12 @@ bushing_carriage = bushing_xy;
 bearing_608 = [22, 7, 8, 1];
 //608 bearings with fender washers
 bearing_608_washers = [22, 10, 8, 0];
-bearing_625 = [16, 5, 5, 1];
-// two 625 - for use without bearing guides. My favourite [ax]
-bearing_625_double = [16, 10, 5, 0];
 // 624 [roughly same diameter as pulley, makes belt parallel so its prettier]
-bearing_624_double = [13, 9, 4, 0];
+bearing_624 = [16, 5, 4, 1];
+// two 624 - for use without bearing guides. My favourite [ax]
+bearing_624_double = [16, 10, 4, 0];
 
-idler_bearing = bearing_625_double;
-
-//Select carriage lenght
-// 30 for single carriage extruder (two holes 30mm apart)
-// 50 for wade or single with fan (three holes, 30-20)
-// 80 for full length carriage (four holes, 30-20-30)
-
-carriage_l_base = 80;
+idler_bearing = bearing_624_double;
 
 // Fillets ********************************************************************
 // mostly cosmetic, except z axis.

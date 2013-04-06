@@ -10,7 +10,7 @@ You need 2 smooth rods, 2 M10 rods and 4 M8 rods
  * belt assembly parts (100mm) or outer dimensions of Y bearings (100mm for Prusa3ALU-FREZOVANY-v4.dxf)
  * 40mm inside Y axis corners
 
-for 340mm minimum. EiNSTeiN uses *400mm* rods, so I may be missing something here.`
+for 340mm minimum. EiNSTeiN uses *400mm* rods, so I may be missing something here.
 Take care they are cut exactly to the same length
 
 ### Y threaded rods (M8):

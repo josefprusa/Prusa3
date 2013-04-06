@@ -131,6 +131,14 @@ module screw(h=20, r=2, r_head=3.5, head_drop=0, slant=i_am_box, poly=false, $fn
     }
 }
 
+module plate_screw() {
+    if (i_am_box == 0) {
+        screw(head_drop=14, h=20, r_head=3.6, r=1.7, $fn=24, slant=false);
+    } else {
+        translate([0, 0, -2]) screw(head_drop=14, h=20, r_head=4.5, r=2, $fn=24, slant=true);
+    }
+}
+
 //radius of the idler assembly (to surface that touches belt, ignoring guide walls)
 function idler_assy_r_inner(idler_bearing) = (idler_bearing[0] / 2) + 4 * single_wall_width * idler_bearing[3];
 //radius of the idler assembly (to smooth side of belt)

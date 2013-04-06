@@ -38,7 +38,7 @@ wade(hotend_mount=default_extruder_mount,
 	mounting_holes=default_mounting_holes);
 
 ////CarriageVisualisation
-translate([-25.5,20,base_extra_depth+wade_block_depth+10]) rotate([-90,180,-90]) %import("../output/x-carriage.stl");
+translate([-8.5,20,base_extra_depth+wade_block_depth+10]) rotate([-90,180,-90]) %import("../output/x-carriage.stl");
 %translate(large_wheel_translation) {
 	translate([0,0,-5])import("../output/wade-big-h.stl");
 	rotate([0,0,25]) translate([gear_separation,0,-1]) {
@@ -149,7 +149,7 @@ block_bevel_r=6;
 base_thickness=12;
 base_length=70+2-6;
 base_leadout=25+2+1-6;
-base_extra_depth=10;
+base_extra_depth=0;
 
 nema17_hole_spacing=31; 
 nema17_width=1.7*25.4;
@@ -554,7 +554,7 @@ module wadeidler()
 			//The idler block.
 			translate(idler_axis+[-idler_height/2+2,+idler_long_side/2-idler_long_bottom,0])
 			{
-			cube([idler_height,idler_long_side,idler_short_side],center=true);
+			cube_fillet([idler_height,idler_long_side,idler_short_side], center=true, vertical = [0, 0, 0, 0], top = [3, 0, 0, 0], bottom = [3, 0, 0, 0]);
 
 			//Filament Guide.
 			translate([guide_height/2+idler_height/2-1,idler_long_side/2-guide_length/2,0])
@@ -638,7 +638,8 @@ module wadeidler()
 					idler_height+2]);
 			}
 
-			// Rounded corners.
+			// Rounded corners. 
+            /*
 			render()
 			translate([idler_height/2,idler_long_top,
 				idler_screw_hole*(idler_short_side/2)])
@@ -650,7 +651,7 @@ module wadeidler()
 				rotate([0,90,0])
 				translate([idler_screw_hole*idler_corners_radius,-idler_corners_radius,0])
 				cylinder(h=idler_height+4,r=idler_corners_radius,center=true,$fn=40);
-			}
+			} */
 		}
 	}
 }

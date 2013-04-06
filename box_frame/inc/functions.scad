@@ -154,8 +154,19 @@ module idler_assy(idler_bearing = [22, 7, 8, 1]) {
     cylinder(h = idler_width + 1, r=idler_assy_r_outer(idler_bearing) + 0.5, center=true);
 }
 
+module belt(len, side = 0){
+    //belt. To be substracted from model
+    //len is in +Z, smooth side in +X, Y centered
+    translate([-0.5, 0, 0]) maketeeth(len);
+    translate([0, -5, -0.01]) cube([belt_thickness, 10, len + 0.02]);
+    if (side != 0) {
+    translate([0, -5 + side, -0.01]) cube_fillet([belt_thickness, 10, len + 0.02], vertical = [3, 0, 0, 0]);
+    }
+}
+
+
 module maketeeth(len){
-    //Belt teeth. To be substracted from model
+    //Belt teeth. 
     for (i = [0 : len / belt_tooth_distance]) {
         translate([0, 0, i * belt_tooth_distance]) cube([2, 10, belt_tooth_distance * belt_tooth_ratio], center = true);
     }

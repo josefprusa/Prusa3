@@ -32,7 +32,7 @@ module yrodbracket(screw_area, lip_thickness, lip_length, bevel_size=2.0) {
 
     difference() {
         translate([0, 0, -lip_length])
-            cube_fillet([width, depth, height], bevel_size, top=[2,2,2,2]);
+            cube_fillet([width, depth, height], bevel_size, top=[2, 2, 2, 2]);
         translate([screw_area, -1, -lip_length - lip_thickness])
             bolt_track(y_threaded_rod_long_r * 2, depth + 2, lip_length + lip_thickness + inner_radius);
 
@@ -44,7 +44,7 @@ module yrodbracket(screw_area, lip_thickness, lip_length, bevel_size=2.0) {
             for (y = [lip_thickness + screw_center, screw_area + lip_thickness + screw_center]) {
                 translate([x, y, bracket_height() + 0.1])
                     rotate([180, 0, 0])
-                    screw(head_drop=3);
+                    screw(head_drop=3, r_head=4.5);
             }
         }
     }

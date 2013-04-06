@@ -66,11 +66,11 @@ bearing_624_double = [16, 10, 4, 0];
 idler_bearing = bearing_624_double;
 
 //Select carriage lenght
-// 30 for single carriage extruder (two holes 30mm apart)
+// 30 for single carriage extruder (two holes with centers 30mm apart)
 // 50 for wade or single with fan (three holes, 30-20)
 // 80 for full length carriage (four holes, 30-20-30)
 
-carriage_l_base = 80;
+carriage_l_base = 50;
 
 // Fillets ********************************************************************
 // mostly cosmetic, except z axis.

@@ -131,11 +131,11 @@ module screw(h=20, r=2, r_head=3.5, head_drop=0, slant=i_am_box, poly=false, $fn
     }
 }
 
-module plate_screw() {
+module plate_screw(long=0) {
     if (i_am_box == 0) {
-        screw(head_drop=14, h=20, r_head=3.6, r=1.7, $fn=24, slant=false);
+        translate([0, 0, -long]) screw(head_drop=14 + long, h=20 + long, r_head=3.6, r=1.7, $fn=24, slant=false);
     } else {
-        translate([0, 0, -2]) screw(head_drop=14, h=20, r_head=4.5, r=2, $fn=24, slant=true);
+        translate([0, 0, -2 - long]) screw(head_drop=14 + long, h=20 + long, r_head=4.5, r=2, $fn=24, slant=true);
     }
 }
 
@@ -158,9 +158,9 @@ module belt(len, side = 0){
     //belt. To be substracted from model
     //len is in +Z, smooth side in +X, Y centered
     translate([-0.5, 0, 0]) maketeeth(len);
-    translate([0, -5, -0.01]) cube([belt_thickness, 10, len + 0.02]);
+    translate([0, -4.5, -0.01]) cube([belt_thickness, 9, len + 0.02]);
     if (side != 0) {
-    translate([0, -5 + side, -0.01]) cube_fillet([belt_thickness, 10, len + 0.02], vertical = [3, 0, 0, 0]);
+    translate([0, -4.5 + side, -0.01]) cube_fillet([belt_thickness, 9, len + 0.02], vertical = [3, 0, 0, 0]);
     }
 }
 
@@ -168,6 +168,6 @@ module belt(len, side = 0){
 module maketeeth(len){
     //Belt teeth. 
     for (i = [0 : len / belt_tooth_distance]) {
-        translate([0, 0, i * belt_tooth_distance]) cube([2, 10, belt_tooth_distance * belt_tooth_ratio], center = true);
+        translate([0, 0, i * belt_tooth_distance]) cube([2, 9, belt_tooth_distance * belt_tooth_ratio], center = true);
     }
 }

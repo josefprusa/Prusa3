@@ -14,6 +14,7 @@ use <y-drivetrain.scad>
 //height and width of the x blocks depend on x smooth rod radius
 x_box_height = 52 + 2 * bushing_xy[0];
 x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
+bearing_height = (bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8));
 
 module x_end_motor(){
 
@@ -59,14 +60,14 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
 
             translate([0, 0, 4 - bushing_xy[0]]) {
                 //rotate([0, 0, 0]) translate([0, -9.5, 0]) 
-                translate([z_delta, 0, 0]) render(convexity = 5) linear(bushing_z, x_box_height);
+                translate([z_delta, 0, 0]) render(convexity = 5) linear(bushing_z, bearing_height);
                 // Nut trap
                 translate([-2, 18, 5]) cube_fillet([20, 14, 10], center = true, vertical=[8, 0, 0, 5], $fn=4);
                 //}
             }
         }
         // here are bushings/bearings
-        translate([z_delta, 0, 4 - bushing_xy[0]]) linear_negative(bushing_z, x_box_height);
+        translate([z_delta, 0, 4 - bushing_xy[0]]) linear_negative(bushing_z, bearing_height);
 
         // belt hole
         translate([-5.5 - 10 + 1.5, 22 - 9 + offset, 30]) cube([max(idler_width + 2, 11), 55, 27], center = true);

@@ -18,7 +18,7 @@
 conf_b_bushing8 = [4, 5.1, 10, 1, "Tube shaped bushing like igus J(V)FM 0810-10"];
 conf_b_bushing10 = [5, 6.1, 10, 1, "Tube shaped bushing with id=10mm, od=12mm and length of at least 10mm, like J(V)FM 1012-10"];
 
-conf_b_bronze = [4, 8, 11, 1, "bronze self-aligning bushing, 8mm"];
+conf_b_bronze8 = [4, 8, 11, 1, "bronze self-aligning bushing, 8mm"];
 
 //shorter beaings (two on each Z axis)
 conf_b_lm8uu = [4, 7.7, 24, 0, "lm8uu bearing (standard)"];

@@ -26,3 +26,9 @@ module tube_clamp(tube_r, wall_width=3, screw=false) {
 }
 
 tube_clamp(3.5);
+translate([15, 0, 0]) tube_clamp(3.5);
+translate([0, 20, 0]) {
+    tube_clamp(bushing_xy[0]);
+    translate([20, 0, 0]) tube_clamp(bushing_xy[0]);
+    translate([-20, 0, 0]) tube_clamp(bushing_z[0]);
+}

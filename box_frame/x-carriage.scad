@@ -58,7 +58,7 @@ module x_carriage(){
             }
             //Ensure upper bearing can be inserted cleanly
             rotate([0, 0, 90]) {
-                linear_negative(bushing_carriage);
+                linear_negative(bushing_carriage, carriage_l);
             }
             //Same for lower bearing
             translate([xaxis_rod_distance, 0, 0]) rotate([0, 0, 90]) {

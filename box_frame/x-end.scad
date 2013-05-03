@@ -14,7 +14,7 @@ use <y-drivetrain.scad>
 //height and width of the x blocks depend on x smooth rod radius
 x_box_height = 52 + 2 * bushing_xy[0];
 x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
-bearing_height = (bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8));
+bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8)), x_box_height);
 
 module x_end_motor(){
 

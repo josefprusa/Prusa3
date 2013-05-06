@@ -104,12 +104,12 @@ module x_end_idler(){
             translate([15 - 2 * single_wall_width, 0, 0]) rotate([90, 0, 90]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3, $fn=6);
 
         }
-        translate([-6 - x_box_width, 11, 21.5]) cube([x_box_width + 1, 11, 17.5]);
+        #translate([-6 - x_box_width, 11, 29.5 - (max(idler_bearing[0], 16) / 2)]) cube([x_box_width + 1, 11, 1.5 + max(idler_bearing[0], 16)]);
     }
-        %translate([-14, -9, 22]) x_tensioner();
+        %translate([-14, -9, 30.5 - (max(idler_bearing[0], 16) / 2)]) x_tensioner();
 }
 
-module x_tensioner(len=62, idler_height=16) {
+module x_tensioner(len=62, idler_height=max(idler_bearing[0], 16)) {
         idlermount(len=len, rod=m4_diameter / 2, idler_height=idler_height, narrow_len=46, narrow_width=idler_width + 2 - single_wall_width);
 }
 

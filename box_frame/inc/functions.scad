@@ -98,7 +98,7 @@ module nema17(places=[1,1,1,1], size=15.5, h=10, holes=false, shadow=false, $fn=
         if (places[i] == 1) {
             rotate([0, 0, 90*i]) translate([size, size, 0]) {
                 if (holes) {
-                    rotate([0, 0, -90*i])  translate([0,0,-10]) screw(r=1.7, slant=false, head_drop=13, $fn=$fn, h=h+12);
+                    rotate([0, 0, -90*i])  translate([0,0,-11]) screw(r=1.7, slant=false, head_drop=14, $fn=$fn, h=h+12);
                 } else {
                     rotate([0, 0, -90*i]) cylinder(h=h, r=5.5, $fn=$fn);
                 }

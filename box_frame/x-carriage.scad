@@ -15,10 +15,14 @@ use <extras/groovemount.scad>
 //Use 30 for single extruder, 50 for wades, 80 for dual extruders (moved to config file)
 //carriage_l_base = 80;
 //check if we need to extend carriage to fit bearings
-carriage_l_real = max(adjust_bushing_len(bushing_xy, carriage_l_base, layer_height * 9), adjust_bushing_len(bushing_carriage, carriage_l_base, layer_height * 9));
+carriage_l_adjusted = max(adjust_bushing_len(bushing_xy, carriage_l_base, layer_height * 9), adjust_bushing_len(bushing_carriage, carriage_l_base, layer_height * 9));
+//For bearings 30mm long or shorter enforce double len
+carriage_l_real = max((bushing_xy[2] > 30 ? carriage_l_adjusted : (2 * bushing_xy[2] + 6)), carriage_l_adjusted);
 // if the carriage was extended, we want to increase carriage_hole_to_side
 carriage_hole_to_side = max(3, ((carriage_l_real - carriage_l_base) / 2));
+echo(carriage_hole_to_side);
 carriage_l = carriage_l_base + 2 * carriage_hole_to_side;
+
 
 bushing_carriage_len = adjust_bushing_len(bushing_carriage, 21, layer_height * 9);
 
@@ -49,9 +53,13 @@ module x_carriage(){
                             translate([-3, -1, carriage_l/2]) cube_fillet([11, 16, carriage_l], vertical = [2, 2, 0, 0], center = true);
                             translate([-13, -10, 0]) cube([8, 10, carriage_l]);
                         }
-                        translate([-3.5, 0, 70]) cube([13, 10, 8], center = true);
-                        translate([-3.5, 0, 43]) cube([13, 10, 8], center = true);
-                        translate([-3.5, 0, 18]) cube([13, 10, 8], center = true);
+                        translate([-3.5, 0, 67 + carriage_hole_to_side]) cube([13, 10, 8], center = true);
+                        translate([-3.5, 0, 40 + carriage_hole_to_side]) cube([13, 10, 8], center = true);
+                        translate([-3.5, 0, 15 + carriage_hole_to_side]) cube([13, 10, 8], center = true);
+                        if (carriage_l_base == 30) {
+                            //more space for belt ends, as there is only one cutout
+                            #translate([-3.5, 0, 15 + carriage_hole_to_side]) cube([13, 10, 14], center = true);
+                        }
                     }
 
                 }

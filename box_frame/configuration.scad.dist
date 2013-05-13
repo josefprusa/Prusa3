@@ -95,6 +95,9 @@ y_threaded_rod_long_r = 5.4;
 // Thickness of the XZ plate board. Leave at 12 for single plate
 board_thickness = 12;
 
+// segments of small holes. some poeple claim that a low value makes them easier to print.
+small_hole_segments=7;
+
 // END of custom settings
 
 

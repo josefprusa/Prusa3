@@ -43,7 +43,7 @@ module x_end_motor(){
                 // belt hole
                 translate([-30, 11, -0.25]) cube([11, 36, 24], center = true);
                 //motor mounting holes
-                translate([-28.5, 0, 0]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5, $fn=7, h=8);
+                translate([-28.5, 0, 0]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5, $fn=small_hole_segments, h=8);
             }
         }
         //smooth rod caps
@@ -84,7 +84,7 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
         translate([0, 0, 5 - bushing_xy[0]]) {  // m5 nut insert
             translate([0, 17, 0]) rotate([0, 0, 10]){
                 //rod
-                translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=2.75);
+                translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=2.75, $fn=32);
                 //nut
                 translate([0, 0, 9]) cylinder(r=4.6, h=14.1, center = true, $fn=6);
 
@@ -100,7 +100,7 @@ module x_end_idler(){
         x_end_base(len=45 + z_delta / 3, offset=-10 - z_delta / 3);
         // idler hole
         translate([-20, -15 - z_delta / 2, 30]) {
-            rotate([0, 90, 0]) cylinder(r=m4_diameter / 2, h=33, center=true, $fn=7);
+            rotate([0, 90, 0]) cylinder(r=m4_diameter / 2, h=33, center=true, $fn=small_hole_segments);
             translate([15 - 2 * single_wall_width, 0, 0]) rotate([90, 0, 90]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3, $fn=6);
 
         }

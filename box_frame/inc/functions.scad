@@ -45,7 +45,7 @@ module fillet(radius, height=100, $fn=0) {
 
 module cube_fillet(size, radius=-1, vertical=[3,3,3,3], top=[0,0,0,0], bottom=[0,0,0,0], center=false, $fn=0){
     //
-    if (use_fillets) {
+    if (use_fillets == 1) {
         if (center) {
             cube_fillet_inside(size, radius, vertical, top, bottom, $fn);
         } else {
@@ -53,7 +53,17 @@ module cube_fillet(size, radius=-1, vertical=[3,3,3,3], top=[0,0,0,0], bottom=[0
                 cube_fillet_inside(size, radius, vertical, top, bottom, $fn);
         }
     } else {
-        cube(size, center);
+        if (use_fillets == 2) {
+            if (center) {
+                cube_fillet_inside(size, radius, vertical, top, bottom, 4);
+            } else {
+                translate([size[0]/2, size[1]/2, size[2]/2])
+                    cube_fillet_inside(size, radius, vertical, top, bottom, 4);
+            }
+
+        } else {
+            cube(size, center);
+        }
     }
 
 }

@@ -75,13 +75,17 @@ idler_bearing = bearing_624_double;
 carriage_l_base = 50;
 
 // Fillets ********************************************************************
+// fillets are rounded corners of boxes. The right engineering term is probably radius
+// but cad software calls it fillet.
 // mostly cosmetic, except z axis.
 // 0 = no fillets
 // 1 = fillet
+// 2 = chamfer (cut the edges at 45deg. angle)
+// Please do put only parts with fillets on sale, other options are not really tested
 
 use_fillets = 1;
 
-//set to 0 for single plate (affects z axis and screws that attach RP parts tp frame)
+//set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
 i_am_box = 1;
 
 //if you do your own plate and can move bottom Z screws 5mm up set this to 0 to

@@ -61,7 +61,7 @@ bearing_625 = [16, 5, 5, 1];
 bearing_625_double = [16, 10, 5, 0];
 
 // those two here are really good:
-bearing_624_double = [13, 9, 4, 0];
+bearing_624_double = [13, 10, 4, 0];
 // this one has roughly same diameter as pulley, makes belt parallel so its prettier
 bearing_623_double = [10, 8, 3, 0];
 
@@ -98,6 +98,9 @@ y_threaded_rod_long_r = 5.4;
 
 // Thickness of the XZ plate board. Leave at 12 for single plate
 board_thickness = 12;
+
+// segments of small holes. some poeple claim that a low value makes them easier to print.
+small_hole_segments=7;
 
 // END of custom settings
 

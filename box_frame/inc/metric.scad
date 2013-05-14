@@ -24,7 +24,7 @@ m8_nut_diameter = 14.1;
 m4_diameter = 4.7;
 //iso4032 says 7.66
 m4_nut_diameter = 7.6;
-m4_nut_diameter_horizontal = 8;
+m4_nut_diameter_horizontal = 8.15;
 
 m3_diameter = 3.6;
 //iso4032 says 6.01

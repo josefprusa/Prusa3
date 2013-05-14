@@ -18,17 +18,17 @@ module y_belt_holder(len=42) {
 
             translate([-21 - belt_thickness, -7, 0]) cube_fillet([13 + y_delta, 14, len], vertical=[3,0,0,0], fn=8 );
             translate([-14, -5.5, len / 2]) cube_fillet([24 + 2 * y_delta, 3, len], vertical=[3, 0, 0, 0], center = true);
-            translate([-24.5, 0, real_len / 2]) cube_fillet([8.5, 16, real_len], center = true, vertical = [1, 1, 1, 1], $fn=16);
+            translate([-24.5, 0, real_len / 2]) cube_fillet([11.5, 16, real_len], center = true, vertical = [1, 1, 1, 1], $fn=16);
             translate([-4.0 + y_delta, 0, len / 2]) cube_fillet([8, 14, len], center = true, vertical = [2,2,0,2]);
 
         }
         translate([-4.5 + y_delta, 0, real_len / 2]) cube([10, 10, 10], center = true);
         translate([-11, 0, ybelt_hole_to_side + len]) {
-            rotate([0, -90, 0]) plate_screw(20);
+            translate([4,0,0]) rotate([0, -90, 0]) plate_screw(20);
             translate([8 + y_delta, 0, 0]) cube([10, 9, 9], center=true);
         }
         translate([-11, 0, ybelt_hole_to_side]) {
-            rotate([0, -90, 0]) plate_screw(20);
+            translate([4,0,0]) rotate([0, -90, 0]) plate_screw(20);
             translate([8 + y_delta, 0, 0]) cube([10, 9, 9], center=true);
         }
 

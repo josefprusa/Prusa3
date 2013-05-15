@@ -35,18 +35,18 @@ module endstop(shaft_radius){
 		    translate([outer_diameter, outer_diameter, 0]) cylinder(h =10, r = outer_diameter, $fn = segments);
 		    translate([outer_diameter, 0, 0]) cube([15.5,outer_diameter*2,10]);
 		    translate([-30, 0, 0]) cube([40, 4, 10]);
-		    translate([17, 17.5, 5]) rotate([90, 0, 0]) cylinder(h =5, r = 5.77, $fn = 6);
+		    translate([17, 10+opening_size, 5]) rotate([90, 0, 0]) cylinder(h =5, r = 5.77, $fn = 6);
 	    }
 
 
 
 
 	    translate([9, outer_diameter-opening_size/2, 0]) cube([18,opening_size,20]);
-	    translate([outer_diameter, outer_diameter, 0]) cylinder(h =20, r = shaft_radius, $fn = segments);
+	    translate([outer_diameter, outer_diameter, 0]) cylinder(h =30, r = shaft_radius, $fn = segments);
 
 	    //Securing hole
-	    translate([17, 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
-	    translate([17, 19.5, 5]) rotate([90, 0, 0]) cylinder(h =5, r = m3_nut_diameter_horizontal/2, $fn = 6);
+	    translate([17, 20, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
+	    translate([17, 12+opening_size, 5]) rotate([90, 0, 0]) cylinder(h =5, r = m3_nut_diameter_horizontal/2, $fn = 6);
 
 	    translate([17, 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
 	    // Endstop holders
@@ -58,6 +58,6 @@ module endstop(shaft_radius){
 }
 
 endstop(bushing_xy[0]);
-translate([0,20,0]) endstop(bushing_xy[0]);
-translate([0,40,0]) endstop(bushing_z[0]);
+translate([0,22,0]) endstop(bushing_xy[0]);
+translate([0,44,0]) endstop(bushing_z[0]);
 

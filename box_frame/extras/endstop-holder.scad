@@ -24,7 +24,7 @@ module endstop(shaft_radius){
     outer_diameter = shaft_diameter/2+3.3;
     screw_hole_spacing = 20;
     screw_hole_spacing2 = 10;
-    opening_size = m8_diameter-1.5; //openingsize
+    opening_size = shaft_radius*2-1.5; //openingsize
 
     segments=64;
 

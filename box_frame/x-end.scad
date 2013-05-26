@@ -84,7 +84,7 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
         translate([0, 0, 5 - bushing_xy[0]]) {  // m5 nut insert
             translate([0, 17, 0]) rotate([0, 0, 10]){
                 //rod
-                translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=2.75, $fn=32);
+                #translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=3, $fn=32);
                 //nut
                 translate([0, 0, 9]) cylinder(r=4.6, h=14.1, center = true, $fn=6);
 

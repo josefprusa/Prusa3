@@ -34,7 +34,7 @@ You need 2 smooth rods
  * x carriage width (85mm for box carriage, 58mm for single plate)
  * 90 mm inside X end parts
  * for dualhead extruders, distance between hotends (70 for two extruders on box carriage)
-For 376mm minimum with box model carriage. Its also box width minus 3 cm, so at least *340* for single plate, 450 for default box. May be longer.
+For 376mm minimum with box model carriage. Its also box width minus 3 cm, so at least *370* for single plate, 450 for default box. May be longer.
 
 ## Z axis
 You need 2 smooth rods and 2 M5 threaded rods

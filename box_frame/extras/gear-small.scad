@@ -6,14 +6,17 @@
 include <../configuration.scad>
 use <inc/parametric_involute_gear_v5.0.scad>
 
-small();
-%translate([40, 0, 0]) rotate([0, 180, 180]) big(); //this should touch, teeth should mesh
+gear_distance = 40;
 
-gear_width=14;
-teeth_small=13;
-teeth_big=37;
-teeth_twist=320;
-circular_pitch=288;
+small();
+%translate([gear_distance, 0, 0]) rotate([0, 180, 45]) big(); //this should touch, teeth should mesh
+
+gear_width=10;
+teeth_small=17;
+teeth_big=60;
+teeth_twist=400;
+circular_pitch = (gear_distance * 180 * 2) / (teeth_small + teeth_big);
+echo (circular_pitch);
 
 module small(){
     difference() {
@@ -30,15 +33,15 @@ module small(){
             gear (number_of_teeth=teeth_small,
                     circular_pitch=circular_pitch,
                     gear_thickness = gear_width/2,
-                    rim_thickness = gear_width/2,
+                    rim_thickness = gear_width,
                     hub_thickness = 0,
                     hub_diameter = 18,
                     bore_diameter = 5.25,
                     circles=0,
-                    twist = teeth_twist/teeth_small);
+                    twist = teeth_twist/teeth_small*2);
             //hub. Two part to make it thicker
-            translate([0, 0, gear_width / 2]) {
-                cylinder(r1=8.5, r2=11, h=3);
+            translate([0, 0, gear_width / 2 + 0.5]) {
+                cylinder(r1=8, r2=11, h=2.5);
             }
             translate([0, 0, gear_width / 2 + 3]) {
                 cylinder(r=11, h=6);
@@ -65,22 +68,23 @@ module big(){
                     gear_thickness = gear_width/2,
                     rim_thickness = gear_width/2,
                     hub_thickness = 0,
-                    hub_diameter = 18,
-                    bore_diameter = 18,
+                    hub_diameter = 0,
+                    bore_diameter = 0,
                     circles=0,
                     twist = teeth_twist/teeth_big);
             gear (number_of_teeth=teeth_big,
                     circular_pitch=circular_pitch,
-                    gear_thickness = 0,
+                    gear_thickness = gear_width/2,
                     rim_thickness = gear_width/2,
                     hub_thickness = 0,
                     hub_diameter = 18,
                     bore_diameter = 18,
                     circles=0,
-                    twist = teeth_twist/teeth_big);
+                    twist = teeth_twist/teeth_big); 
         }
         //reduce mass
-        translate([0, 0, layer_height * 9 - gear_width / 2]) rotate([0, 0, 90]) cylinder(r1=23.4, r2=23.4, h=gear_width - layer_height * 9 + 1, $fn=18);
+        translate([0, 0, 3 - gear_width / 2]) rotate([0, 0, 90]) 
+				cylinder(r1=24, r2=28, h=gear_width - layer_height * 9 + 1, $fn=36);
         //bore
         translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=m8_diameter / 2, h=gear_width + 9.2);
         for (hole=[0:5]) {

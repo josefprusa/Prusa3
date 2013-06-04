@@ -34,8 +34,8 @@ module motorholder(thickness=10){
             translate([0, 20, 5]) cube([16, 20, thickness], center=true);
             translate([0, 30, 0]) cylinder(h = thickness, r=8);
         }
-        translate([0, 10, -1]) cylinder(h = 12, r=4.5);
-        translate([0, 30, -1]) cylinder(h = 12, r=4.5);
+        translate([0, 10, -1]) cylinder(h = 12, r=4.5, $fn=32);
+        translate([0, 30, -1]) cylinder(h = 12, r=4.5, $fn=32);
     }
 }
 
@@ -63,14 +63,14 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
             }
         }
         translate([-12, -9, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod + 0.01, l=12, h=25);
-        translate([0, -15 - single_wall_width, idler_height / 2]) {
+        translate([0, -15 - single_wall_width*2, idler_height / 2]) {
             //nut
-            rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.3, $fn=6);
+            translate([0,0,0]) rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.8, $fn=6);
             //nut insert
-            translate([0, -3.3, -m4_diameter * 1.5 / 2]) cube([20, 3.3, m4_diameter * 1.5]);
+            translate([-2, -3.8, -m4_diameter * 1.5 / 2]) cube([20, 3.8, m4_diameter * 1.5+0.3]);
         }
 
-        translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=7, center=true);
+        translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=small_hole_segments, center=true);
             translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
                 rotate([0, 90, 0]) idler_assy(idler_bearing);
                 translate([0, 10, 0]) cube([idler_width + 1, 20, idler_height + 2], center=true);

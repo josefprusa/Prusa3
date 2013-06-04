@@ -143,9 +143,9 @@ module screw(h=20, r=2, r_head=3.5, head_drop=0, slant=i_am_box, poly=false, $fn
 
 module plate_screw(long=0) {
     if (i_am_box == 0) {
-        translate([0, 0, -long]) screw(head_drop=14 + long, h=20 + long, r_head=3.6, r=1.7, $fn=24, slant=false);
+        translate([0, 0, -long]) screw(head_drop=14 + long, h=30 + long, r_head=3.6, r=1.7, $fn=24, slant=false);
     } else {
-        translate([0, 0, -2 - long]) screw(head_drop=14 + long, h=20 + long, r_head=4.5, r=2, $fn=24, slant=true);
+        translate([0, 0, -2 - long]) screw(head_drop=14 + long, h=30 + long, r_head=4.5, r=2, $fn=24, slant=true);
     }
 }
 

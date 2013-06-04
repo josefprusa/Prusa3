@@ -128,8 +128,8 @@ module firm_foot(conf_b = conf_b_lm8uu){
         union() {
             translate([8.5/2,0,0]) cube_fillet([8.5, 42 + xy_delta * 2, 20], top=[11, 0, 11, 0], center=true);
         }
-        translate([9, 14.5 + xy_delta, 0]) rotate([0, -90, 0]) screw(head_drop=1);
-        translate([9,-14.5 - xy_delta, 0]) rotate([0,-90,0]) screw(head_drop=1);
+        translate([9, 14.5 + xy_delta, 0]) rotate([0, -90, 0]) screw(head_drop=1, $fn=small_hole_segments);
+        translate([9,-14.5 - xy_delta, 0]) rotate([0,-90,0]) screw(head_drop=1,$fn=small_hole_segments);
     }
 }
 

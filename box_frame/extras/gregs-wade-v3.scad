@@ -620,7 +620,7 @@ module wadeidler()
 		//Nut trap for fulcrum screw.
 		translate(idler_fulcrum+[0,0,idler_short_side/2-idler_hinge_width-1])
 		rotate(360/16)
-		cylinder(h=3,r=m3_nut_diameter/2,$fn=6);
+		cylinder(h=3,r=m3_nut_diameter_horizontal/2,$fn=6);
 
 		for(idler_screw_hole=[-1,1])
 		translate(idler_axis+[2-idler_height,0,0])

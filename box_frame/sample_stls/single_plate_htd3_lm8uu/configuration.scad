@@ -61,7 +61,7 @@ bearing_625 = [16, 5, 5, 1];
 bearing_625_double = [16, 10, 5, 0];
 
 // those two here are really good:
-bearing_624_double = [13, 9, 4, 0];
+bearing_624_double = [13, 10, 4, 0];
 // this one has roughly same diameter as pulley, makes belt parallel so its prettier
 bearing_623_double = [10, 8, 3, 0];
 
@@ -75,13 +75,17 @@ idler_bearing = bearing_624_double;
 carriage_l_base = 50;
 
 // Fillets ********************************************************************
+// fillets are rounded corners of boxes. The right engineering term is probably radius
+// but cad software calls it fillet.
 // mostly cosmetic, except z axis.
 // 0 = no fillets
 // 1 = fillet
+// 2 = chamfer (cut the edges at 45deg. angle)
+// Please do put only parts with fillets on sale, other options are not really tested
 
 use_fillets = 1;
 
-//set to 0 for single plate (affects z axis and screws that attach RP parts tp frame)
+//set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
 i_am_box = 0;
 
 //if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
@@ -94,6 +98,9 @@ y_threaded_rod_long_r = 5.4;
 
 // Thickness of the XZ plate board. Leave at 12 for single plate
 board_thickness = 12;
+
+// segments of small holes. some poeple claim that a low value makes them easier to print.
+small_hole_segments=7;
 
 // END of custom settings
 

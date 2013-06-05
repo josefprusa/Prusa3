@@ -339,15 +339,15 @@ x_axis_height=200;
 x_smooth_rod_length=450+board_thickness*2+10;
 
 // X ends
-translate([-board_w/2+4+12-board_thickness,-26+12-board_thickness,140+ x_axis_height])
+translate([-board_w/2+4+12-board_thickness,-26+12-board_thickness, 200+ x_axis_height])
 rotate([0,0,90])
 //rotate([0,180,0])
-render(convexity=4) x_end_motor();
+render(convexity=4) mirror([0, 0, 1]) x_end_motor();
 
-translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,140 + x_axis_height])
+translate([board_w/2-4-12+board_thickness,-26+12-board_thickness, 200 + x_axis_height])
 rotate(90)
 //rotate([0,180,0])
-render(convexity=4) x_end_idler();
+render(convexity=4) mirror([0, 0, 1]) x_end_idler();
 
 // bearing guide
 translate([board_w/2-4-12+board_thickness-27,-26+12-board_thickness-9-(10-(7+0.9*2))/2,140 + x_axis_height+27])

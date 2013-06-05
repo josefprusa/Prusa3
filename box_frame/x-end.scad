@@ -26,9 +26,9 @@ module x_end_motor(){
         translate([0, -z_delta - 2, 0]) difference(){
             union(){
                 intersection() {
-                    translate([-15, -34, 30]) cube([20, 60, x_box_height], center = true);
+                    translate([-10 - bushing_xy[0], -34, 30]) cube([x_box_width, 60, x_box_height], center = true);
                     union() {
-                        translate([-13.75, -14 + z_delta / 2, 24]) cube_fillet([17.5, 14 + z_delta, 55], center = true, vertical=[0, 0, 3, 1.5], top=[0, 3, 6, 3], $fn=16);
+                        translate([-10 - bushing_xy[0], -14 + z_delta / 2, 24]) cube_fillet([17.5, 14 + z_delta, 55], center = true, vertical=[0, 0, 3, 1.5], top=[0, 3, 6, 3], $fn=16);
                         translate([-10, -34, 9]) intersection(){
                             translate([0, 0, -5]) cube_fillet([10, 37, 28], center = true, vertical=[0, 0, 0, 0], top=[0, 3, 5, 3]);
                             translate([-10/2, 10, -26]) rotate([45, 0, 0]) cube_fillet([10, 60, 60], radius=2);
@@ -47,8 +47,8 @@ module x_end_motor(){
             }
         }
         //smooth rod caps
-        translate([-22, -10, 0]) cube([17, 2, 15]);
-        translate([-22, -10, 45]) cube([17, 2, 10]);
+        translate([-10 - bushing_xy[0], -9, 7.5]) cube([x_box_width, 2, 15], center = true);
+        translate([-10 - bushing_xy[0], -9, 50]) cube([x_box_width, 2, 10], center = true);
     }
 }
 

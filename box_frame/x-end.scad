@@ -117,7 +117,7 @@ module x_tensioner(len=62, idler_height=max(idler_bearing[0], 16)) {
 }
 
 
-*translate([-40, 0, 4 - bushing_xy[0]]) x_tensioner();
+translate([-40, 0, 4 - bushing_xy[0]]) x_tensioner();
 translate([0, -80, 0]) mirror([1, 0, 0]) x_end_idler(thru=true);
 translate([-50, 0, 0]) mirror([1, 0, 0]) translate([-50, 0, 0])
     x_end_motor();

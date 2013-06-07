@@ -11,9 +11,9 @@ gear_distance = 40;
 small();
 %translate([gear_distance, 0, 0]) rotate([0, 180, 45]) big(); //this should touch, teeth should mesh
 
-gear_width=10;
-teeth_small=17;
-teeth_big=60;
+gear_width=12;
+teeth_small=15;
+teeth_big=49;
 teeth_twist=400;
 circular_pitch = (gear_distance * 180 * 2) / (teeth_small + teeth_big);
 echo (circular_pitch);
@@ -97,8 +97,8 @@ module big(){
     }
     //threaded bolt trap
     difference(){
-        translate([0, 0, -gear_width / 2]) cylinder(r=10, h=4 + layer_height * 9);
-        translate([0, 0, -gear_width / 2 + layer_height * 6]) nut(13.3, h=10);
+        translate([0, 0, -gear_width / 2]) cylinder(r=10, h=7 + layer_height * 9);
+        translate([0, 0, -gear_width / 2 + layer_height * 6 + 2]) nut(13.1, h=10);
         translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=m8_diameter / 2, h=gear_width + 9.2);
     }
 

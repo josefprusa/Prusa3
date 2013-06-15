@@ -96,7 +96,8 @@ i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 //Use 5.4 for M10 or 4.4 for M8
 y_threaded_rod_long_r = 5.4;
 
-// Thickness of the XZ plate board. Leave at 12 for single plate
+// Thickness of the XZ plate board. 
+// Use 20 for single plate if you want to use the Y lm8uu holders
 board_thickness = 12;
 
 // segments of small holes. some poeple claim that a low value makes them easier to print.

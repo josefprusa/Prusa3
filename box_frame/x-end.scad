@@ -130,9 +130,9 @@ module pushfit_rod(diameter, length){
 }
 
 if (idler_bearing[3] == 1) {
-    translate([-25, -30 - idler_bearing[0] / 2, 0]) {
+    translate([-33,  -33 - idler_bearing[0] / 2, 0]) {
         render() bearing_guide_inner();
-        translate([idler_bearing[0]+10, 0, 0])
+        translate([0, -(idler_bearing[0]+10), 0])
             render()bearing_guide_outer();
     }
 }

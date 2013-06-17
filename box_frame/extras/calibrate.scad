@@ -31,7 +31,7 @@ intersection() {
         //x smooth rod
         translate([0, -11, 5 + bushing_xy[0]]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, 50);
         //z smooth rod
-        translate([0, 18, -1]) cylinder_poly(h=20, r=bushing_z[0] + single_wall_width / 4);
+        translate([0, 18, -1]) cylinder(h=20, r=bushing_z[0] + single_wall_width / 4);
 
         //screw
         translate([0, -20, 10]) rotate([0, -90, 0]) screw(head_drop=7, h=122, r_head=4.5);

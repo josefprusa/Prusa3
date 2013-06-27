@@ -1,5 +1,5 @@
 # Here you can get all your rod lengths for i3 right.
-If you are using single plate model, use *numbers*
+If you are using single plate model, use *italic numbers*.
 "Default box" is made of 6 450mm boards and one that is 2 * board thickness longer, see http://78.47.92.212/i3_documentation_pics/06-frame.md.html
 
 ## Y axis

@@ -8,7 +8,7 @@
 
 include <configuration.scad>
 
-module y_belt_holder(len=40) {
+module y_belt_holder(len=42) {
     y_delta = i_am_box == 0 ? -2.5 : xy_delta;
     ybelt_hole_to_side = 5;
     real_len = len + 2 * ybelt_hole_to_side;
@@ -25,8 +25,8 @@ module y_belt_holder(len=40) {
         }
         translate([-4.5 + y_delta, 0, real_len / 2]) cube([10, 10, 10], center = true);
         translate([-11, 0, ybelt_hole_to_side + len]) {
-       #     translate([screw_hole_z_offset,0,0]) rotate([0, -90, 0]) plate_screw(20);
-        #    translate([8 + y_delta, 0, 0]) cube([10, 9, 9], center=true);
+            translate([screw_hole_z_offset,0,0]) rotate([0, -90, 0]) plate_screw(20);
+            translate([8 + y_delta, 0, 0]) cube([10, 9, 9], center=true);
         }
         translate([-11, 0, ybelt_hole_to_side]) {
             translate([screw_hole_z_offset,0,0]) rotate([0, -90, 0]) plate_screw(20);

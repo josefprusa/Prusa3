@@ -18,11 +18,6 @@ belt_tooth_ratio = 0.5;
 //belt_tooth_distance = 2.032;
 //belt_tooth_ratio = 0.64;
 
-// GT2 - There are a bunch of GT2 belts with different tooth-to-tooth distance
-// adjust to your needs
-// belt_tooth_distance = 2;
-// belt_tooth_ratio = 0.5;
-
 // Select your hot-end mount ******************************************************
 
 // 0 = none; 1 = groove-mount (J-head/MakerGear etc.)

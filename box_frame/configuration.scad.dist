@@ -109,12 +109,28 @@ i_am_box = 1;
 // get stronger motor mount. Only for i_am_box = 0
 i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 
-// radius of long threaded rod on Y frame
-// Use 5.4 for M10 or 4.4 for M8
+
+// Radius of long threaded rod on Y frame
+
+// Affects y-axis-corner (both box and single plate)
+// and y-axis-bracket (box only)
+
+//Use 5.4 for M10 or 4.4 for M8
 y_threaded_rod_long_r = 5.4;
 
-// Thickness of the XZ plate board. 
-// Use 20 for single plate if you want to use the Y lm8uu holders
+
+// Thickness of the boards that make the box frame.
+
+// in y-axis-corner it governs the height of the corners by adjusting the
+// distance between ground and M10 threaded rod. (both box and single plate)
+
+// For box model, the parts that hold Z smooth rod have one hole from front
+// and one from side, and this setting makes sure that the screw from side
+// is in the center of the plank.
+
+// Use 12 for single plate
+// or 20 if you want to use the Y lm8uu holders 
+// (extras/bearing-holder-single-plate-y)
 board_thickness = 12;
 
 // Segments of small holes. some poeple claim that a low value makes them easier to print.

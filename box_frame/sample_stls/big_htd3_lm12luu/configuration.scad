@@ -11,7 +11,17 @@ include <inc/conf_bushing.scad>;
 
 // Custom settings here, tailor to your supplies and print settings
 
+
+// Extruder settings **********************************************************
+// Don't forget to set your slicer's extruder settings to match the values you
+// enter here.
+
 layer_height = 0.3;
+// Width over thickness determines how wide the plastic will be when extruded
+// onto the object that is being printed. width_over_thickness is multiplied
+// by the layer_height to calculate this width. i.e. If your layer_height is
+// set to 0.3 mm and your width_over_thickness is set to 2.2, the resulting
+// width will be 0.66 mm.
 width_over_thickness = 2.2;
 
 // Select your belt type ******************************************************
@@ -53,7 +63,7 @@ bushing_carriage = conf_b_lm12uu;
 // [outer_diameter, width, inner_diameter, uses_guide]
 // 608 [standard skate bearings] with bearing guide
 bearing_608 = [22, 7, 8, 1];
-//608 bearings with fender washers. Not good at all, the belt brushes against the carriage
+// 608 bearings with fender washers. Not good at all, the belt brushes against the carriage
 bearing_608_washers = [22, 10, 8, 0];
 // one 625 with guides
 bearing_625 = [16, 5, 5, 1];
@@ -67,7 +77,7 @@ bearing_623_double = [10, 8, 3, 0];
 
 idler_bearing = bearing_624_double;
 
-//Select carriage lenght
+// Select carriage lenght ******************************************************
 // 30 for single carriage extruder (two holes with centers 30mm apart)
 // 50 for wade or single with fan (three holes, 30-20)
 // 80 for full length carriage (four holes, 30-20-30)
@@ -85,24 +95,42 @@ carriage_l_base = 80;
 
 use_fillets = 1;
 
-//set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
+// set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
 i_am_box = 1;
 
-//if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
-//get stronger motor mount. Only for i_am_box = 0
+// if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
+// get stronger motor mount. Only for i_am_box = 0
 i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 
-//radius of long threaded rod on Y frame
+
+// Radius of long threaded rod on Y frame
+
+// Affects y-axis-corner (both box and single plate)
+// and y-axis-bracket (box only)
+
 //Use 5.4 for M10 or 4.4 for M8
 y_threaded_rod_long_r = 5.4;
 
-// Thickness of the XZ plate board. Leave at 12 for single plate
+
+// Thickness of the boards that make the box frame.
+
+// in y-axis-corner it governs the height of the corners by adjusting the
+// distance between ground and M10 threaded rod. (both box and single plate)
+
+// For box model, the parts that hold Z smooth rod have one hole from front
+// and one from side, and this setting makes sure that the screw from side
+// is in the center of the plank.
+
+// Use 12 for single plate
+// or 20 if you want to use the Y lm8uu holders 
+// (extras/bearing-holder-single-plate-y)
 board_thickness = 18;
 
-// segments of small holes. some poeple claim that a low value makes them easier to print.
+// Segments of small holes. some poeple claim that a low value makes them easier to print.
 small_hole_segments=7;
 
-// END of custom settings
+
+// END of custom settings *****************************************************
 
 
 // You are not supposed to change this

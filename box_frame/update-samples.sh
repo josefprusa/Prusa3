@@ -2,6 +2,10 @@
 #this script generates models for all samples
 
 if [ -e configuration.scad.dist ]; then
+    if [ -e configuration.scad ]; then
+        mv --backup=numbered configuration.scad configuration.scad.autobackup
+    fi
+
 
     for i in `ls sample_stls`
     do
@@ -26,6 +30,10 @@ if [ -e configuration.scad.dist ]; then
                 rm output/bushing.stl
                 EXTRAS="$EXTRAS bearing-holder-single-plate-y.stl"
             fi
+            # build wade extruder for medium carriage
+            if grep "carriage_l_base = 50" configuration.scad ; then
+                EXTRAS="$EXTRAS gregs-wade-v3.stl wade-gears.stl"
+            fi
             # build the extras
             for model in $EXTRAS
             do
@@ -37,6 +45,10 @@ if [ -e configuration.scad.dist ]; then
         fi
 
     done
+
+    if [ -e configuration.scad.autobackup ]; then
+        mv configuration.scad.autobackup configuration.scad
+    fi
 
 else
     echo "configuration.scad.dist not found, aborting"

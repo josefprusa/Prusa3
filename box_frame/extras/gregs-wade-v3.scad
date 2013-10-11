@@ -149,7 +149,7 @@ block_bevel_r=6;
 base_thickness=12;
 base_length=70+2-6;
 base_leadout=25+2+1-6;
-base_extra_depth=0;
+base_extra_depth=(bushing_xy[0] < 5 ? 11 : 0);
 
 nema17_hole_spacing=31; 
 nema17_width=1.7*25.4;

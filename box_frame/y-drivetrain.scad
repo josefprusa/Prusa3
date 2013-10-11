@@ -50,7 +50,7 @@ module oval(r=4, l=14, h=2){
     }
 }
 
-module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diameter_horizontal / 2, idler_height=16){
+module idlermount(len=43, narrow_len=0, narrow_width=0, rod=threaded_rod_diameter_horizontal / 2, idler_height=16){
     difference(){
         union(){
             //wide part holding bearing
@@ -62,31 +62,31 @@ module idlermount(len=42, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
                 translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
             }
         }
-        translate([-12, -9, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod + 0.01, l=12, h=25);
-        translate([0, -15 - single_wall_width*2, idler_height / 2]) {
-            //nut
+        translate([-12, -8, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod + 0.01, l=12, h=25);
+        translate([0, -13 - single_wall_width*2, idler_height / 2]) {
+            // nut for tensioning screw
             translate([0,0,0]) rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.8, $fn=6);
-            //nut insert
+            // nut insert
             translate([-2, -3.8, -m4_diameter * 1.5 / 2]) cube([20, 3.8, m4_diameter * 1.5+0.3]);
         }
 
+        // tensioning screw goes here
         translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=small_hole_segments, center=true);
-            translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
-                rotate([0, 90, 0]) idler_assy(idler_bearing);
-                translate([0, 10, 0]) cube([idler_width + 1, 20, idler_height + 2], center=true);
-            }
+        // bearing goes there
+        translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
+            rotate([0, 90, 0]) idler_assy(idler_bearing);
+            translate([0, 10, 0]) cube([idler_width + 1, 20, idler_height + 2], center=true);
+        }
 
     }
 }
 
 
 motorholder();
-translate([32, 20, 0])  idlermount();
+translate([32, 25, 0])  idlermount();
 
 if (idler_bearing[3] == 1) {
     translate([0, -12 - idler_bearing[0] / 2, 0]) {
-        bearing_guide_inner();
-        translate([idler_bearing[0] + 10, 0, 0])
-            bearing_guide_outer();
+        render() bearing_assy();
     }
 }

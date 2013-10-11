@@ -138,9 +138,9 @@ module plate_screw(long=0) {
 }
 
 //radius of the idler assembly (to surface that touches belt, ignoring guide walls)
-function idler_assy_r_inner(idler_bearing) = (idler_bearing[0] / 2) + 4 * single_wall_width * idler_bearing[3];
-//radius of the idler assembly (to smooth side of belt)
-function idler_assy_r_outer(idler_bearing) = (idler_bearing[0] / 2) + (idler_bearing[3] ? (5.5 * idler_bearing[3]) : 3);
+function idler_assy_r_inner(idler_bearing) = (idler_bearing[0] / 2) + (6 * single_wall_width + 0.2) * idler_bearing[3];
+//outer radius of the idler assembly (to smooth side of belt) 
+function idler_assy_r_outer(idler_bearing) = idler_assy_r_inner(idler_bearing) + belt_thickness + 1;
 
 
 module idler_assy(idler_bearing = [22, 7, 8, 1]) {
@@ -148,6 +148,8 @@ module idler_assy(idler_bearing = [22, 7, 8, 1]) {
     translate([0,0,-1]) cylinder(h = 120, r=(idler_bearing[2] + 1) / 2, $fn=small_hole_segments, center=true);
     //bearing shadow
     %cylinder(h = idler_bearing[1], r=idler_bearing[0]/2, center=true);
+    //belt shadow
+    %cylinder(h = idler_bearing[1] - 2, r=idler_assy_r_outer(idler_bearing), center=true);
 
     cylinder(h = idler_width + 1, r=idler_assy_r_outer(idler_bearing) + 0.5, center=true);
 }

@@ -16,62 +16,59 @@
  */
 
 include <../configuration.scad>
+include <functions.scad>
 
-//thickness of guiding wall
-thickness=1;
+//guiding_wall_thickness of guiding wall
+guiding_wall_thickness=layer_height * 4;
 
-belt_width = 7;
-height = belt_width + thickness;
-//height of the guiding wall, from beraring surface
-wall_ascent = 4.5;
-//guiding wall extends to sides of bearing too
+//width of the 'groove' in guide. 
+// Hardcoded as wider belts work imo better without guides
+belt_width = 6.5;
+
+height = max(belt_width, idler_bearing[1]) + guiding_wall_thickness;
+//How much the guiding wall overlaps the bearing wall (to the center)
 wall_descent = 1;
 
-module bearing_guide_inner()
-{
+module bearing_guide_inner(){
+    //inner (smaller) part of the guide
     difference(){
-        cylinder(r=idler_bearing[0] / 2 + single_wall_width * 2, h=height - (belt_width - idler_bearing[1])/2);
-        translate([0,0,-1])
-            cylinder(r=idler_bearing[0]/2,h=height+2);
+        cylinder(r=idler_bearing[0] / 2 + single_wall_width * 3, h=height - (max( idler_bearing[1], belt_width) - idler_bearing[1]) / 2);
+        translate([0, 0, -1])
+            cylinder(r=idler_bearing[0] / 2, h=height + 2);
     }
 
     difference(){
         union() {
-            cylinder(r=idler_bearing[0] / 2 + wall_ascent, h=thickness);
-            cylinder(r=idler_bearing[0] / 2, h=thickness + (belt_width - idler_bearing[1])/2);
+            cylinder(r=idler_assy_r_outer(idler_bearing), h=guiding_wall_thickness);  //guide wall
+            cylinder(r=idler_bearing[0] / 2, h=guiding_wall_thickness + (belt_width - idler_bearing[1])/2);  //this centers the guide on bearing
         }
         translate([0,0,-1])
-            cylinder(r=idler_bearing[0]/2-wall_descent,h=thickness+10);
+            cylinder(r=idler_bearing[0] / 2 - wall_descent, h=guiding_wall_thickness + 10);
     }
 }
 
-module bearing_guide_outer()
-{
+module bearing_guide_outer(){
     difference(){
-        cylinder(r=idler_bearing[0]/2+2*single_wall_width*2+0.2,h=height);
+        cylinder(r=idler_bearing[0] / 2 + 6 * single_wall_width + 0.2, h=height);
         translate([0,0,-1])
-            cylinder(r=idler_bearing[0]/2+single_wall_width*2+0.2,h=height+2);
+            cylinder(r=idler_bearing[0] / 2 + single_wall_width * 2 + 0.2, h=height + 2);
     }
 
     difference(){
         union(){
-            cylinder(r=idler_bearing[0]/2+wall_ascent,h=thickness);
-            cylinder(r=idler_bearing[0] / 2, h=thickness + (belt_width - idler_bearing[1])/2);
+            cylinder(r=idler_assy_r_outer(idler_bearing), h=guiding_wall_thickness);
+            cylinder(r=idler_bearing[0] / 2, h=guiding_wall_thickness + (belt_width - idler_bearing[1])/2);
         }
         translate([0,0,-1])
-            cylinder(r=idler_bearing[0]/2-wall_descent,h=thickness+2);
+cylinder(r=idler_bearing[0]/2-wall_descent, h=height + 5);
     }
 }
 
-if (idler_bearing[3] == 1) {
+module bearing_assy(){
 
-    translate([0,idler_bearing[0]+2*wall_ascent+2,0]){
-        bearing_guide_inner();
-        translate([idler_bearing[0]+2*wall_ascent+2,0,0])
-            bearing_guide_outer();
-
-    }
-} else {
-    cube([0.1,0.1,0.1]);
-    echo ("None");
+    bearing_guide_inner();
+    translate([idler_assy_r_outer(idler_bearing) * 2 + 2, 0, 0])
+        bearing_guide_outer();
 }
+
+bearing_assy();

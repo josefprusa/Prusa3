@@ -112,8 +112,8 @@ module x_end_idler(){
         %translate([-14, -9, 30.5 - (max(idler_bearing[0], 16) / 2)]) x_tensioner();
 }
 
-module x_tensioner(len=62, idler_height=max(idler_bearing[0], 16)) {
-        idlermount(len=len, rod=m4_diameter / 2, idler_height=idler_height, narrow_len=46, narrow_width=idler_width + 2 - single_wall_width);
+module x_tensioner(len=65, idler_height=max(idler_bearing[0], 16)) {
+    idlermount(len=len, rod=m4_diameter / 2 + 0.5, idler_height=idler_height, narrow_len=47, narrow_width=idler_width + 2 - single_wall_width);
 }
 
 
@@ -130,9 +130,7 @@ module pushfit_rod(diameter, length){
 }
 
 if (idler_bearing[3] == 1) {
-    translate([-33,  -33 - idler_bearing[0] / 2, 0]) {
-        render() bearing_guide_inner();
-        translate([0, -(idler_bearing[0]+10), 0])
-            render()bearing_guide_outer();
+    translate([-37,  -55 - idler_bearing[0] / 2, 0]) rotate([0, 0, 45]) {
+        render() bearing_assy();
     }
 }

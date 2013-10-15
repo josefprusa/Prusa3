@@ -38,7 +38,7 @@ wade(hotend_mount=default_extruder_mount,
 	mounting_holes=default_mounting_holes);
 
 ////CarriageVisualisation
-translate([-8.5,20,base_extra_depth+wade_block_depth+10]) rotate([-90,180,-90]) %import("../output/x-carriage.stl");
+//translate([-8.5,20,base_extra_depth+wade_block_depth+10]) rotate([-90,180,-90]) %import("../output/x-carriage.stl");
 %translate(large_wheel_translation) {
 	translate([0,0,-5])import("../output/wade-big-h.stl");
 	rotate([0,0,25]) translate([gear_separation,0,-1]) {
@@ -144,11 +144,11 @@ wade_block_height=55;
 wade_block_width=24;
 wade_block_depth=28;
 
-block_bevel_r=6;
+block_bevel_r=7;
 
-base_thickness=12;
-base_length=70+2-6;
-base_leadout=25+2+1-6;
+base_thickness=13;
+base_length=66;
+base_leadout=22;
 base_extra_depth=11;
 
 nema17_hole_spacing=31; 
@@ -171,7 +171,7 @@ hole_for_608=22.3;
 
 block_top_right=[wade_block_width,wade_block_height];
 
-layer_thickness=0.35;
+layer_thickness=layer_height;
 filament_diameter=3;
 filament_feed_hole_d=(filament_diameter*1.1)/cos(180/8);
 hobbing_depth=2;
@@ -370,7 +370,7 @@ echo("bhmh", mounting_holes)
 	}
 
 	//carriage mountig holes
-	translate([-24.5+64+4,0,3]) {
+	#translate([-24.5+64+4,-0.5,3]) {
 		translate([-50,0,0]) {
 			translate([0,0,(wade_block_depth+base_extra_depth)/2+4+layer_thickness]) cylinder(r=m3_diameter/2, h=wade_block_depth+base_extra_depth, center=true);
 			translate([0, 0, 1]) cylinder(r=m3_washer_diameter/2, h=10.1, center=true);

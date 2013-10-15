@@ -130,7 +130,7 @@ module pushfit_rod(diameter, length){
 }
 
 if (idler_bearing[3] == 1) {
-    translate([-37,  -55 - idler_bearing[0] / 2, 0]) rotate([0, 0, 45]) {
+    translate([-39,  -60 - idler_bearing[0] / 2, 0]) rotate([0, 0, 55]) {
         render() bearing_assy();
     }
 }

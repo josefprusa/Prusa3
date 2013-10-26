@@ -3,7 +3,7 @@
 // GNU GPL v3
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 //
 
 // each config is in form[r_rod, r, h, type, name] where:

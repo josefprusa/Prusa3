@@ -6,7 +6,7 @@
 // josefprusa@me.com
 // prusadjs.cz
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
 include <../configuration.scad>
 

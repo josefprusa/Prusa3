@@ -3,7 +3,7 @@
 // GNU GPL v3
 // Greg Frost
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
 include <../configuration.scad>
 use <../y-drivetrain.scad>

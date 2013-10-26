@@ -16,10 +16,10 @@ module nutrod(r=4.4){
     }
 }
 
-/*
-   20 mm betwenn the front threaded rods
-   25 mm between the side threaded and smooth rod
- */
+
+// 20 mm betwenn the front threaded rods
+// 25 mm between the side threaded and smooth rod
+ 
 
 module leftfront(thru = false){
     y_end_plug=2;

@@ -36,6 +36,7 @@
  * @using yIdler
  * @using yBeltClamp
  * @using yBearingHolder
+ * @using yFrameBracket
  * @using buildPlatform
  * @using buildSurface
  * @using NEMA17
@@ -48,7 +49,7 @@
  * @using m3x25xhex
  * @using m3nut
  * @using m3washer
- * @using ySmoothRod
+ * @using m8smoothRod
  * @using m8nut
  * @using m8washer
  * @using m10nut
@@ -63,24 +64,17 @@
  * @name Frame
  * @using plate
  * @using longPlate
- * @using woodScrew
+ * @using 16 woodScrew
  * @using spacer
  */
 
 /**
  * @id zaxis
  * @name Z Axis Assembly
- * @using zMotorHolder
- * @using zRodHolder
- * @using NEMA17
- * @using woodScrew
- * @using couplerTubing
+ * @using 2 zMotorHolder
+ * @using 2 zRodHolder
+ * @using 2 NEMA17
+ * @using 8 woodScrew
+ * @using 2 couplerTubing
  * @using spacer
- * @using 
- * @using 
- * @using 
- * @using 
- * @using 
- * @using 
- * @using 
  */

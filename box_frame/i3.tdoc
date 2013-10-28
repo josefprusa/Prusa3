@@ -13,67 +13,73 @@
 /**
  * @id xaxis
  * @name X Axis Assembly
+ * @category Assemblies
  * @using xMotorEnd
  * @using xIdlerEnd
  * @using xCarriage
  * @using NEMA17
  * @using belt
- * @using m3x10xhex
+ * @using 3 m3x10xhex
+ * @using m3xgrubscrew
  * @using beltPulley
  * @using bearing-608
- * @using lm8uu
- * @using m3x25xhex
- * @using m3nut
- * @using m3washer
- * @using m8smoothRod
+ * @using 7 lm8uu
+ * @using 7 m3x25xhex
+ * @using 7 m3nut
+ * @using 7 m3washer
+ * @using 2 m8smoothRod
  */
  
 /**
  * @id yaxis
  * @name Y Axis Assembly
+ * @category Assemblies
  * @using yMotorHolder
- * @using yCorner
+ * @using 4 yCorner
  * @using yIdler
  * @using yBeltClamp
- * @using yBearingHolder
- * @using yFrameBracket
+ * @using 3 yBearingHolder
+ * @using 4 yFrameBracket
  * @using buildPlatform
  * @using buildSurface
  * @using NEMA17
  * @using belt
- * @using m3x10xhex
+ * @using 2 m3x10xhex
  * @using beltPulley
  * @using m3xgrubscrew
  * @using bearing-608
- * @using lm8uu
- * @using m3x25xhex
- * @using m3nut
- * @using m3washer
- * @using m8smoothRod
- * @using m8nut
- * @using m8washer
- * @using m10nut
- * @using m10washer
- * @using m8threadedRod
- * @using m10threadedRod
- * @using woodScrew
+ * @using 3 lm8uu
+ * @using 3 m3x25xhex
+ * @using 3 m3nut
+ * @using 3 m3washer
+ * @using 2 m8smoothRod
+ * @using 22 m8nut
+ * @using 22 m8washer
+ * @using 12 m10nut
+ * @using 12 m10washer
+ * @using 4 m8threadedRod
+ * @using 2 m10threadedRod
+ * @using 9 woodScrew
  */
  
 /**
  * @id frame
  * @name Frame
- * @using plate
+ * @category Assemblies
+ * @using 6 plate
  * @using longPlate
- * @using 16 woodScrew
+ * @using 28 woodScrew
  * @using spacer
  */
 
 /**
  * @id zaxis
  * @name Z Axis Assembly
+ * @category Assemblies
  * @using 2 zMotorHolder
  * @using 2 zRodHolder
  * @using 2 NEMA17
+ * @using 6 m3x10xhex
  * @using 8 woodScrew
  * @using 2 couplerTubing
  * @using spacer

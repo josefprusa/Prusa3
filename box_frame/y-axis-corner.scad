@@ -6,6 +6,13 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id yCorner
+ * @name Y Axis Corner
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 use <y-drivetrain.scad>
 

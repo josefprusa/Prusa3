@@ -1,3 +1,18 @@
+// PRUSA iteration3
+// Y frame brackets
+// GNU GPL v3
+// Josef Průša <josefprusa@me.com>
+// Václav 'ax' Hůla <axtheb@gmail.com>
+// http://www.reprap.org/wiki/Prusa_Mendel
+// http://github.com/josefprusa/Prusa3
+
+// ThingDoc entry
+/**
+ * @id yFrameBracket
+ * @name Y Axis Frame Bracket
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 
 module bolt_track(width, length, height) {

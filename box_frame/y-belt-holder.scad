@@ -6,6 +6,13 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id yBeltClamp
+ * @name Y Belt Holder
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 
 module y_belt_holder(len=40) {

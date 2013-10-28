@@ -6,6 +6,13 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id xCarriage
+ * @name X Axis Extruder Carriage
+ * @category Printed
+ */
+
 include <configuration.scad>
 use <bushing.scad>
 // mounting plate

@@ -6,6 +6,19 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/josefprusa/Prusa3
 
+// ThingDoc entries
+/**
+ * @id zMotorHolder
+ * @name Z Axis Motor Holder
+ * @category Printed
+ */
+ 
+/**
+ * @id zRodHolder
+ * @name Z Axis Rod Holder
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 
 module zmotorholder(thickness=(i_am_box == 0 ? 38 : 23), bottom_thickness=5){

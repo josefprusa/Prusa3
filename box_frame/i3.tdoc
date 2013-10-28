@@ -1,0 +1,86 @@
+/**
+ * @root
+ * @name Prusa i3 RepRap
+ * @category Printer
+ * @using extruder
+ * @using xaxis
+ * @using yaxis
+ * @using frame
+ * @using zaxis
+ * @using electronics
+ */
+ 
+/**
+ * @id xaxis
+ * @name X Axis Assembly
+ * @using xMotorEnd
+ * @using xIdlerEnd
+ * @using xCarriage
+ * @using NEMA17
+ * @using belt
+ * @using m3x10xhex
+ * @using beltPulley
+ * @using bearing-608
+ * @using lm8uu
+ * @using m3x25xhex
+ * @using m3nut
+ * @using m3washer
+ * @using m8smoothRod
+ */
+ 
+/**
+ * @id yaxis
+ * @name Y Axis Assembly
+ * @using yMotorHolder
+ * @using yCorner
+ * @using yIdler
+ * @using yBeltClamp
+ * @using yBearingHolder
+ * @using buildPlatform
+ * @using buildSurface
+ * @using NEMA17
+ * @using belt
+ * @using m3x10xhex
+ * @using beltPulley
+ * @using m3xgrubscrew
+ * @using bearing-608
+ * @using lm8uu
+ * @using m3x25xhex
+ * @using m3nut
+ * @using m3washer
+ * @using ySmoothRod
+ * @using m8nut
+ * @using m8washer
+ * @using m10nut
+ * @using m10washer
+ * @using m8threadedRod
+ * @using m10threadedRod
+ * @using woodScrew
+ */
+ 
+/**
+ * @id frame
+ * @name Frame
+ * @using plate
+ * @using longPlate
+ * @using woodScrew
+ * @using spacer
+ */
+
+/**
+ * @id zaxis
+ * @name Z Axis Assembly
+ * @using zMotorHolder
+ * @using zRodHolder
+ * @using NEMA17
+ * @using woodScrew
+ * @using couplerTubing
+ * @using spacer
+ * @using 
+ * @using 
+ * @using 
+ * @using 
+ * @using 
+ * @using 
+ * @using 
+ */

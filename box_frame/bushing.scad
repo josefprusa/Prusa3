@@ -4,8 +4,15 @@
 // Josef Průša <josefprusa@me.com>
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id yBearingHolder
+ * @name Y Axis Bearing Holder
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 
 // ensure that the part length is at least the length of bushing barrel plus add

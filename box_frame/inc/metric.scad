@@ -3,7 +3,7 @@
 // GNU GPL v3
 // Josef Průša <josefprusa@me.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
 // DONT CHANGE THIS FILE! ALTER VALUES IN CONFIGURATION.SCAD INSTEAD
 

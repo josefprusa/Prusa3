@@ -1,37 +1,75 @@
 /**
+ * 10mm threaded rod or 3/8 to 7/16 in imperial variant
+ * @name M10 Threaded Rod 
+ * @common
+ * @category Vitamins
+ * @id m10threadedRod
+ */
+ 
+/**
+ * Simple M10 nut or 3/8 to 7/16 in imperial variant
+ * @common
+ * @name M10 nut
+ * @category Vitamins
+ * @id m10nut
+ */
+ 
+/**
+ * @name M10 washer
+ * @common
+ * @category Vitamins
+ * @id m10washer
+ */
+
+/**
  * Simple M8 nut or 5/16 in imperial variant.
  * also can be used for other screwing things :-D
  * @common
  * @name M8 nut
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m8nut
  */
  
 /**
  * @name M8 washer
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m8washer
  */
 
 /**
  * @name M8 washer mudguard
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m8washer-big
  */
 
 /**
  * @name M8 spring
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m8spring
+ */
+ 
+/**
+ * 8mm threaded rod or 5/16 in imperial variant
+ * @name M8 Threaded Rod
+ * @common
+ * @category Vitamins
+ * @id m8threadedRod
+ */
+ 
+/**
+ * @name M8 Smooth Rod
+ * @common
+ * @category Vitamins
+ * @id m8smoothRod
  */
 
 /**
  * @name M8 30mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m8x30
  */
  
@@ -39,98 +77,98 @@
 /**
  * @name M3 nut
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3nut
  */
  
 /**
  * @name M4 nut
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m4nut
  */
  
 /**
  * @name M3 washer
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3washer
  */
 
 /**
  * @name M3 10mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x10
  */
  
 /**
  * @name M3 10mm screw with hex head
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x10xhex
  */
 
 /**
  * @name M3 grub screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3xgrubscrew
  */
  
 /**
  * @name M3 10mm screw with flat head
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x10xflat
  */
  
 /**
  * @name M3 20mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x20
  */
  
 /**
  * @name M3 40mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x40
  */
 
 /**
  * @name M3 20mm screw with hex head
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x20xhex
  */
  
 /**
  * @name M3 25mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x25
  */
  
 /**
  * @name M3 25mm screw with HEX head
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x25xhex
  */
  
 /**
  * @name M3 15mm screw with HEX head
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m3x15xhex
  */
 
 /**
  * @name M4 25mm screw
  * @common
- * @category Nuts&bolts
+ * @category Vitamins
  * @id m4x25
  */
  
@@ -139,13 +177,81 @@
  * @name 608 skate bearing
  * @common
  * @image common/608.jpg
- * @category Nuts&bolts
+ * @category Vitamins
  * @id bearing-608
  */
  
 /**
  * @name NEMA17 stepper motor
  * @common
+ * @category Power Transmission
  * @id NEMA17
  */
  
+/**
+ * @name Belt Pulley
+ * @id beltPulley
+ * @category Power Transmission
+ */
+ 
+/**
+ * @name Timing Belt
+ * @category Power Transmission
+ * @id belt
+ */
+ 
+/**
+ * @name Linear Bearing
+ * @category Vitamins
+ * @id lm8uu
+ */
+ 
+/**
+ * @name 5mm Vinyl Tubing
+ * @category Power Transmission
+ * @id couplerTubing
+ */
+ 
+/**
+ * @name Controller Electronics
+ * @category Electronics
+ * @id electronics
+ */
+ 
+/**
+ * @name M3.5x20 Wood Screw
+ * @id woodScrew
+ * @category Vitamins
+ */
+ 
+/**
+ * @name 3mm thick spacer
+ * @category Miscellaneous
+ * @id spacer
+ */
+ 
+/**
+ * @name 45cm x 10cm x 12mm plate
+ * @category Wood
+ * @id plate
+ */
+ 
+/**
+ * @name 47.5cm x 10cm x 12mm plate
+ * @category Wood
+ * @id longPlate
+ */
+
+/**
+ * @name 23x23cm 12mm plate
+ * @category Wood
+ * @id buildPlatform
+ */
+ 
+/**
+ * @name 20x20cm 4mm glass plate
+ * @category Glass
+ * @id buildSurface
+ */
+ 
+

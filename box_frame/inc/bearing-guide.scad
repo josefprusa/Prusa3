@@ -5,11 +5,11 @@
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // Original design by Greg Frost
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
-
+// ThingDoc entry
 /**
- * Helps to hold belt aligned on the bearing.
+ * @description Helps to hold belt aligned on the bearing.
  * @id bearing-guide
  * @name Bearing guide
  * @category Printed

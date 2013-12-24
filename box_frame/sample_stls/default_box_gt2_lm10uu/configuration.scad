@@ -61,8 +61,8 @@ belt_thickness = 0.8;
 // Choose bearing/bushing configuration ***************************************
 // conf_b_* are in inc/conf_bushing.scad
 
-bushing_xy = conf_b_lm8uu;
-bushing_z = conf_b_lm8uu;
+bushing_xy = conf_b_lm10uu;
+bushing_z = conf_b_lm10uu;
 // for longer bearings use one shorter in x-carriage to make place for belt attachment
 // by default use same as xy
 bushing_carriage = bushing_xy;
@@ -93,7 +93,7 @@ carriage_l_base = 50;
 use_fillets = 1;
 
 // set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
-i_am_box = 0;
+i_am_box = 1;
 
 // if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
 // get stronger motor mount. Only for i_am_box = 0
@@ -121,7 +121,7 @@ y_threaded_rod_long_r = 5.4;
 // Use 12 for single plate
 // or 20 if you want to use the Y lm8uu holders
 // (extras/bearing-holder-single-plate-y)
-board_thickness = 12;
+board_thickness = 18;
 
 // Segments of small holes. some poeple claim that a low value makes them easier to print.
 small_hole_segments=7;
@@ -133,6 +133,6 @@ include <inc/settings.scad>;
 // These constants define the geometry of the doc/complete-printer.scad
 bed_x_size=225;
 bed_y_size=225;
-x_smooth_rod_length=380+board_thickness*2;
+x_smooth_rod_length=450+board_thickness*2;
 y_smooth_rod_length=400;
-z_smooth_rod_length=320;
+z_smooth_rod_length=400;

@@ -121,7 +121,7 @@ y_threaded_rod_long_r = 5.4;
 // Use 12 for single plate
 // or 20 if you want to use the Y lm8uu holders
 // (extras/bearing-holder-single-plate-y)
-board_thickness = 12;
+board_thickness = 20;
 
 // Segments of small holes. some poeple claim that a low value makes them easier to print.
 small_hole_segments=7;

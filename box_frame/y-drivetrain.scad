@@ -15,7 +15,6 @@ module motorholder(thickness=10){
             // Motor holding part
             translate([29, -21 + 50, 0])
             {
-                //#cube([42, 42, 2], center=true);
                 difference(){
                     union(){
                         translate([-21 + 4.5, 0, 5]) cube([9, 31, thickness], center=true);
@@ -50,7 +49,7 @@ module oval(r=4, l=14, h=2){
     }
 }
 
-module idlermount(len=43, narrow_len=0, narrow_width=0, rod=threaded_rod_diameter_horizontal / 2, idler_height=16){
+module idlermount(len=45, narrow_len=0, narrow_width=0, rod=threaded_rod_diameter_horizontal / 2, idler_height=16){
     difference(){
         union(){
             //wide part holding bearing
@@ -73,7 +72,7 @@ module idlermount(len=43, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
         // tensioning screw goes here
         translate([0, -19, idler_height / 2]) rotate([90, 90, 0]) cylinder(r=m4_diameter / 2, h=15, $fn=small_hole_segments, center=true);
         // bearing goes there
-        translate([0, len + idler_bearing[2] - 33, idler_height / 2]) {
+        translate([0, len + idler_bearing[2] - 35, idler_height / 2]) {
             rotate([0, 90, 0]) idler_assy(idler_bearing);
             translate([0, 10, 0]) cube([idler_width + 1, 20, idler_height + 2], center=true);
         }

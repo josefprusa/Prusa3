@@ -58,7 +58,7 @@ module x_carriage(){
                         translate([-3.5, 0, 15 + carriage_hole_to_side]) cube([13, 10, 8], center = true);
                         if (carriage_l_base == 30) {
                             //more space for belt ends, as there is only one cutout
-                            #translate([-3.5, 0, 15 + carriage_hole_to_side]) cube([13, 10, 14], center = true);
+                            translate([-3.5, 0, 15 + carriage_hole_to_side]) cube([13, 10, 14], center = true);
                         }
                     }
 

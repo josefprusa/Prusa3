@@ -145,11 +145,12 @@ function idler_assy_r_outer(idler_bearing) = idler_assy_r_inner(idler_bearing) +
 
 module idler_assy(idler_bearing = [22, 7, 8, 1]) {
 
+    //bearing axle
     translate([0,0,-1]) cylinder(h = 120, r=(idler_bearing[2] + 1) / 2, $fn=small_hole_segments, center=true);
     //bearing shadow
     %cylinder(h = idler_bearing[1], r=idler_bearing[0]/2, center=true);
     //belt shadow
-    %cylinder(h = idler_bearing[1] - 2, r=idler_assy_r_outer(idler_bearing), center=true);
+    %cylinder(h = belt_width, r=idler_assy_r_outer(idler_bearing), center=true);
 
     cylinder(h = idler_width + 1, r=idler_assy_r_outer(idler_bearing) + 0.5, center=true);
 }

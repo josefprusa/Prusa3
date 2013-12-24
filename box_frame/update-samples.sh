@@ -1,6 +1,9 @@
 #!/bin/bash
 #this script generates models for all samples
 
+find sample_stls -name "*.stl" -delete
+find sample_stls -name "*.gcode" -delete
+
 if [ -e configuration.scad.dist ]; then
     if [ -e configuration.scad ]; then
         mv --backup=numbered configuration.scad configuration.scad.autobackup

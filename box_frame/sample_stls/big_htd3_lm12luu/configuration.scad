@@ -11,7 +11,6 @@ include <inc/conf_bushing.scad>;
 
 // Custom settings here, tailor to your supplies and print settings
 
-
 // Extruder settings **********************************************************
 // Don't forget to set your slicer's extruder settings to match the values you
 // enter here.
@@ -26,29 +25,38 @@ width_over_thickness = 2.2;
 
 // Select your belt type ******************************************************
 
-//T2.5
+// T2.5
+//belt_width = 6.5;  //add 0.5 to actual width
 //belt_tooth_distance = 2.5;
 //belt_tooth_ratio = 0.75;
+//belt_thickness = 0.8;
 
-//T5 (strongly discouraged)
+// T5 (strongly discouraged)
+//belt_width = 6.5;
 //belt_tooth_distance = 5;
 //belt_tooth_ratio = 0.75;
+//belt_thickness = 0.8;
 
-//HTD3
+// HTD3
+belt_width = 9.5;
 belt_tooth_distance = 3;
 belt_tooth_ratio = 0.75;
+belt_thickness = 1.75;
 
-//MXL
+// MXL
+//belt_width = 6.5;
 //belt_tooth_distance = 2.032;
 //belt_tooth_ratio = 0.64;
+//belt_thickness = i have no idea;
 
-//GT2 there is bunch of GT2 belts with different tooth-to-tooth distance
-//adjust to your needs
+// GT2 
+// there is bunch of GT2 belts with different tooth-to-tooth distance
+// this one is most common in reprap world
+// adjust to your needs.
+//belt_width = 6.5;
 //belt_tooth_distance = 2;
 //belt_tooth_ratio = 0.5;
-
-// For T type belts you will probably want 0.8mm or so.
-belt_thickness = 1.75;
+//belt_thickness = 0.8;
 
 // Choose bearing/bushing configuration ***************************************
 // conf_b_* are in inc/conf_bushing.scad
@@ -60,22 +68,9 @@ bushing_z = conf_b_lm12luu;
 bushing_carriage = conf_b_lm12uu;
 
 // Select idler bearing size **************************************************
-// [outer_diameter, width, inner_diameter, uses_guide]
-// 608 [standard skate bearings] with bearing guide
-bearing_608 = [22, 7, 8, 1];
-// 608 bearings with fender washers. Not good at all, the belt brushes against the carriage
-bearing_608_washers = [22, 10, 8, 0];
-// one 625 with guides
-bearing_625 = [16, 5, 5, 1];
-// two 625 - for use without bearing guides.
-bearing_625_double = [16, 10, 5, 0];
+// bearing_* are in inc/conf_bushing.scad
 
-// those two here are really good:
-bearing_624_double = [13, 10, 4, 0];
-// this one has roughly same diameter as pulley, makes belt parallel so its prettier
-bearing_623_double = [10, 8, 3, 0];
-
-idler_bearing = bearing_624_double;
+idler_bearing = bearing_623;
 
 // Select carriage lenght ******************************************************
 // 30 for single carriage extruder (two holes with centers 30mm apart)
@@ -83,6 +78,7 @@ idler_bearing = bearing_624_double;
 // 80 for full length carriage (four holes, 30-20-30)
 
 carriage_l_base = 80;
+
 
 // Fillets ********************************************************************
 // fillets are rounded corners of boxes. The right engineering term is probably radius
@@ -122,70 +118,20 @@ y_threaded_rod_long_r = 5.4;
 // is in the center of the plank.
 
 // Use 12 for single plate
-// or 20 if you want to use the Y lm8uu holders 
+// or 20 if you want to use the Y lm8uu holders
 // (extras/bearing-holder-single-plate-y)
 board_thickness = 18;
 
 // Segments of small holes. some poeple claim that a low value makes them easier to print.
 small_hole_segments=7;
 
-
-// END of custom settings *****************************************************
-
-
-// You are not supposed to change this
-board_to_xz_distance = 26;
-xaxis_rod_distance = 45;
-
-//calculated from settings
-single_wall_width = width_over_thickness * layer_height;
-
-idler_width = (idler_bearing[1] > 7 ? idler_bearing[1] : 7) + 2.5 * idler_bearing[3] ;
-
-//deltas are used to enlarge parts for bigger bearings 
-xy_delta = ((bushing_xy[1] <= 7.7) ? 0 : bushing_xy[1] - 7.7) * 0.9;
-z_delta = (bushing_z[1] <= 7.7) ? 0 : bushing_z[1] - 7.7;
-
-// CHANGE ONLY THE STUFF YOU KNOW
-// IT WILL REPLACE DEFAULT SETTING
-
-// RODS
-
-// threaded_rod_diameter = 0;
-// threaded_rod_diameter_horizontal = 0;
-// smooth_bar_diameter = 0;
-// smooth_bar_diameter_horizontal = 0;
-
-// Nuts and bolts
-
-// m8_diameter = 0;
-// m8_nut_diameter = 0;
-
-// m4_diameter = 0;
-// m4_nut_diameter = 0;
-
-// m3_diameter = 0;
-// m3_nut_diameter = 0;
-
-// Bushing holder
-
-// bushing_core_diameter = smooth_bar_diameter;
-// bushing_material_thickness = 0;
-
-///counted stuff
-m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
-
 // functions
-include <inc/functions.scad>
+include <inc/functions.scad>;
+include <inc/settings.scad>;
 
-// These constants define the geometry of the complete-printer.scad
-
-//x_smooth_rod_length=325;
-//y_smooth_rod_length=405;
-//z_smooth_rod_length=235;
-bed_x_size=225;
-bed_y_size=225;
-
-x_smooth_rod_length=460+board_thickness*2; // 492 for 16mm thickness; 484 for 12mm thickness
-y_smooth_rod_length=470;
+// These constants define the geometry of the doc/complete-printer.scad
+bed_x_size=305;
+bed_y_size=305;
+x_smooth_rod_length=600+board_thickness*2;
+y_smooth_rod_length=490;
 z_smooth_rod_length=405;

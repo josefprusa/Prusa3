@@ -14,7 +14,6 @@ use <y-drivetrain.scad>
 //height and width of the x blocks depend on x smooth rod radius
 x_box_height = 52 + 2 * bushing_xy[0];
 x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
-echo(x_box_width);
 bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8)), x_box_height);
 
 module x_end_motor(){
@@ -72,7 +71,7 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
         translate([z_delta, 0, 4 - bushing_xy[0]]) linear_negative(bushing_z, bearing_height);
 
         // belt hole
-        translate([-5.5 - 10 + 1.5, 22 - 9 + offset, 30]) cube_fillet([max(idler_width + 2, 11), 55, 27], center = true, vertical=0, top=[0, 1, 0, 1], bottom=[0, 1, 0, 1], $fn=4);
+        translate([-14 - xy_delta / 2, 22 - 9 + offset, 30]) cube_fillet([max(idler_width + 2, 11), 55, 27], center = true, vertical=0, top=[0, 1, 0, 1], bottom=[0, 1, 0, 1], $fn=4);
 
         //smooth rods
         translate([-10 - bushing_xy[0], offset, 0]) {
@@ -107,12 +106,12 @@ module x_end_idler(){
             translate([15 - 2 * single_wall_width, 0, 0]) rotate([90, 0, 90]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3, $fn=6);
 
         }
-        translate([-6 - x_box_width, 11, 29.5 - (max(idler_bearing[0], 16) / 2)]) cube([x_box_width + 1, 11, 1.5 + max(idler_bearing[0], 16)]);
+        translate([-6 - x_box_width, 11, 29.5 - (max(idler_width, 16) / 2)]) cube([x_box_width + 1, 12, 1.5 + max(idler_bearing[0], 16)]);
     }
-        %translate([-14, -9, 30.5 - (max(idler_bearing[0], 16) / 2)]) x_tensioner();
+        %translate([-14 - xy_delta / 2, -9, 30.5 - (max(idler_width, 16) / 2)]) x_tensioner();
 }
 
-module x_tensioner(len=65, idler_height=max(idler_bearing[0], 16)) {
+module x_tensioner(len=68, idler_height=max(idler_bearing[0], 16)) {
     idlermount(len=len, rod=m4_diameter / 2 + 0.5, idler_height=idler_height, narrow_len=47, narrow_width=idler_width + 2 - single_wall_width);
 }
 
@@ -129,8 +128,9 @@ module pushfit_rod(diameter, length){
     translate([0, -diameter/2-1.2, length/2]) cube([diameter - 1, 1, length], center = true);
 }
 
-if (idler_bearing[3] == 1) {
-    translate([-39,  -60 - idler_bearing[0] / 2, 0]) rotate([0, 0, 55]) {
+
+if (idler_bearing[3] == 1) {  // bearing guides
+    translate([-39,  -60 - idler_bearing[0] / 2, 4 - bushing_xy[0]]) rotate([0, 0, 55]) {
         render() bearing_assy();
     }
 }

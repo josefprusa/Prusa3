@@ -4,8 +4,21 @@
 // Josef Průša <josefprusa@me.com>
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id xMotorEnd
+ * @name X Axis Motor End
+ * @category Printed
+ */
+ 
+/**
+ * @id xIdlerEnd
+ * @name X Axis Idler End
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 use <bushing.scad>
 use <inc/bearing-guide.scad>

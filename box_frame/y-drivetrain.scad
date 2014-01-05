@@ -4,8 +4,21 @@
 // Josef Průša <josefprusa@me.com>
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id yMotorHolder
+ * @name Y Axis Motor Holder
+ * @category Printed
+ */
+ 
+/**
+ * @id yIdler
+ * @name Y Axis Belt Idler
+ * @category Printed
+ */ 
+ 
 include <configuration.scad>
 use <inc/bearing-guide.scad>
 

@@ -5,7 +5,7 @@
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // Vlnofka <>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
 
 module nut(d,h,horizontal=true){

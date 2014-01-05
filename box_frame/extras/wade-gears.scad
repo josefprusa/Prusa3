@@ -3,6 +3,17 @@
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // Josef Průša <josefprusa@me.com>
 
+// ThingDoc entry
+/**
+ * @name Greg's Large Gear
+ * @id large-gear
+ */
+ 
+/**
+ * @name Greg's Small Gear
+ * @id small-gear
+ */
+
 include <../configuration.scad>
 use <inc/parametric_involute_gear_v5.0.scad>
 

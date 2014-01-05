@@ -4,8 +4,15 @@
 // Josef Průša <josefprusa@me.com>
 // Václav 'ax' Hůla <axtheb@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// http://github.com/josefprusa/Prusa3
 
+// ThingDoc entry
+/**
+ * @id yCorner
+ * @name Y Axis Corner
+ * @category Printed
+ */
+ 
 include <configuration.scad>
 use <y-drivetrain.scad>
 
@@ -16,10 +23,10 @@ module nutrod(r=4.4){
     }
 }
 
-/*
-   20 mm betwenn the front threaded rods
-   25 mm between the side threaded and smooth rod
- */
+
+// 20 mm betwenn the front threaded rods
+// 25 mm between the side threaded and smooth rod
+ 
 
 module leftfront(thru = false){
     y_end_plug=2;

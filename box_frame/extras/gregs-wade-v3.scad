@@ -411,6 +411,8 @@ echo("bhmh", mounting_holes)
 			translate([0,0,-1])
 			b608(h=9);
 		
+			translate([0,0,8]) cylinder(r=13/2,h=1); // hlavac@code.cz: make the above bearing free to rotate
+		
 			translate([0,0,20])
 			b608(h=9);
 		

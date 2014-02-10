@@ -31,6 +31,7 @@ bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8)
 
 module x_end_motor(){
 
+	motor_shift = (pulley_teeth*belt_tooth_distance/PI-17)/2-belt_tooth_depth;	//Marcelino Bernardo
     mirror([0, 1, 0]) {
 
         x_end_base([3, 3, min((bushing_xy[0] - 3) * 2, 3), 2], len=42, offset=-5, thru=false);
@@ -43,13 +44,13 @@ module x_end_motor(){
                     union() {
                         translate([-14, -16 + z_delta / 2, 24]) cube_fillet([17.5, 10.5 + z_delta, 55], center = true, vertical=[0, 0, 3, 3], top=[0, 3, 6, 3], $fn=16);
                         //lower arm holding outer stepper screw
-                        translate([-10.25, -34, 9]) intersection(){
+                        translate([-10.25, -34, 9+motor_shift]) intersection(){
                             translate([0, 0, -5]) cube_fillet([10, 37, 28], center = true, vertical=[0, 0, 0, 0], top=[0, 3, 5, 3]);
                             translate([-10/2, 10, -26]) rotate([45, 0, 0]) cube_fillet([10, 60, 60], radius=2);
                         }
                     }
                 }
-                translate([-16, -32, 30.25]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 0, 1, 1], h=11);
+                translate([-16, -32, 30.25+motor_shift]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 0, 1, 1], h=11);
             }
 
             // motor screw holes
@@ -57,7 +58,7 @@ module x_end_motor(){
                 // belt hole
                     translate([-30, 11, -0.25]) cube_fillet([11, 36, 22], vertical=0, top=[0, 1, 0, 1], bottom=[0, 1, 0, 1], center = true, $fn=4);
                 //motor mounting holes
-                translate([-29.5, 0, 0]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5.5, $fn=small_hole_segments, h=8);
+                translate([-29.5, 0, motor_shift]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5.5, $fn=small_hole_segments, h=8);
             }
         }
         //smooth rod caps

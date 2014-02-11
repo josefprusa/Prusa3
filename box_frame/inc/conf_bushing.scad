@@ -42,7 +42,7 @@ conf_b_lm12luu = [6, 10.6, 57, 0, "lm12luu bearing (12mm, double length)"];
 // Select by availability, smaller is better.
 bearing_623 = [10, 4, 3, 1, "623 bearing"];
 bearing_624 = [13, 5, 4, 1, "624 bearing"];
-bearing_625 = [16, 5, 5, 1, "625 bearing"];
+//bearing_625 = [16, 5, 5, 0, "625 bearing"];	//too big to add bearing guide
 
 // two bearings side by side - for use without bearing guides.
 // Not recomended anymore
@@ -51,8 +51,8 @@ bearing_624_double = [13, 10, 4, 0, "624 bearing x2"];
 bearing_623_double = [10, 8, 3, 0, "623 bearing"];
 
 // 608 [standard skate bearings] with bearing guide
-bearing_608 = [22, 7, 8, 1, "608 bearing"];
+//bearing_608 = [22, 7, 8, 1, "608 bearing"];	
 // 608 bearings with fender washers.
 // the belt brushes both against the carriage and the washers.
-bearing_608_washers = [22, 10, 8, 0, "608 bearing"];
+//bearing_608_washers = [22, 10, 8, 0, "608 bearing"];
 

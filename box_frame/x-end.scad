@@ -31,7 +31,7 @@ bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8)
 
 module x_end_motor(){
 
-	motor_shift = (pulley_teeth*belt_tooth_distance/PI-17)/2-belt_tooth_depth;	//Marcelino Bernardo
+	motor_shift = (pulley_teeth*belt_tooth_distance/PI-17)/2;	//Marcelino Bernardo
     mirror([0, 1, 0]) {
 
         x_end_base([3, 3, min((bushing_xy[0] - 3) * 2, 3), 2], len=42, offset=-5, thru=false);

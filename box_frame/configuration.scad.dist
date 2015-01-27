@@ -30,6 +30,8 @@ width_over_thickness = 2.2;
 //belt_tooth_distance = 2.5;
 //belt_tooth_ratio = 0.75;
 //belt_thickness = 0.8;
+//belt_tooth_depth = 0.7;	//added by Marcelino Bernardo
+//pulley_teeth = 17;		//added by Marcelino Bernardo
 
 // T5 (strongly discouraged)
 //belt_width = 6.5;
@@ -57,6 +59,8 @@ belt_width = 6.5;
 belt_tooth_distance = 2;
 belt_tooth_ratio = 0.5;
 belt_thickness = 0.8;
+belt_tooth_depth = 0.7;	//added by Marcelino Bernardo
+pulley_teeth = 20;		//added by Marcelino Bernardo
 
 // Choose bearing/bushing configuration ***************************************
 // conf_b_* are in inc/conf_bushing.scad

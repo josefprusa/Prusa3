@@ -31,6 +31,7 @@ bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + 8)
 
 module x_end_motor(){
 
+	motor_shift = (pulley_teeth*belt_tooth_distance/PI-17)/2;	//Marcelino Bernardo
     mirror([0, 1, 0]) {
 
         x_end_base([3, 3, min((bushing_xy[0] - 3) * 2, 3), 2], len=42, offset=-5, thru=false);
@@ -43,13 +44,13 @@ module x_end_motor(){
                     union() {
                         translate([-14, -16 + z_delta / 2, 24]) cube_fillet([17.5, 10.5 + z_delta, 55], center = true, vertical=[0, 0, 3, 3], top=[0, 3, 6, 3], $fn=16);
                         //lower arm holding outer stepper screw
-                        translate([-10.25, -34, 9]) intersection(){
+                        translate([-10.25, -34, 9 + motor_shift]) intersection(){
                             translate([0, 0, -5]) cube_fillet([10, 37, 28], center = true, vertical=[0, 0, 0, 0], top=[0, 3, 5, 3]);
                             translate([-10/2, 10, -26]) rotate([45, 0, 0]) cube_fillet([10, 60, 60], radius=2);
                         }
                     }
                 }
-                translate([-16, -32, 30.25]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 0, 1, 1], h=11);
+                translate([-16, -32, 30.25 + motor_shift]) rotate([90, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 0, 1, 1], h=11);
             }
 
             // motor screw holes
@@ -57,7 +58,7 @@ module x_end_motor(){
                 // belt hole
                     translate([-30, 11, -0.25]) cube_fillet([11, 36, 22], vertical=0, top=[0, 1, 0, 1], bottom=[0, 1, 0, 1], center = true, $fn=4);
                 //motor mounting holes
-                translate([-29.5, 0, 0]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5.5, $fn=small_hole_segments, h=8);
+                translate([-29.5, 0, motor_shift]) rotate([0, 0, 0])  rotate([0, 90, 0]) nema17(places=[1, 1, 0, 1], holes=true, shadow=5.5, $fn=small_hole_segments, h=8);
             }
         }
         //smooth rod caps
@@ -111,17 +112,19 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
 }
 
 module x_end_idler(){
+
+	idler_shift = idler_bearing[0] / 2 + idler_bearing[3] * 6 * single_wall_width + 0.2 - (8.5 - belt_tooth_depth);
     difference() {
         x_end_base(len=48 + z_delta / 3, offset=-10 - z_delta / 3);
         // idler hole
-        translate([-20, -15 - z_delta / 2, 30]) {
+        #translate([-20, -15 - z_delta / 2, 30 + idler_shift]) {
             rotate([0, 90, 0]) cylinder(r=m4_diameter / 2, h=33, center=true, $fn=small_hole_segments);
             translate([15 - 2 * single_wall_width, 0, 0]) rotate([90, 0, 90]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3, $fn=6);
 
         }
-        translate([-6 - x_box_width, 11, 29.5 - (max(idler_width, 16) / 2)]) cube([x_box_width + 1, 12, 1.5 + max(idler_bearing[0], 16)]);
+        #translate([-6 - x_box_width, 11, 30 - (1.5 + max(idler_width, 16) / 2) + idler_shift]) cube([x_box_width + 1, 12, 1.5 + max(idler_bearing[0], 16)]);
     }
-        %translate([-14 - xy_delta / 2, -9, 30.5 - (max(idler_width, 16) / 2)]) x_tensioner();
+        %translate([-14 - xy_delta / 2, -9, 30 - (max(idler_width, 16) / 2) + idler_shift]) x_tensioner();
 }
 
 module x_tensioner(len=68, idler_height=max(idler_bearing[0], 16)) {
@@ -143,7 +146,7 @@ module pushfit_rod(diameter, length){
 
 
 if (idler_bearing[3] == 1) {  // bearing guides
-    translate([-39,  -60 - idler_bearing[0] / 2, 4 - bushing_xy[0]]) rotate([0, 0, 55]) {
+    translate([-39,  -60 - 17 / 2, 4 - bushing_xy[0]]) rotate([0, 0, 55]) {
         render() bearing_assy();
     }
 }
